@@ -3,3 +3,4 @@ RemoteSystemsTempFiles
 .classpath
 website/.settings
 website/target
+.recommenders
