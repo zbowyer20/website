@@ -19,6 +19,8 @@ angular.module('app', ['ngRoute'])
 			self.greeting = response.data;
 		})
 	})
-	.controller('blog', function($location) {
-		$location.path("/blog");
+	.controller('blog', function($http, $scope, $location) {
+		$http.get('api/v1/blog/').then(function(response) {
+			$scope.blogs = response.data;
+		})
 	});

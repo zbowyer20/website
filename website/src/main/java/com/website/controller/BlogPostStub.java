@@ -12,7 +12,7 @@ public class BlogPostStub {
 	private static Long idIndex = 3L;
 	
 	static {
-		BlogPost blog = new BlogPost(1L, "Test One", "Content One");
+		BlogPost blog = new BlogPost(1L, "Test Two", "Content One");
 		posts.put(1L, blog);
 	}
 	
