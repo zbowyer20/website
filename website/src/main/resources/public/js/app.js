@@ -19,8 +19,19 @@ angular.module('app', ['ngRoute'])
 			self.greeting = response.data;
 		})
 	})
-	.controller('blog', function($http, $scope, $location) {
+	.controller('blog', function($http, $scope) {
 		$http.get('api/v1/blog/').then(function(response) {
 			$scope.blogs = response.data;
 		})
+		
+		$scope.addBlogPost = function() {
+			var data = {
+				id: "testtitle",
+				title: $scope.blogpost.title,
+				description: $scope.blogpost.description
+			};
+			$http.post("api/v1/blogs", data).success(function(data, status) {
+				console.log('done this');
+			})
+		}
 	});

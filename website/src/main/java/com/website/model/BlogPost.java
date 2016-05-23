@@ -1,20 +1,57 @@
 package com.website.model;
 
+import org.springframework.data.annotation.Id;
+
 public class BlogPost {
-	Long id;
+	@Id
+	String id;
 	String title;
-	String content;	
+	String description;	
 	
-	public BlogPost(Long id, String title, String content) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
+	public BlogPost() {
+
 	}
 	
-	public Long getId() {
+	public BlogPost(Builder builder) {
+		this.description = builder.description;
+		this.title = builder.title;
+	}
+	
+	public static Builder getBuilder() {
+		return new Builder();
+	}
+	
+	public void update(String title, String description) {
+		this.title = title;
+		this.description = description;
+	}
+	
+	public static class Builder {
+		private String description;
+		private String title;
+		
+		private Builder() {}
+		
+		public Builder description(String description) {
+			this.description = description;
+			return this;
+		}
+		
+		public Builder title(String title) {
+			this.title = title;
+			return this;
+		}
+		
+		public BlogPost build() {
+			BlogPost build = new BlogPost(this);
+			return build;
+		}
+	}
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getTitle() {
@@ -23,10 +60,10 @@ public class BlogPost {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getDescription() {
+		return description;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

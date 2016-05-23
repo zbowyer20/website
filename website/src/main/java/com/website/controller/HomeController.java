@@ -13,7 +13,7 @@ import com.website.model.BlogPost;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1")
 public class HomeController {
 	
 	@RequestMapping("/resource")

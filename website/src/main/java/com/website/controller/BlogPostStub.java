@@ -8,12 +8,12 @@ import java.util.Map;
 import com.website.model.BlogPost;
 
 public class BlogPostStub {
-	private static Map<Long, BlogPost> posts = new HashMap<Long, BlogPost>();
-	private static Long idIndex = 3L;
+	private static Map<String, BlogPost> posts = new HashMap<String, BlogPost>();
+	private static String idIndex = "3L";
 	
 	static {
-		BlogPost blog = new BlogPost(1L, "Test Two", "Content One");
-		posts.put(1L, blog);
+		//BlogPost blog = new BlogPost(1L, "Test Two", "Content One");
+		//posts.put(1L, blog);
 	}
 	
 	public static List<BlogPost> list() {
