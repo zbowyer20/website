@@ -36,7 +36,7 @@ public class BlogPostController {
 		return service.create(blogPost);
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	BlogPostDTO delete(@PathVariable("id") String id) {
 		return service.delete(id);
 	}

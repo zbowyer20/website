@@ -43,4 +43,10 @@ angular.module('app', ['ngRoute'])
 		$http.get('api/v1').then(function(response) {
 			$scope.blogs = response.data;
 		});
+		
+		$scope.deleteBlog = function(blog) {
+			$http.delete('api/v1/' + blog.id).success(function(data, status) {
+				console.log('done delete');
+			})
+		}
 	});
