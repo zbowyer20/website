@@ -19,15 +19,10 @@ angular.module('app', ['ngRoute'])
 	.controller('home', function($http) {
 		var self = this;
 		$http.get('/resource/').then(function(response) {
-			console.log(response);
 			self.greeting = response.data;
 		})
 	})
 	.controller('blog', function($http, $scope) {
-		$http.get('api/v1/blog/').then(function(response) {
-			$scope.blogs = response.data;
-		})
-		
 		$scope.addBlogPost = function() {
 			var data = {
 				id: "testtitle",
