@@ -4,10 +4,6 @@ angular.module('app', ['ngRoute'])
 			templateUrl: 'home.html',
 			controller: 'home',
 			controllerAs: 'controller'
-		}).when('/blog', {
-			templateUrl: 'blog.html',
-			controller: 'blog',
-			controllerAs: 'controller'
 		}).when('/viewblog', {
 			templateUrl: 'viewblog.html',
 			controller: 'viewblog',
@@ -22,18 +18,6 @@ angular.module('app', ['ngRoute'])
 			self.greeting = response.data;
 		})
 	})
-	.controller('blog', function($http, $scope) {
-		$scope.addBlogPost = function() {
-			var data = {
-				id: "testtitle",
-				title: $scope.blogpost.title,
-				description: $scope.blogpost.description
-			};
-			$http.post("api/v1/blogs", data).success(function(data, status) {
-				console.log('done this');
-			})
-		}
-	})
 	.controller('viewblog', function($http, $scope) {
 		$http.get('api/v1').then(function(response) {
 			$scope.blogs = response.data;
@@ -42,6 +26,22 @@ angular.module('app', ['ngRoute'])
 		$scope.deleteBlog = function(blog) {
 			$http.delete('api/v1/' + blog.id).success(function(data, status) {
 				console.log('done delete');
+			})
+		}
+		
+		$scope.blogpost = {};
+		
+		$scope.addBlogPost = function() {
+			console.log($scope);
+			console.log($scope.blogpost);
+			console.log("made it here");
+			var data = {
+				id: "testtitle",
+				title: $scope.blogpost.title,
+				description: $scope.blogpost.description
+			};
+			$http.post("api/v1/blogs", data).success(function(data, status) {
+				console.log('done this');
 			})
 		}
 	});

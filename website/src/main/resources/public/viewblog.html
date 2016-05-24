@@ -1,6 +1,7 @@
-<div>Look at all these blogs</div>
+<div>Look at all these wonderul blogs</div>
 <div ng-repeat="blog in blogs">
 	<h1>{{blog.title}}</h1>
 	<div>{{blog.description}}</div>
 	<button ng-click="deleteBlog(blog)">Delete Me</button>
 </div>
+<div ng-include="'addblog.html'" />
