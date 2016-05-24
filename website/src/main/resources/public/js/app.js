@@ -8,6 +8,10 @@ angular.module('app', ['ngRoute'])
 			templateUrl: 'blog.html',
 			controller: 'blog',
 			controllerAs: 'controller'
+		}).when('/viewblog', {
+			templateUrl: 'viewblog.html',
+			controller: 'viewblog',
+			controllerAs: 'controller'
 		}).otherwise('/');
 		
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -34,4 +38,9 @@ angular.module('app', ['ngRoute'])
 				console.log('done this');
 			})
 		}
+	})
+	.controller('viewblog', function($http, $scope) {
+		$http.get('api/v1').then(function(response) {
+			$scope.blogs = response.data;
+		});
 	});
