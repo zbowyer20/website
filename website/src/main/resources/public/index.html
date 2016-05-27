@@ -12,12 +12,13 @@
 </head>
 
 <body ng-app="app" ng-cloak class="ng-cloak">
-  <div class="container">
-  	<ul class="nav nav-pills" role="tablist">
-  		<li class="active test-class"><a href="#/">home</a></li>
-  		<li><a href="#/viewblog">view blogs</a></li>
-  	</ul>
-  </div>
+  <nav class="navigation">
+  	<div class="container container--horizontal">
+	  	<a class="navigation__item navigation__item--link" href="#/">bowyerville</span>
+	  	<a class="navigation__item navigation__item--link" href="#/viewblog">view blogs</a>
+	</div>
+  </nav>
+  
   <div ng-view class="container"></div>
 	
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>

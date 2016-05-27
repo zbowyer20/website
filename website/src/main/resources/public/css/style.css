@@ -1,4 +1,24 @@
-.test-class {
-  font-size: 28px; }
+.container--horizontal {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.container-vertical {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.navigation {
+  display: block;
+  background: #003366;
+  padding: 5px 0; }
+
+.navigation__item {
+  margin: 0 10px;
+  color: white;
+  padding: 5px 0; }
+  .navigation__item:first-child {
+    margin-left: 0px; }
+
+.navigation__item--link {
+  text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */
