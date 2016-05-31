@@ -2,6 +2,8 @@ package com.website.service;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +40,12 @@ public class MongoDBBlogService implements BlogService {
 	@Override
 	public List<BlogPostDTO> findAll() {
 		List<BlogPost> blogPostEntries = repository.findAll();
+		// sort blog posts from newest - oldest
+		Collections.sort(blogPostEntries, new Comparator<BlogPost>() {
+			public int compare(BlogPost o1, BlogPost o2) {
+				return o2.getDateCreated().compareTo(o1.getDateCreated());
+			}
+		});
 		return convertToDTOs(blogPostEntries);
 	}
 	
