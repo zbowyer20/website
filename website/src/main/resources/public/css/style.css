@@ -1,3 +1,15 @@
+.body {
+  background-color: #1B212D; }
+
+.text {
+  color: white; }
+
+.text--dark {
+  color: black; }
+
+.container--body {
+  padding: 10px; }
+
 .container--horizontal {
   margin-left: 10px;
   margin-right: 10px; }
@@ -20,5 +32,21 @@
 
 .navigation__item--link {
   text-decoration: none; }
+
+.article {
+  width: 66%; }
+
+.article__preface {
+  font-size: 10px; }
+
+.article__title {
+  text-align: center;
+  font-size: 32px;
+  padding: 10px 0; }
+
+.article__content {
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px 5px; }
 
 /*# sourceMappingURL=style.css.map */

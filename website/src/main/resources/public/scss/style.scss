@@ -1,8 +1,28 @@
 $base--margin: 10px;
+$base--background-colour: #1B212D;
+$base__text--colour: white;
+$base__text--colour-dark: black;
 $theme--background-colour: #003366;
 $theme--text-colour: white;
+$content--background-colour: white;
+
+.body {
+	background-color: $base--background-colour;
+}
+
+.text {
+	color: $base__text--colour;
+}
+
+.text--dark {
+	color: $base__text--colour-dark;
+}
 
 .container {
+}
+
+.container--body {
+	padding: 10px;
 }
 
 .container--horizontal {
@@ -33,4 +53,24 @@ $theme--text-colour: white;
 
 .navigation__item--link {
 	text-decoration: none;
+}
+
+.article {
+	width: 66%;
+}
+
+.article__preface {
+	font-size: 10px;
+}
+
+.article__title {
+	text-align: center;
+	font-size: 32px;
+	padding: 10px 0;
+}
+
+.article__content {
+	background-color: $content--background-colour;
+	border-radius: 5px;
+	padding: 15px 5px;
 }
