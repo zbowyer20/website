@@ -23,7 +23,7 @@ public class MongoDBBlogService implements BlogService {
 	
 	@Override
 	public BlogPostDTO create(BlogPostDTO blogPost) {
-		BlogPost persisted = BlogPost.getBuilder().title(blogPost.getTitle()).description(blogPost.getDescription()).build();
+		BlogPost persisted = BlogPost.getBuilder().title(blogPost.getTitle()).description(blogPost.getDescription()).dateCreated(blogPost.getDateCreated()).build();
 		persisted = repository.save(persisted);
 		return convertToDTO(persisted);
 	}
@@ -56,7 +56,7 @@ public class MongoDBBlogService implements BlogService {
 	@Override
 	public BlogPostDTO update(BlogPostDTO blogPost) {
 		BlogPost updated = findBlogPostById(blogPost.getId());
-		updated.update(blogPost.getTitle(), blogPost.getDescription());
+		updated.update(blogPost.getTitle(), blogPost.getDescription(), blogPost.getDateCreated());
 		updated = repository.save(updated);
 		return convertToDTO(updated);
 	}
@@ -71,6 +71,8 @@ public class MongoDBBlogService implements BlogService {
 		dto.setId(model.getId());
 		dto.setTitle(model.getTitle());
 		dto.setDescription(model.getDescription());
+		dto.setDateCreated(model.getDateCreated());
+		//dto.setDateModified(model.getDateModified());
 		
 		return dto;
 	}

@@ -32,13 +32,11 @@ angular.module('app', ['ngRoute'])
 		$scope.blogpost = {};
 		
 		$scope.addBlogPost = function() {
-			console.log($scope);
-			console.log($scope.blogpost);
-			console.log("made it here");
 			var data = {
 				id: "testtitle",
 				title: $scope.blogpost.title,
-				description: $scope.blogpost.description
+				description: $scope.blogpost.description,
+				dateCreated: new Date().getTime()
 			};
 			$http.post("api/v1/blogs", data).success(function(data, status) {
 				console.log('done this');
