@@ -8,6 +8,10 @@ angular.module('app', ['ngRoute'])
 			templateUrl: 'viewblog.html',
 			controller: 'viewblog',
 			controllerAs: 'controller'
+		}).when('/addblog', {
+			templateUrl: 'addblog.html',
+			controller: 'addblog',
+			controllerAs: 'controller'
 		}).otherwise('/');
 		
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -17,6 +21,19 @@ angular.module('app', ['ngRoute'])
 		$http.get('/resource/').then(function(response) {
 			self.greeting = response.data;
 		})
+	})
+	.controller('addblog', function($http,$scope) {		
+		$scope.addBlogPost = function() {
+			var data = {
+				id: "testtitle",
+				title: $scope.blogpost.title,
+				description: $scope.blogpost.description,
+				dateCreated: new Date().getTime()
+			};
+			$http.post("api/v1/blogs", data).success(function(data, status) {
+				console.log('done this');
+			})
+		}
 	})
 	.controller('viewblog', function($http, $scope) {
 		$http.get('api/v1').then(function(response) {
@@ -31,15 +48,4 @@ angular.module('app', ['ngRoute'])
 		
 		$scope.blogpost = {};
 		
-		$scope.addBlogPost = function() {
-			var data = {
-				id: "testtitle",
-				title: $scope.blogpost.title,
-				description: $scope.blogpost.description,
-				dateCreated: new Date().getTime()
-			};
-			$http.post("api/v1/blogs", data).success(function(data, status) {
-				console.log('done this');
-			})
-		}
 	});
