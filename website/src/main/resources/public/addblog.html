@@ -1,13 +1,11 @@
-<h2>New Blog</h2>
+<h2 class="text">New Blog</h2>
 
 <form role="form" ng-submit="addBlogPost()">
 	<div class="form-group">
-		<label for="title">Title</label>
-		<input type="text" ng-model="$parent.blogpost.title" />
+		<input class="input--wide" type="text" placeholder="Title" ng-model="$parent.blogpost.title" />
 	</div>
 	<div class="form-group">
-		<label for="description">Description</label>
-		<input type="text" ng-model="$parent.blogpost.description" />
+		<textarea class="input--wide input--tall" placeholder="Enter text here..." ng-model="$parent.blogpost.description"></textarea>
 	</div>
 	<div class="form-group">
 		<input type="submit" class="btn" value="Save" />

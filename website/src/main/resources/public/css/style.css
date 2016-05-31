@@ -49,4 +49,10 @@
   border-radius: 5px;
   padding: 15px 5px; }
 
+.input--wide {
+  width: 80%; }
+
+.input--tall {
+  height: 350px; }
+
 /*# sourceMappingURL=style.css.map */
