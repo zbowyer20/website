@@ -8,6 +8,7 @@ $content--background-colour: white;
 
 .body {
 	background-color: $base--background-colour;
+	overflow: hidden;
 }
 
 .text {
@@ -19,6 +20,7 @@ $content--background-colour: white;
 }
 
 .container {
+	overflow: hidden;
 }
 
 .container--body {
@@ -73,6 +75,28 @@ $content--background-colour: white;
 	background-color: $content--background-colour;
 	border-radius: 5px;
 	padding: 15px 5px;
+}
+
+.container__image {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+}
+
+.image__story {
+	height: 760px;
+	display: block;
+	margin: auto;
+	position: relative;
+	bottom: -50px;
+}
+
+.article__story {
+	height: 650px;
+	overflow: auto;
+	display: inline-block;
+	width: 69%;
+	margin-top: 50px;
 }
 
 .input--wide {

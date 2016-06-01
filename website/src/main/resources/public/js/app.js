@@ -77,6 +77,6 @@ angular.module('app', ['ngRoute'])
 		});
 		
 		$scope.showContent = function(content) {
-			$("#storyContainer").text(content);
+			$(".article__story").text(content);
 		}
 	});
