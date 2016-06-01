@@ -1,0 +1,16 @@
+<h2 class="text">New Story</h2>
+
+<form role="form" ng-submit="addStory()">
+	<div class="form-group">
+		<input class="input--wide" type="text" placeholder="Title" ng-model="$parent.story.title" />
+	</div>
+	<div class="form-group">
+		<input class="input--wide" type="text" placeholder="Date" ng-model="$parent.story.timeSetting" />
+	</div>
+	<div class="form-group">
+		<textarea class="input--wide input--tall" placeholder="Enter text here..." ng-model="$parent.story.content"></textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn" value="Save" />
+	</div>
+</form>
