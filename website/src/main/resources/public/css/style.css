@@ -46,7 +46,8 @@
 .article__title {
   text-align: center;
   font-size: 32px;
-  padding: 10px 0; }
+  padding: 10px 0;
+  color: white; }
 
 .article__content {
   background-color: white;

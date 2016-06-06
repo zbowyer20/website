@@ -1,8 +1,11 @@
 <span ng-repeat="story in stories">
-	<button ng-click="showContent(story.content)">{{story.title}}</button>
+	<button ng-click="showContent(story)">{{story.title}}</button>
 </span>
 
 <div id="container">
-	<div class="container__image"><img class="image__story" src="images/kate-smile.png"></img></div>
-	<article class="article__story"></article>
+	<div class="container__image"><img class="image__story"></img></div>
+	<article class="article__story">
+		<h2 class="article__title"></h2>
+		<div class="article__content"></div>
+	</article>
 </div>

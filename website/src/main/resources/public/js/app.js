@@ -49,6 +49,7 @@ angular.module('app', ['ngRoute'])
 				id: "testtitle",
 				title: $scope.story.title,
 				content: $scope.story.content,
+				img: $scope.story.img,
 				timeSetting: $scope.story.timeSetting
 			};
 			$http.post("api/story/", data).success(function(data, status) {
@@ -77,6 +78,8 @@ angular.module('app', ['ngRoute'])
 		});
 		
 		$scope.showContent = function(content) {
-			$(".article__story").text(content);
+			$(".article__title").text(content.title);
+			$(".image__story").attr("src", content.img);
+			$(".article__content").text(content.content);
 		}
 	});
