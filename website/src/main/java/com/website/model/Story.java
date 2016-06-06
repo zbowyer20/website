@@ -9,6 +9,7 @@ public class Story {
 	String id;
 	String title;
 	String content;
+	String img;
 	Date timeSetting;
 	
 	public Story() {
@@ -18,6 +19,7 @@ public class Story {
 	public Story(Builder builder) {
 		this.content = builder.content;
 		this.title = builder.title;
+		this.img = builder.img;
 		this.timeSetting = builder.timeSetting;
 	}
 	
@@ -25,15 +27,17 @@ public class Story {
 		return new Builder();
 	}
 	
-	public void update(String title, String content, Date timeSetting) {
+	public void update(String title, String content, String img, Date timeSetting) {
 		this.title = title;
 		this.content = content;
+		this.img = img;
 		this.timeSetting = timeSetting;
 	}
 	
 	public static class Builder {
 		private String content;
 		private String title;
+		private String img;
 		private Date timeSetting;
 		
 		private Builder() {}
@@ -45,6 +49,11 @@ public class Story {
 		
 		public Builder title(String title) {
 			this.title = title;
+			return this;
+		}
+		
+		public Builder img(String img) {
+			this.img = img;
 			return this;
 		}
 		
@@ -90,6 +99,14 @@ public class Story {
 
 	public void setTimeSetting(Date timeSetting) {
 		this.timeSetting = timeSetting;
+	}
+	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

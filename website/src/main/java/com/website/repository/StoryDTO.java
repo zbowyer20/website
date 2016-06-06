@@ -8,6 +8,7 @@ public class StoryDTO {
 	private String id;
 	private String content;
 	private String title;
+	private String img;
 	@JsonFormat(pattern="dd-MM-yyyy HH.mm")
 	private Date timeSetting;
 	
@@ -41,5 +42,13 @@ public class StoryDTO {
 
 	public void setTimeSetting(Date timeSetting) {
 		this.timeSetting = timeSetting;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }
