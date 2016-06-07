@@ -2,6 +2,14 @@
 	<button ng-click="showContent(story)">{{story.title}}</button>
 </span>
 
+<div class="timeline">
+	<div class="events">
+		<ol>
+			<li ng-repeat="story in stories"><a class="events__event" ng-style="{left: getLeft(story.timeSetting)}" ng-click="showContent(story)"></a></li>
+		</ol>	
+	</div>
+</div>
+
 <div id="container">
 	<div class="container__image"><img class="image__story"></img></div>
 	<article class="article__story">

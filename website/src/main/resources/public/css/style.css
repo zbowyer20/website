@@ -83,6 +83,23 @@
   -webkit-animation: fadein 2s;
   animation: fadein 2s; }
 
+.events {
+  width: 90%;
+  height: 5px;
+  background: #ffffff;
+  margin: auto;
+  position: relative; }
+
+.events__event {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  border: 2px solid #dfdfdf;
+  background-color: #f8f8f8; }
+
 @keyframes fadein {
   from {
     opacity: 0; }

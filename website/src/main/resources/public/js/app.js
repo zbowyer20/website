@@ -73,6 +73,9 @@ angular.module('app', ['ngRoute'])
 		
 	})
 	.controller('viewstory', function($http, $scope) {
+		var startDate = new Date(2014, 0, 1);
+		var endDate = new Date(2014, 2, 1);
+			
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 		});
@@ -84,5 +87,13 @@ angular.module('app', ['ngRoute'])
 				$(this).removeClass("animation__fade-in");
 			});
 			$(".article__content").text(content.content);
+		}
+		
+		var totalTime = endDate - startDate;
+		
+		$scope.getLeft = function(timeSetting) {
+			var thisDate = new Date(timeSetting);
+			var left = (((thisDate - startDate) / totalTime) * 100) + "%";
+			return left;
 		}
 	});
