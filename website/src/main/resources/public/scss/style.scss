@@ -107,3 +107,13 @@ $content--background-colour: white;
 .input--tall {
 	height: 350px;
 }
+
+.animation__fade-in {
+	-webkit-animation: fadein 2s;
+	animation: fadein 2s;
+}
+
+@keyframes fadein {
+	from { opacity: 0; }
+	to	 { opacity: 1; }
+}
