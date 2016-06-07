@@ -79,6 +79,9 @@
 .input--tall {
   height: 350px; }
 
+.list--unlabelled {
+  list-style-type: none; }
+
 .animation__fade-in {
   -webkit-animation: fadein 2s;
   animation: fadein 2s; }
@@ -91,6 +94,7 @@
   position: relative; }
 
 .events__event {
+  transition: all 0.5s;
   position: absolute;
   left: 50%;
   bottom: -5px;
@@ -99,6 +103,12 @@
   border-radius: 50%;
   border: 2px solid #dfdfdf;
   background-color: #f8f8f8; }
+  .events__event:hover {
+    background-color: #003366;
+    cursor: pointer; }
+
+.events__event--selected {
+  background-color: #003366 !important; }
 
 @keyframes fadein {
   from {

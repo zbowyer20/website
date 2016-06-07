@@ -5,7 +5,9 @@
 <div class="timeline">
 	<div class="events">
 		<ol>
-			<li ng-repeat="story in stories"><a class="events__event" ng-style="{left: getLeft(story.timeSetting)}" ng-click="showContent(story)"></a></li>
+			<li class="list--unlabelled" ng-repeat="story in stories">
+				<a class="events__event" ng-class="{'events__event--selected': isSelected(story.title)}" ng-style="{left: getLeft(story.timeSetting)}" ng-click="showContent(story)"></a>
+			</li>
 		</ol>	
 	</div>
 </div>

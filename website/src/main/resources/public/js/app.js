@@ -81,12 +81,17 @@ angular.module('app', ['ngRoute'])
 		});
 		
 		$scope.showContent = function(content) {
+			$scope.selected = content.title;
 			$(".article__title").text(content.title);
 			$(".image__story").attr("src", content.img).addClass("animation__fade-in");
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$(this).removeClass("animation__fade-in");
 			});
 			$(".article__content").text(content.content);
+		}
+		
+		$scope.isSelected = function(title) {
+			return $scope.selected == title;
 		}
 		
 		var totalTime = endDate - startDate;

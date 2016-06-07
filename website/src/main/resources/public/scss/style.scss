@@ -108,6 +108,10 @@ $content--background-colour: white;
 	height: 350px;
 }
 
+.list--unlabelled {
+	list-style-type: none;
+}
+
 .animation__fade-in {
 	-webkit-animation: fadein 2s;
 	animation: fadein 2s;
@@ -122,6 +126,7 @@ $content--background-colour: white;
 }
 
 .events__event {
+	transition: all 0.5s;
 	position: absolute;
 	left: 50%;
 	bottom: -5px;
@@ -130,6 +135,15 @@ $content--background-colour: white;
 	border-radius: 50%;
 	border: 2px solid #dfdfdf;
 	background-color: #f8f8f8;
+	
+	&:hover {
+		background-color: $theme--background-colour;
+		cursor: pointer;
+	}
+}
+
+.events__event--selected {
+	background-color: $theme--background-colour !important;
 }
 
 @keyframes fadein {
