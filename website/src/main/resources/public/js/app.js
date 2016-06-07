@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute'])
+angular.module('app', ['ngRoute', 'ui.bootstrap'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'home.html',
