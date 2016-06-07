@@ -9,7 +9,7 @@ public class StoryDTO {
 	private String content;
 	private String title;
 	private String img;
-	@JsonFormat(pattern="dd-MM-yyyy HH.mm")
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm")
 	private Date timeSetting;
 	
 	public String getId() {
