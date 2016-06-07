@@ -75,13 +75,14 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 	.controller('viewstory', function($http, $scope) {
 		var startDate = new Date(2014, 0, 1);
 		var endDate = new Date(2014, 2, 1);
-			
+		$scope.selected = {};
+		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 		});
 		
 		$scope.showContent = function(content) {
-			$scope.selected = content.title;
+			$scope.selected = content;
 			$(".article__title").text(content.title);
 			$(".image__story").attr("src", content.img).addClass("animation__fade-in");
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
@@ -91,7 +92,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		}
 		
 		$scope.isSelected = function(title) {
-			return $scope.selected == title;
+			return $scope.selected.title == title;
 		}
 		
 		var totalTime = endDate - startDate;
@@ -100,5 +101,19 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 			var thisDate = new Date(timeSetting);
 			var left = (((thisDate - startDate) / totalTime) * 100) + "%";
 			return left;
+		}
+		
+		$scope.getCurrentTimeWidth = function() {
+			if ($scope.selected === null) return 0;
+			return (((new Date($scope.selected.timeSetting) - startDate) / totalTime) * 100) + "%";
+		}
+		
+		$scope.isPassed = function(time) {
+			console.log("is passed");
+			if ($scope.selected === null) return false;
+			var thisDate = new Date(time);
+			console.log(thisDate);
+			console.log($scope.selected.timeSetting);
+			return new Date($scope.selected.timeSetting) > thisDate;
 		}
 	});
