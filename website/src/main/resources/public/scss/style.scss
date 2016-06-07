@@ -51,6 +51,11 @@ $content--background-colour: white;
 	&:first-child {
 		margin-left: 0px;
 	}
+	
+	&:hover {
+		color: $theme--text-colour;
+		text-decoration: none;
+	}
 }
 
 .navigation__item--link {

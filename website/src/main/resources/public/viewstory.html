@@ -6,7 +6,7 @@
 	<div class="events">
 		<ol>
 			<li class="list--unlabelled" ng-repeat="story in stories">
-				<a class="events__event" tooltip-placement="bottom" uib-tooltip="{{story.title}}" ng-class="{'events__event--selected': isSelected(story.title)}" ng-style="{left: getLeft(story.timeSetting)}" ng-click="showContent(story)"></a>
+				<a class="events__event" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'events__event--selected': isSelected(story.title)}" ng-style="{left: getLeft(story.timeSetting)}" ng-click="showContent(story)"></a>
 			</li>
 		</ol>	
 	</div>

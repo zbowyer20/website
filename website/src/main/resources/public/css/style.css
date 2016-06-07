@@ -33,6 +33,9 @@
   padding: 5px 0; }
   .navigation__item:first-child {
     margin-left: 0px; }
+  .navigation__item:hover {
+    color: white;
+    text-decoration: none; }
 
 .navigation__item--link {
   text-decoration: none; }
