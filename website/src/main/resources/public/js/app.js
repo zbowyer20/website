@@ -76,6 +76,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 	.controller('viewstory', function($http, $scope) {
 		var startDate = new Date(2014, 0, 1);
 		var endDate = new Date(2014, 2, 1);
+		var totalTime = endDate - startDate;
 		$scope.selected = {};
 		$scope.prev = {};
 		
@@ -93,25 +94,16 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		$scope.isSelected = function(title) {
 			return $scope.selected.title == title;
 		}
-		
-		var totalTime = endDate - startDate;
-		
-		$scope.getLeft = function(timeSetting) {
-			var thisDate = new Date(timeSetting);
-			var left = (((thisDate - startDate) / totalTime) * 100) + "%";
-			return left;
+				
+		$scope.getDateProportion = function(dateStr) {
+			if (dateStr === null) return 0;
+			var date = new Date(dateStr);
+			return (((date - startDate) / totalTime) * 100) + "%";
 		}
 		
-		$scope.getCurrentTimeWidth = function() {
-			if ($scope.selected === null) return 0;
-			return (((new Date($scope.selected.timeSetting) - startDate) / totalTime) * 100) + "%";
-		}
-		
-		$scope.isPassed = function(time) {
+		$scope.isPassed = function(dateStr) {
 			if ($scope.selected === null) return false;
-			var thisDate = new Date(time);
-			console.log(thisDate);
-			console.log($scope.selected.timeSetting);
-			return new Date($scope.selected.timeSetting) > thisDate;
+			var date = new Date(dateStr);
+			return new Date($scope.selected.timeSetting) > date;
 		}
 	});
