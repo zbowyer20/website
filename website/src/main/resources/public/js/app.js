@@ -77,20 +77,17 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		var startDate = new Date(2014, 0, 1);
 		var endDate = new Date(2014, 2, 1);
 		$scope.selected = {};
+		$scope.prev = {};
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 		});
 		
 		$scope.showContent = function(content) {
-			$(".image__story").attr("src", content.img);
-			if ($scope.selected.character != content.character) {
-				$(".image__story").addClass("animation__fade-in");
-			}
 			$scope.selected = content;
 			$(".article__title").text(content.title);
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
-				$(this).removeClass("animation__fade-in");
+				$scope.prev = $scope.selected;
 			});
 			$(".article__content").text(content.content);
 		}
