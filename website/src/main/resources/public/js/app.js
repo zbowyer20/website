@@ -85,11 +85,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		
 		$scope.showContent = function(content) {
 			$scope.selected = content;
-			$(".article__title").text(content.title);
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$scope.prev = $scope.selected;
 			});
-			$(".article__content").text(content.content);
 		}
 		
 		$scope.isSelected = function(title) {
