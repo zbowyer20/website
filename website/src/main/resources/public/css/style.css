@@ -66,7 +66,8 @@
   height: 760px;
   margin: auto;
   position: absolute;
-  bottom: -150px; }
+  bottom: -100px;
+  z-index: 0; }
   .image__story.ng-hide-remove {
     -webkit-transition: all ease-in 0.5s;
     transition: all ease-in 0.5s;
@@ -131,6 +132,7 @@
   width: 16px;
   border-radius: 50%;
   border: 2px solid white;
+  z-index: 1;
   background: black; }
   .events__event:hover {
     background-color: #003366;

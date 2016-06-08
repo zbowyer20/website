@@ -93,7 +93,8 @@ $content--background-colour: white;
 	height: 760px;
 	margin: auto;
 	position: absolute;
-	bottom: -150px;
+	bottom: -100px;
+	z-index: 0;
 	
 	&.ng-hide-remove {
 		-webkit-transition: all ease-in 0.5s;
@@ -179,6 +180,7 @@ $content--background-colour: white;
 	width: 16px;
 	border-radius: 50%;
 	border: 2px solid white;
+	z-index: 1;
 	background: black;
 	
 	&:hover {
