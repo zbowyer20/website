@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 public class Story {
 	@Id
 	String id;
+	String character;
 	String title;
 	String content;
 	String img;
@@ -18,6 +19,7 @@ public class Story {
 	
 	public Story(Builder builder) {
 		this.content = builder.content;
+		this.character = builder.character;
 		this.title = builder.title;
 		this.img = builder.img;
 		this.timeSetting = builder.timeSetting;
@@ -27,7 +29,8 @@ public class Story {
 		return new Builder();
 	}
 	
-	public void update(String title, String content, String img, Date timeSetting) {
+	public void update(String character, String title, String content, String img, Date timeSetting) {
+		this.character = character;
 		this.title = title;
 		this.content = content;
 		this.img = img;
@@ -35,12 +38,18 @@ public class Story {
 	}
 	
 	public static class Builder {
+		private String character;
 		private String content;
 		private String title;
 		private String img;
 		private Date timeSetting;
 		
 		private Builder() {}
+		
+		public Builder character(String character) {
+			this.character = character;
+			return this;
+		}
 		
 		public Builder content(String content) {
 			this.content = content;
@@ -107,6 +116,14 @@ public class Story {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	
+	public String getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(String character) {
+		this.character = character;
 	}
 
 }

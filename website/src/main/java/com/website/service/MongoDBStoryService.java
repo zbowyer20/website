@@ -25,7 +25,7 @@ public class MongoDBStoryService implements StoryService {
 	
 	@Override
 	public StoryDTO create(StoryDTO story) {
-		Story persisted = Story.getBuilder().title(story.getTitle()).content(story.getContent()).img(story.getImg()).timeSetting(story.getTimeSetting()).build();
+		Story persisted = Story.getBuilder().character(story.getCharacter()).title(story.getTitle()).content(story.getContent()).img(story.getImg()).timeSetting(story.getTimeSetting()).build();
 		persisted = repository.save(persisted);
 		return convertToDTO(persisted);
 	}
@@ -64,7 +64,7 @@ public class MongoDBStoryService implements StoryService {
 	@Override
 	public StoryDTO update(StoryDTO Story) {
 		Story updated = findStoryById(Story.getId());
-		updated.update(Story.getTitle(), Story.getContent(), Story.getImg(), Story.getTimeSetting());
+		updated.update(Story.getCharacter(), Story.getTitle(), Story.getContent(), Story.getImg(), Story.getTimeSetting());
 		updated = repository.save(updated);
 		return convertToDTO(updated);
 	}
@@ -77,6 +77,7 @@ public class MongoDBStoryService implements StoryService {
 	private StoryDTO convertToDTO(Story model) {
 		StoryDTO dto = new StoryDTO();
 		dto.setId(model.getId());
+		dto.setCharacter(model.getCharacter());
 		dto.setTitle(model.getTitle());
 		dto.setContent(model.getContent());
 		dto.setImg(model.getImg());

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StoryDTO {
 	private String id;
+	private String character;
 	private String content;
 	private String title;
 	private String img;
@@ -50,5 +51,13 @@ public class StoryDTO {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public String getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(String character) {
+		this.character = character;
 	}
 }
