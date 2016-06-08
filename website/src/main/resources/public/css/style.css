@@ -101,6 +101,19 @@
   background-color: #003366;
   transition: all 0.5s;
   height: 5px; }
+  .timeline-bar::before, .timeline-bar::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    height: 100%;
+    width: 16px; }
+  .timeline-bar::before {
+    left: 0;
+    background-image: linear-gradient(to right, #1B212D, transparent); }
+  .timeline-bar::after {
+    right: 0;
+    background-image: linear-gradient(to left, #1B212D, transparent); }
 
 .events__event {
   transition: all 0.5s;

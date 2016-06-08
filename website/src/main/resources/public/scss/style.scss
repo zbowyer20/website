@@ -135,6 +135,25 @@ $content--background-colour: white;
 	background-color: $theme--background-colour;
 	transition: all 0.5s;
 	height: 5px;
+	
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		height: 100%;
+		width: 16px;
+	}
+	
+	&::before {
+		left: 0;
+		background-image: linear-gradient(to right, $base--background-colour, transparent);
+	}
+	
+	&::after {
+		right: 0;
+		background-image: linear-gradient(to left, $base--background-colour, transparent);
+	}
 }
 
 .events__event {
