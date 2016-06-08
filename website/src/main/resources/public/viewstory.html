@@ -14,7 +14,10 @@
 </div>
 
 <div id="container">
-	<div class="container__image"><img class="image__story" ng-class="{'animation__fade-in': prev.character != selected.character}" ng-src="{{selected.img}}"></img></div>
+	<div class="container__image">
+		<img class="image__story" ng-show="currentImage === 0" ng-src="{{images[0]}}"></img>
+		<img class="image__story" ng-show="currentImage === 1" ng-src="{{images[1]}}"></img> 
+	</div>
 	<article class="article__story">
 		<h2 class="article__title" ng-bind="selected.title"></h2>
 		<div class="article__content" ng-bind="selected.content"></div>

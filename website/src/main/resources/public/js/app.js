@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ui.bootstrap'])
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'home.html',
@@ -79,6 +79,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		var totalTime = endDate - startDate;
 		$scope.selected = {};
 		$scope.prev = {};
+		$scope.images = [];
+		$scope.currentImage = null;
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
@@ -86,6 +88,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap'])
 		
 		$scope.showContent = function(content) {
 			$scope.selected = content;
+			$scope.currentImage = $scope.currentImage === 0 ? 1 : 0;
+			$scope.images[$scope.currentImage] = content.img;
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$scope.prev = $scope.selected;
 			});
