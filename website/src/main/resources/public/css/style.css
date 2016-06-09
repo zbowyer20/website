@@ -40,6 +40,33 @@
 .navigation__item--link {
   text-decoration: none; }
 
+.animate__fade.ng-hide-remove {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+  opacity: 0; }
+.animate__fade.ng-hide-remove-active {
+  opacity: 1;
+  transition-delay: 0.5s; }
+.animate__fade.ng-hide-add {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+  opacity: 1; }
+.animate__fade.ng-hide-add-active {
+  opacity: 0; }
+
+.timeline-title {
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  height: 40px; }
+
+.timeline-title__text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto 0; }
+
 .article {
   width: 66%; }
 
@@ -127,9 +154,9 @@
   transition: all 0.5s;
   position: absolute;
   left: 50%;
-  bottom: -6px;
-  height: 16px;
-  width: 16px;
+  bottom: -8px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   border: 2px solid white;
   z-index: 1;

@@ -1,8 +1,8 @@
-<span ng-repeat="story in stories">
-	<button ng-click="showContent(story)">{{story.title}}</button>
-</span>
-
 <div class="timeline">
+	<div class="timeline-title">
+		<span class="timeline-title__text animate__fade" ng-show="selected.id == null">This is the timeline. Click a roundel to view its content.</span>
+		<span class="timeline-title__text animate__fade" ng-show="selected.id != null">Timeline</span>
+	</div>
 	<div class="events">
 		<div class="timeline-bar" ng-style="{width: getDateProportion(selected.timeSetting)}" />
 		<ol>
