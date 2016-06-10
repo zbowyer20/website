@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'home.html',

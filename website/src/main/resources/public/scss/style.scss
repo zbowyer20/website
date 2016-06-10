@@ -116,6 +116,8 @@ $content--background-colour: white;
 }
 
 .article__content {
+	max-height: 500px;
+	overflow: auto;
 	background-color: $content--background-colour;
 	border-radius: 5px;
 	padding: 15px 5px;
@@ -156,8 +158,6 @@ $content--background-colour: white;
 }
 
 .article__story {
-	height: 650px;
-	overflow: auto;
 	display: inline-block;
 	width: 69%;
 	margin-top: 50px;
