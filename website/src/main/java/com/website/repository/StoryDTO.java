@@ -7,10 +7,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class StoryDTO {
 	private String id;
 	private String character;
+	private String fileName;
 	private String content;
 	private String title;
 	private String img;
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern="MM-dd-yyyy HH:mm")
 	private Date timeSetting;
 	
 	public String getId() {
@@ -59,5 +60,13 @@ public class StoryDTO {
 
 	public void setCharacter(String character) {
 		this.character = character;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 }

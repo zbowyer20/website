@@ -47,9 +47,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
 		$scope.addStory = function() {
 			var data = {
 				id: "testtitle",
+				fileName: $scope.story.fileName,
 				character: $scope.story.character,
 				title: $scope.story.title,
-				content: $scope.story.content,
+				//content: $scope.story.content,
+				content: "",
 				img: $scope.story.img,
 				timeSetting: $scope.story.timeSetting
 			};
@@ -61,7 +63,6 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
 	.controller('viewblog', function($http, $scope) {
 		$http.get('api/v1').then(function(response) {
 			$scope.blogs = response.data;
-			console.log('show content');
 		});
 		
 		$scope.deleteBlog = function(blog) {
@@ -85,8 +86,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 		});
-		
+				
 		$scope.showContent = function(content) {
+			$scope.loadContent(content);
 			$scope.selected = content;
 			$scope.currentImage = $scope.currentImage === 0 ? 1 : 0;
 			$scope.images[$scope.currentImage] = content.img;
@@ -95,11 +97,19 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate'])
 			});
 		}
 		
+		$scope.loadContent = function(content) {
+			if (content.content == "") {
+				$http.get('api/story/' + content.fileName).then(function(response) {
+					content.content = response.data.story;
+				})
+			}
+		}
+		
 		$scope.isSelected = function(title) {
 			return $scope.selected.title == title;
 		}
 				
-		$scope.getDateProportion = function(dateStr) {
+		$scope.getDateProportion = function(dateStr, tst) {
 			if (dateStr === null) return 0;
 			var date = new Date(dateStr);
 			return (((date - startDate) / totalTime) * 100) + "%";

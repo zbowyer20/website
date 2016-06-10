@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 public class Story {
 	@Id
 	String id;
+	String fileName;
 	String character;
 	String title;
 	String content;
@@ -18,6 +19,7 @@ public class Story {
 	}
 	
 	public Story(Builder builder) {
+		this.fileName = builder.fileName;
 		this.content = builder.content;
 		this.character = builder.character;
 		this.title = builder.title;
@@ -29,7 +31,8 @@ public class Story {
 		return new Builder();
 	}
 	
-	public void update(String character, String title, String content, String img, Date timeSetting) {
+	public void update(String fileName, String character, String title, String content, String img, Date timeSetting) {
+		this.fileName = fileName;
 		this.character = character;
 		this.title = title;
 		this.content = content;
@@ -38,6 +41,7 @@ public class Story {
 	}
 	
 	public static class Builder {
+		private String fileName;
 		private String character;
 		private String content;
 		private String title;
@@ -45,6 +49,11 @@ public class Story {
 		private Date timeSetting;
 		
 		private Builder() {}
+		
+		public Builder fileName(String fileName) {
+			this.fileName = fileName;
+			return this;
+		}
 		
 		public Builder character(String character) {
 			this.character = character;
@@ -124,6 +133,14 @@ public class Story {
 
 	public void setCharacter(String character) {
 		this.character = character;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 }

@@ -8,7 +8,7 @@ public class BlogPostDTO {
 	private String id;
 	private String description;
 	private String title;
-	@JsonFormat(pattern="dd-MM-yyyy HH.mm")
+	@JsonFormat(pattern="MM-dd-yyyy HH.mm")
 	private Date dateCreated;
 	//@DateTimeFormat
 	//private LocalDateTime dateModified;

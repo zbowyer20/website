@@ -2,6 +2,9 @@
 
 <form role="form" ng-submit="addStory()">
 	<div class="form-group">
+		<input class="input--wide" type="text" placeholder="Filename" ng-model="$parent.story.fileName" />
+	</div>
+	<div class="form-group">
 		<input class="input--wide" type="text" placeholder="Character" ng-model="$parent.story.character" />
 	</div>
 	<div class="form-group">
@@ -13,9 +16,9 @@
 	<div class="form-group">
 		<input class="input--wide" type="text" placeholder="Image" ng-model="$parent.story.img" />
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<textarea class="input--wide input--tall" placeholder="Enter text here..." ng-model="$parent.story.content"></textarea>
-	</div>
+	</div> -->
 	<div class="form-group">
 		<input type="submit" class="btn" value="Save" />
 	</div>
