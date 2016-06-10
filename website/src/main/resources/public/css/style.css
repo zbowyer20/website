@@ -154,9 +154,9 @@
   transition: all 0.5s;
   position: absolute;
   left: 50%;
-  bottom: -8px;
   height: 20px;
   width: 20px;
+  bottom: -8px;
   border-radius: 50%;
   border: 2px solid white;
   z-index: 1;
@@ -164,6 +164,22 @@
   .events__event:hover {
     background-color: #003366;
     cursor: pointer; }
+  .events__event.ng-hide-remove {
+    height: 0;
+    width: 0;
+    bottom: 0; }
+  .events__event.ng-hide-remove-active {
+    height: 20px;
+    width: 20px;
+    bottom: -8px; }
+  .events__event.ng-hide-add {
+    height: 20px;
+    width: 20px;
+    bottom: -8px; }
+  .events__event.ng-hide-add-active {
+    height: 0;
+    width: 0;
+    bottom: 0; }
 
 .events__event--selected {
   background-color: #62eaea; }

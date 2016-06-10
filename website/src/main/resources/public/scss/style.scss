@@ -213,9 +213,9 @@ $content--background-colour: white;
 	transition: all 0.5s;
 	position: absolute;
 	left: 50%;
-	bottom: -8px;
 	height: 20px;
 	width: 20px;
+	bottom: -8px;
 	border-radius: 50%;
 	border: 2px solid white;
 	z-index: 1;
@@ -224,6 +224,30 @@ $content--background-colour: white;
 	&:hover {
 		background-color: $theme--background-colour;
 		cursor: pointer;
+	}
+	
+	&.ng-hide-remove {
+		height: 0;
+		width: 0;
+		bottom: 0;
+	}
+	
+	&.ng-hide-remove-active {
+		height: 20px;
+		width: 20px;
+		bottom: -8px;
+	}
+	
+	&.ng-hide-add {
+		height: 20px;
+		width: 20px;
+		bottom: -8px;
+	}
+	
+	&.ng-hide-add-active {
+		height: 0;
+		width: 0;
+		bottom: 0;
 	}
 }
 
