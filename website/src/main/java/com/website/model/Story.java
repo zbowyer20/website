@@ -13,7 +13,8 @@ public class Story {
 	String content;
 	String img;
 	Date timeSetting;
-	
+	String next;
+
 	public Story() {
 
 	}
@@ -25,19 +26,21 @@ public class Story {
 		this.title = builder.title;
 		this.img = builder.img;
 		this.timeSetting = builder.timeSetting;
+		this.next = builder.next;
 	}
 	
 	public static Builder getBuilder() {
 		return new Builder();
 	}
 	
-	public void update(String fileName, String character, String title, String content, String img, Date timeSetting) {
+	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next) {
 		this.fileName = fileName;
 		this.character = character;
 		this.title = title;
 		this.content = content;
 		this.img = img;
 		this.timeSetting = timeSetting;
+		this.next = next;
 	}
 	
 	public static class Builder {
@@ -47,6 +50,7 @@ public class Story {
 		private String title;
 		private String img;
 		private Date timeSetting;
+		private String next;
 		
 		private Builder() {}
 		
@@ -80,6 +84,10 @@ public class Story {
 			return this;
 		}
 		
+		public Builder next(String next) {
+			this.next = next;
+			return this;
+		}
 		
 		public Story build() {
 			Story build = new Story(this);
@@ -141,6 +149,15 @@ public class Story {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	
+	
+	public String getNext() {
+		return next;
+	}
+
+	public void setNext(String next) {
+		this.next = next;
 	}
 
 }

@@ -79,6 +79,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		var endDate = new Date(2020, 7, 15, 10, 0);
 		var totalTime = endDate - startDate;
 		$scope.selected = {};
+		$scope.content = "";
 		$scope.prev = {};
 		$scope.images = [];
 		$scope.currentImage = null;
@@ -101,7 +102,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			if (content.content == "") {
 				$http.get('api/story/' + content.fileName).then(function(response) {
 					content.content = response.data.story;
+					$scope.content += content.content;
 				})
+			}
+			else {
+				$scope.content += content.content;
 			}
 		}
 		
@@ -119,5 +124,27 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			if ($scope.selected === null) return false;
 			var date = new Date(dateStr);
 			return new Date($scope.selected.timeSetting) > date;
+		}
+		
+		$scope.getNext = function() {
+			var i = 0;
+			while ($scope.stories[i].fileName != $scope.selected.next) {
+				i++;
+			}
+			$scope.showContent($scope.stories[i]);
+		}
+	})
+	.directive('scrolly', function() {
+		return {
+			restrict: 'A',
+			link: function(scope, element, attrs) {
+				var raw = element[0];
+				
+				element.bind("scroll", function() {
+					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+						scope.$apply(attrs.scrolly);
+					}
+				});
+			}
 		}
 	});

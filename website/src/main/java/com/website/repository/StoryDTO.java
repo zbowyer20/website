@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class StoryDTO {
 	private String id;
+	private String next;
 	private String character;
 	private String fileName;
 	private String content;
@@ -68,5 +69,13 @@ public class StoryDTO {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getNext() {
+		return next;
+	}
+
+	public void setNext(String next) {
+		this.next = next;
 	}
 }
