@@ -75,8 +75,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		
 	})
 	.controller('viewstory', function($http, $scope) {
-		var startDate = new Date(2014, 0, 1);
-		var endDate = new Date(2014, 2, 1);
+		var startDate = new Date(2020, 7, 15, 3, 0);
+		var endDate = new Date(2020, 7, 15, 10, 0);
 		var totalTime = endDate - startDate;
 		$scope.selected = {};
 		$scope.prev = {};
