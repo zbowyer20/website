@@ -86,11 +86,16 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
+			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
 				
-		$scope.showContent = function(content) {
+		$scope.showContent = function(content, refresh) {
+			$scope.content = refresh ? "" : $scope.content;
+			// TODO update angularly
+			$(".article__content").scrollTop(0);
 			$scope.loadContent(content);
 			$scope.selected = content;
+			$scope.selected.visible = true;
 			$scope.currentImage = $scope.currentImage === 0 ? 1 : 0;
 			$scope.images[$scope.currentImage] = content.img;
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
@@ -126,13 +131,18 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			return new Date($scope.selected.timeSetting) > date;
 		}
 		
-		$scope.getNext = function() {
+		$scope.getStoryByFileName = function(fileName) {
 			var i = 0;
-			while ($scope.stories[i].fileName != $scope.selected.next) {
+			while ($scope.stories[i].fileName != fileName) {
 				i++;
 			}
-			$scope.showContent($scope.stories[i]);
+			return $scope.stories[i];
 		}
+		
+		$scope.getNext = function() {
+			$scope.showContent($scope.getStoryByFileName($scope.selected.next));
+		}
+		
 	})
 	.directive('scrolly', function() {
 		return {
