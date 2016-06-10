@@ -88,11 +88,21 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			$scope.stories = response.data;
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
-				
+		
+		$scope.refresh = function() {
+			$scope.content = "";
+			for (var i = 0; i < $scope.stories.length; i++) {
+				$scope.stories[i].scrollStart = null;
+				$scope.stories[i].scrollEnd = null;
+			}
+		}
+		
 		$scope.showContent = function(content, refresh) {
-			$scope.content = refresh ? "" : $scope.content;
-			// TODO update angularly
-			$(".article__content").scrollTop(0);
+			if (refresh) {
+				$scope.refresh();
+				// TODO update angularly
+				$(".article__content").scrollTop(0);
+			}
 			$scope.loadContent(content);
 			$scope.selected = content;
 			$scope.selected.visible = true;
@@ -140,7 +150,13 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		}
 		
 		$scope.getNext = function() {
-			$scope.showContent($scope.getStoryByFileName($scope.selected.next));
+			var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
+			story.scrollPrev = $scope.selected;
+			$scope.showContent(story);
+		}
+		
+		$scope.getLast = function() {
+			$scope.showContent($scope.selected.scrollPrev);
 		}
 		
 	})
@@ -149,10 +165,18 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			restrict: 'A',
 			link: function(scope, element, attrs) {
 				var raw = element[0];
-				
+				scope.selected.scrollStart = 0;
 				element.bind("scroll", function() {
-					if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+					var current = raw.scrollTop + raw.offsetHeight;
+					scope.selected.scrollStart = scope.selected.scrollStart == null ? 0 : scope.selected.scrollStart;
+					scope.selected.scrollEnd = scope.selected.scrollEnd == null ? raw.scrollHeight : scope.selected.scrollEnd;
+					if (current < scope.selected.scrollStart) {
+						scope.$apply(attrs.last);
+					}
+					else if (current >= scope.selected.scrollEnd){
 						scope.$apply(attrs.scrolly);
+						scope.selected.scrollStart = current;
+						scope.selected.scrollEnd = raw.scrollEnd;
 					}
 				});
 			}
