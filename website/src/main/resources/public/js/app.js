@@ -81,19 +81,24 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		$scope.selected = {};
 		$scope.content = "";
 		$scope.prev = {};
-		$scope.images = [];
-		$scope.currentImage = null;
+		$scope.images = {
+				current: null,
+				container: []
+		}
+		
+		//$scope.images = [];
+		//$scope.currentImage = null;
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
+			$scope.refresh();
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
 		
 		$scope.refresh = function() {
 			$scope.content = "";
 			for (var i = 0; i < $scope.stories.length; i++) {
-				$scope.stories[i].scrollStart = null;
-				$scope.stories[i].scrollEnd = null;
+				$scope.stories[i].scrollPositions = {};
 			}
 		}
 		
@@ -106,22 +111,22 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			$scope.loadContent(content);
 			$scope.selected = content;
 			$scope.selected.visible = true;
-			$scope.currentImage = $scope.currentImage === 0 ? 1 : 0;
-			$scope.images[$scope.currentImage] = content.img;
+			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
+			$scope.images.container[$scope.images.current] = content.img;
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$scope.prev = $scope.selected;
 			});
 		}
 		
-		$scope.loadContent = function(content) {
-			if (content.content == "") {
-				$http.get('api/story/' + content.fileName).then(function(response) {
-					content.content = response.data.story;
-					$scope.content += content.content;
+		$scope.loadContent = function(story) {
+			if (story.content == "") {
+				$http.get('api/story/' + story.fileName).then(function(response) {
+					story.content = response.data.story;
+					$scope.content += story.content;
 				})
 			}
 			else {
-				$scope.content += content.content;
+				$scope.content += story.content;
 			}
 		}
 		
@@ -136,7 +141,6 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		}
 		
 		$scope.isPassed = function(dateStr) {
-			if ($scope.selected === null) return false;
 			var date = new Date(dateStr);
 			return new Date($scope.selected.timeSetting) > date;
 		}
@@ -159,24 +163,27 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			$scope.showContent($scope.selected.scrollPrev);
 		}
 		
+		
 	})
 	.directive('scrolly', function() {
 		return {
 			restrict: 'A',
 			link: function(scope, element, attrs) {
 				var raw = element[0];
-				scope.selected.scrollStart = 0;
+				scope.selected.scrollPositions = {
+						start: 0
+				};
 				element.bind("scroll", function() {
-					var current = raw.scrollTop + raw.offsetHeight;
-					scope.selected.scrollStart = scope.selected.scrollStart == null ? 0 : scope.selected.scrollStart;
-					scope.selected.scrollEnd = scope.selected.scrollEnd == null ? raw.scrollHeight : scope.selected.scrollEnd;
-					if (current < scope.selected.scrollStart) {
+					var currentPosition = raw.scrollTop + raw.offsetHeight;
+					scope.selected.scrollPositions.start = scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start;
+					scope.selected.scrollPositions.end = scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end;
+					if (currentPosition < scope.selected.scrollPositions.start) {
 						scope.$apply(attrs.last);
 					}
-					else if (current >= scope.selected.scrollEnd){
+					else if (currentPosition >= scope.selected.scrollPositions.end){
 						scope.$apply(attrs.scrolly);
-						scope.selected.scrollStart = current;
-						scope.selected.scrollEnd = raw.scrollEnd;
+						scope.selected.scrollPositions.start = currentPosition;
+						scope.selected.scrollPositions.end = raw.scrollEnd;
 					}
 				});
 			}
