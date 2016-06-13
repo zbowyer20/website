@@ -174,16 +174,20 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 						start: 0
 				};
 				element.bind("scroll", function() {
+					scope.selected.scrollPositions = {
+							start: scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start,
+							end: scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end
+					}
 					var currentPosition = raw.scrollTop + raw.offsetHeight;
-					scope.selected.scrollPositions.start = scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start;
-					scope.selected.scrollPositions.end = scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end;
 					if (currentPosition < scope.selected.scrollPositions.start) {
 						scope.$apply(attrs.last);
 					}
 					else if (currentPosition >= scope.selected.scrollPositions.end){
 						scope.$apply(attrs.scrolly);
-						scope.selected.scrollPositions.start = currentPosition;
-						scope.selected.scrollPositions.end = raw.scrollEnd;
+						scope.selected.scrollPositions = {
+								start: currentPosition,
+								end: raw.scrollEnd
+						}
 					}
 				});
 			}
