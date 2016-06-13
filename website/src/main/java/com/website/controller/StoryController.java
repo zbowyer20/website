@@ -56,7 +56,6 @@ public class StoryController {
 			}
 			br.close();
 			return new StoryContainer(stringBuilder.toString());
-			//return new Object(){"story": stringBuilder.toString()};
 		}
 		catch (IOException e) {
 			System.out.println("error: " + e.getMessage());

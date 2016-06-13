@@ -85,15 +85,22 @@ $content--background-colour: white;
 	}
 }
 
-.timeline-title {
-	font-size: 18px;
+.header__text {
 	color: $theme--text-colour;
 	text-align: center;
 	padding: 10px 0;
 	height: 40px;
 }
 
-.timeline-title__text {
+.header__text--small {
+	font-size: 18px;
+}
+
+.header__text--medium {
+	font-size: 26px;
+}
+
+.header__text--timeline {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -106,13 +113,6 @@ $content--background-colour: white;
 
 .article__preface {
 	font-size: 10px;
-}
-
-.article__title {
-	text-align: center;
-	font-size: 32px;
-	padding: 10px 0;
- 	color: $base__text--colour;
 }
 
 .article__content {
@@ -175,7 +175,7 @@ $content--background-colour: white;
 	list-style-type: none;
 }
 
-.events {
+.timeline-bar {
 	width: 90%;
 	height: 5px;
 	background: #e9fcfc;
@@ -183,7 +183,7 @@ $content--background-colour: white;
 	position: relative;
 }
 
-.timeline-bar {
+.timeline-bar__tracker {
 	width: 0;
 	background-color: $theme--background-colour;
 	transition: all 0.5s;
@@ -209,7 +209,7 @@ $content--background-colour: white;
 	}
 }
 
-.events__event {
+.roundel {
 	transition: all 0.5s;
 	position: absolute;
 	left: 50%;
@@ -251,10 +251,10 @@ $content--background-colour: white;
 	}
 }
 
-.events__event--selected {
+.roundel--selected {
 	background-color: #62eaea;
 }
 
-.events__event--passed {
+.roundel--passed {
 	border-color: $theme--background-colour;
 }

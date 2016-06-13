@@ -54,14 +54,19 @@
 .animate__fade.ng-hide-add-active {
   opacity: 0; }
 
-.timeline-title {
-  font-size: 18px;
+.header__text {
   color: white;
   text-align: center;
   padding: 10px 0;
   height: 40px; }
 
-.timeline-title__text {
+.header__text--small {
+  font-size: 18px; }
+
+.header__text--medium {
+  font-size: 26px; }
+
+.header__text--timeline {
   position: absolute;
   left: 0;
   right: 0;
@@ -72,12 +77,6 @@
 
 .article__preface {
   font-size: 10px; }
-
-.article__title {
-  text-align: center;
-  font-size: 32px;
-  padding: 10px 0;
-  color: white; }
 
 .article__content {
   max-height: 500px;
@@ -124,33 +123,33 @@
 .list--unlabelled {
   list-style-type: none; }
 
-.events {
+.timeline-bar {
   width: 90%;
   height: 5px;
   background: #e9fcfc;
   margin: auto;
   position: relative; }
 
-.timeline-bar {
+.timeline-bar__tracker {
   width: 0;
   background-color: #003366;
   transition: all 0.5s;
   height: 5px; }
-  .timeline-bar::before, .timeline-bar::after {
+  .timeline-bar__tracker::before, .timeline-bar__tracker::after {
     content: '';
     position: absolute;
     z-index: 0;
     top: 0;
     height: 100%;
     width: 16px; }
-  .timeline-bar::before {
+  .timeline-bar__tracker::before {
     left: 0;
     background-image: linear-gradient(to right, #1B212D, transparent); }
-  .timeline-bar::after {
+  .timeline-bar__tracker::after {
     right: 0;
     background-image: linear-gradient(to left, #1B212D, transparent); }
 
-.events__event {
+.roundel {
   transition: all 0.5s;
   position: absolute;
   left: 50%;
@@ -161,30 +160,30 @@
   border: 2px solid white;
   z-index: 1;
   background: black; }
-  .events__event:hover {
+  .roundel:hover {
     background-color: #003366;
     cursor: pointer; }
-  .events__event.ng-hide-remove {
+  .roundel.ng-hide-remove {
     height: 0;
     width: 0;
     bottom: 0; }
-  .events__event.ng-hide-remove-active {
+  .roundel.ng-hide-remove-active {
     height: 20px;
     width: 20px;
     bottom: -8px; }
-  .events__event.ng-hide-add {
+  .roundel.ng-hide-add {
     height: 20px;
     width: 20px;
     bottom: -8px; }
-  .events__event.ng-hide-add-active {
+  .roundel.ng-hide-add-active {
     height: 0;
     width: 0;
     bottom: 0; }
 
-.events__event--selected {
+.roundel--selected {
   background-color: #62eaea; }
 
-.events__event--passed {
+.roundel--passed {
   border-color: #003366; }
 
 /*# sourceMappingURL=style.css.map */

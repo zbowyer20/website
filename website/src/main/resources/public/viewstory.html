@@ -1,13 +1,13 @@
 <div class="timeline">
-	<div class="timeline-title">
-		<span class="timeline-title__text animate__fade" ng-show="selected.id == null">This is the timeline. Click a roundel to view its content.</span>
-		<span class="timeline-title__text animate__fade" ng-show="selected.id != null">Timeline</span>
+	<div class="header__text header__text--small">
+		<span class="header__text--timeline animate__fade" ng-show="selected.id == null">This is the timeline. Click a roundel to view its content.</span>
+		<span class="header__text--timeline animate__fade" ng-show="selected.id != null">Timeline</span>
 	</div>
-	<div class="events">
-		<div class="timeline-bar" ng-style="{width: getDateProportion(selected.timeSetting)}" />
+	<div class="timeline-bar">
+		<div class="timeline-bar__tracker" ng-style="{width: getDateProportion(selected.timeSetting)}" />
 		<ol>
 			<li class="list--unlabelled" ng-repeat="story in stories">
-				<a class="events__event" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'events__event--selected': isSelected(story.title), 'events__event--passed': isPassed(story.timeSetting)}" ng-style="{left: getDateProportion(story.timeSetting)}" ng-click="showContent(story, true)"></a>
+				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: getDateProportion(story.timeSetting)}" ng-click="showContent(story, true)"></a>
 			</li>
 		</ol>	
 	</div>
@@ -19,7 +19,7 @@
 		<img class="image__story" ng-show="currentImage === 1" ng-src="{{images[1]}}"></img> 
 	</div>
 	<article class="article__story">
-		<h2 class="article__title" ng-bind="selected.title"></h2>
+		<h2 class="header__text header__text--medium" ng-bind="selected.title"></h2>
 		<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
 	</article>
 </div>
