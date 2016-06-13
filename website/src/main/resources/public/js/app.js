@@ -146,11 +146,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		}
 		
 		$scope.getStoryByFileName = function(fileName) {
-			var i = 0;
-			while ($scope.stories[i].fileName != fileName) {
-				i++;
+			for (var i = 0; i < $scope.stories.length; i++) {
+				if ($scope.stories[i].fileName == fileName) return $scope.stories[i];
 			}
-			return $scope.stories[i];
 		}
 		
 		$scope.getNext = function() {
