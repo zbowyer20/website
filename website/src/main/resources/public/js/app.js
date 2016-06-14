@@ -86,8 +86,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
-			$scope.refresh();
-			setDates();
+			$scope.init();
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
 		
@@ -95,6 +94,14 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			dates.end = new Date($scope.stories[0].timeSetting);
 			dates.start = new Date($scope.stories[$scope.stories.length - 1].timeSetting);
 			dates.time = new Date(dates.end - dates.start);
+		}
+		
+		$scope.init = function() {
+			$scope.refresh();
+			for (var i = 0; i < $scope.stories.length; i++) {
+				$scope.stories[i].roundel = {};
+			}
+			setDates();
 		}
 		
 		$scope.refresh = function() {
@@ -112,6 +119,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			}
 			$scope.loadContent(content);
 			$scope.selected = content;
+			$scope.selected.x = $scope.setRoundelLocations(content);
 			$scope.selected.visible = true;
 			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
 			$scope.images.container[$scope.images.current] = content.img;
@@ -136,10 +144,59 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			return $scope.selected.title == title;
 		}
 				
-		$scope.getDateProportion = function(dateStr, tst) {
+		$scope.getDateProportion = function(dateStr) {
 			if (dateStr === null) return 0;
 			var date = new Date(dateStr);
-			return (((date - dates.start) / dates.time) * 100) + "%";
+			return (((date - dates.start) / dates.time) * 100);
+		}
+		
+		$scope.getDateProportionPercentage = function(dateStr) {
+			return $scope.getDateProportion(dateStr) + "%";
+		}
+		
+		$scope.setRoundelLocations = function(story) {
+			if (story.roundel.x == null) {
+				story.roundel.x = $scope.getDateProportion(story.timeSetting);
+			}
+			reposition();
+		}
+		
+		function reposition() {
+			var stories = [];
+			for (var i = 0; i < $scope.stories.length; i++) {
+				if ($scope.stories[i].roundel.x != null) {
+					if (stories.length == 0) {
+						stories[0] = $scope.stories[i];
+					}
+					else {
+						var inserted = false;
+						var j = 0;
+						while (!inserted && j < stories.length) {
+							if (stories[j].roundel.x < $scope.stories[i].roundel.x) {
+								stories.splice(j, 0, $scope.stories[i]);
+								inserted = true;
+							}
+							j++;
+						}
+						if (!inserted) {
+							stories[j] = $scope.stories[i];
+						}
+					}
+				}
+			}
+			repositionStories(stories);
+		}
+		
+		function repositionStories(stories) {
+			var repositioned = false;
+			for (var i = 0; i < stories.length - 1; i++) {
+				var distance = stories[i].roundel.x - stories[i+1].roundel.x;
+				if (distance < 2) {
+					stories[i].roundel.x += 2 - distance;
+					repositioned = true;
+				}
+			}
+			if (repositioned) repositionStories(stories);
 		}
 		
 		$scope.isPassed = function(dateStr) {

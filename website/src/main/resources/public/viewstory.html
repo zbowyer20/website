@@ -4,10 +4,10 @@
 		<span class="header__text--timeline animate__fade" ng-show="selected.id != null">Timeline</span>
 	</div>
 	<div class="timeline-bar">
-		<div class="timeline-bar__tracker" ng-style="{width: getDateProportion(selected.timeSetting)}" />
+		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
 		<ol>
 			<li class="list--unlabelled" ng-repeat="story in stories">
-				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: getDateProportion(story.timeSetting)}" ng-click="showContent(story, true)"></a>
+				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
 			</li>
 		</ol>	
 	</div>
