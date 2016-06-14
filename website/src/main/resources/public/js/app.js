@@ -75,9 +75,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		
 	})
 	.controller('viewstory', function($http, $scope) {
-		var startDate = new Date(2020, 7, 15, 3, 0);
-		var endDate = new Date(2020, 7, 15, 10, 0);
-		var totalTime = endDate - startDate;
+		var dates = {};
 		$scope.selected = {};
 		$scope.content = "";
 		$scope.prev = {};
@@ -86,14 +84,18 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 				container: []
 		}
 		
-		//$scope.images = [];
-		//$scope.currentImage = null;
-		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 			$scope.refresh();
+			setDates();
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
+		
+		function setDates() {
+			dates.end = new Date($scope.stories[0].timeSetting);
+			dates.start = new Date($scope.stories[$scope.stories.length - 1].timeSetting);
+			dates.time = new Date(dates.end - dates.start);
+		}
 		
 		$scope.refresh = function() {
 			$scope.content = "";
@@ -137,7 +139,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		$scope.getDateProportion = function(dateStr, tst) {
 			if (dateStr === null) return 0;
 			var date = new Date(dateStr);
-			return (((date - startDate) / totalTime) * 100) + "%";
+			return (((date - dates.start) / dates.time) * 100) + "%";
 		}
 		
 		$scope.isPassed = function(dateStr) {
@@ -160,7 +162,6 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		$scope.getLast = function() {
 			$scope.showContent($scope.selected.scrollPrev);
 		}
-		
 		
 	})
 	.directive('scrolly', function() {

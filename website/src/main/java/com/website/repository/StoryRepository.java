@@ -10,6 +10,8 @@ import com.website.model.Story;
 public interface StoryRepository extends Repository<Story, String> {
 	void delete(Story deleted);
 	
+	void deleteAll();
+	
 	List<Story> findAll();
 	
 	Optional<Story> findOne(String id);

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,13 +40,13 @@ public class StoryController {
 		return service.create(story);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, produces="application/json; charset=UTF-8")
 	List<StoryDTO> findAll() {
 		return service.findAll();
 	}
 	
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	StoryContainer getStory(@PathVariable("name") String fileName) {
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
+	ResponseEntity<StoryContainer> getStory(@PathVariable("name") String fileName) {
 		try {
 			Resource res = resourceLoader.getResource("classpath:public/text/" + fileName + ".txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(res.getInputStream()));
@@ -55,11 +56,11 @@ public class StoryController {
 				stringBuilder.append(line).append("<br />");
 			}
 			br.close();
-			return new StoryContainer(stringBuilder.toString());
+			return new ResponseEntity<>(new StoryContainer(stringBuilder.toString()), HttpStatus.OK);
 		}
 		catch (IOException e) {
 			System.out.println("error: " + e.getMessage());
-			return new StoryContainer("");
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
