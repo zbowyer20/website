@@ -173,7 +173,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 						var j = 0;
 						while (!inserted && j < stories.length) {
 							if (stories[j].roundel.x < $scope.stories[i].roundel.x) {
-								stories.splice(j, 0, $scope.stories[i]);
+								stories.splice(j + 1, 0, $scope.stories[i]);
 								inserted = true;
 							}
 							j++;
