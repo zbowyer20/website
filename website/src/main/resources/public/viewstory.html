@@ -1,7 +1,7 @@
 <div class="timeline">
 	<div class="header__text header__text--small">
-		<span class="header__text--timeline animate__fade" ng-show="selected.id == null">This is the timeline. Click a roundel to view its content.</span>
-		<span class="header__text--timeline animate__fade" ng-show="selected.id != null">Timeline</span>
+		<span class="header__text--timeline animate__fade" ng-show="!interactedWithTimeline">This is the timeline. Click a roundel to view its content.</span>
+		<span class="header__text--timeline animate__fade" ng-show="interactedWithTimeline">Timeline</span>
 	</div>
 	<div class="timeline-bar">
 		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />

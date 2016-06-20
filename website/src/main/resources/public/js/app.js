@@ -76,6 +76,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 	})
 	.controller('viewstory', function($http, $scope) {
 		var dates = {};
+		$scope.interactedWithTimeline = false;
 		$scope.selected = {};
 		$scope.content = "";
 		$scope.prev = {};
@@ -116,6 +117,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 				$scope.refresh();
 				// TODO update angularly
 				$(".article__content").scrollTop(0);
+				$scope.interactedWithTimeline = true;
 			}
 			$scope.loadContent(content);
 			$scope.selected = content;
