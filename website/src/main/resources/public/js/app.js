@@ -199,6 +199,10 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			if (repositioned) repositionStories(stories);
 		}
 		
+		$scope.isImageActive = function() {
+			return $scope.images.container[$scope.images.current] != "";
+		}
+		
 		$scope.isPassed = function(dateStr) {
 			var date = new Date(dateStr);
 			return new Date($scope.selected.timeSetting) > date;

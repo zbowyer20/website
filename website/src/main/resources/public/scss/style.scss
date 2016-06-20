@@ -125,8 +125,17 @@ $content--background-colour: white;
 
 .container__image {
 	display: inline-block;
-	width: 30%;
 	vertical-align: top;
+	width: 15.5%;
+}
+
+.container__image--active {
+	width: 30%;
+}
+
+.smooth-moves {
+	-webkit-transition: all linear 0.5s;
+	transition: all linear 0.5s;
 }
 
 .image__story {

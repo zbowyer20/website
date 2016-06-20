@@ -14,7 +14,7 @@
 </div>
 
 <div id="container">
-	<div class="container__image">
+	<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
 		<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-src="{{images.container[0]}}"></img>
 		<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-src="{{images.container[1]}}"></img> 
 	</div>
