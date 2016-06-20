@@ -15,8 +15,8 @@
 
 <div id="container">
 	<div class="container__image">
-		<img class="image__story" ng-show="images.current === 0" ng-src="{{images.container[0]}}"></img>
-		<img class="image__story" ng-show="images.current === 1" ng-src="{{images.container[1]}}"></img> 
+		<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-src="{{images.container[0]}}"></img>
+		<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-src="{{images.container[1]}}"></img> 
 	</div>
 	<article class="article__story">
 		<h2 class="header__text header__text--medium" ng-bind="selected.title"></h2>
