@@ -158,7 +158,7 @@
     background-image: linear-gradient(to left, #1B212D, transparent); }
 
 .roundel {
-  transition: all 0.5s;
+  transition: all 0.2s;
   position: absolute;
   left: 50%;
   height: 20px;
@@ -170,6 +170,9 @@
   background: black; }
   .roundel:hover {
     background-color: #003366;
+    height: 24px;
+    width: 24px;
+    bottom: -10px;
     cursor: pointer; }
   .roundel.ng-hide-remove {
     height: 0;
