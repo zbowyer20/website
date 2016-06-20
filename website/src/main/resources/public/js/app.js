@@ -135,7 +135,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 					$scope.content += story.content;
 				})
 			}
-			else {
+			else if (story.scrollPositions.start == null) {
 				$scope.content += story.content;
 			}
 		}
@@ -212,8 +212,10 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		
 		$scope.getNext = function() {
 			var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
-			story.scrollPrev = $scope.selected;
-			$scope.showContent(story);
+			if (story != null) {
+				story.scrollPrev = $scope.selected;
+				$scope.showContent(story);
+			}
 		}
 		
 		$scope.getLast = function() {
