@@ -103,18 +103,19 @@
   position: absolute;
   bottom: -100px;
   z-index: 0; }
-  .image__story.ng-hide-remove {
-    -webkit-transition: all ease-in 0.5s;
-    transition: all ease-in 0.5s;
-    opacity: 0; }
-  .image__story.ng-hide-remove-active {
-    opacity: 1; }
-  .image__story.ng-hide-add {
-    -webkit-transition: all ease-out 0.5s;
-    transition: all ease-out 0.5s;
-    opacity: 1; }
-  .image__story.ng-hide-add-active {
-    opacity: 0; }
+
+.image__story--active.ng-hide-remove {
+  -webkit-transition: all ease-in 0.5s;
+  transition: all ease-in 0.5s;
+  opacity: 0; }
+.image__story--active.ng-hide-remove-active {
+  opacity: 1; }
+.image__story--active.ng-hide-add {
+  -webkit-transition: all ease-out 0.5s;
+  transition: all ease-out 0.5s;
+  opacity: 1; }
+.image__story--active.ng-hide-add-active {
+  opacity: 0; }
 
 .article__story {
   display: inline-block;

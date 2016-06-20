@@ -144,7 +144,9 @@ $content--background-colour: white;
 	position: absolute;
 	bottom: -100px;
 	z-index: 0;
-	
+}
+
+.image__story--active {
 	&.ng-hide-remove {
 		-webkit-transition: all ease-in 0.5s;
 		transition: all ease-in 0.5s;
