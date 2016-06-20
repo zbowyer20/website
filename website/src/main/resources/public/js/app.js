@@ -211,10 +211,12 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		}
 		
 		$scope.getNext = function() {
-			var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
-			if (story != null) {
-				story.scrollPrev = $scope.selected;
-				$scope.showContent(story);
+			if ($scope.selected.next != "") {
+				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
+				if (story != null) {
+					story.scrollPrev = $scope.selected;
+					$scope.showContent(story);
+				}
 			}
 		}
 		
@@ -241,10 +243,13 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 						scope.$apply(attrs.last);
 					}
 					else if (currentPosition >= scope.selected.scrollPositions.end){
+						var nextStartPosition = scope.selected.scrollPositions.end;
 						scope.$apply(attrs.scrolly);
-						scope.selected.scrollPositions = {
-								start: currentPosition,
-								end: raw.scrollEnd
+						if (scope.selected.scrollPositions.start == null) {
+							scope.selected.scrollPositions = {
+									start: nextStartPosition,
+									end: raw.scrollEnd
+							}
 						}
 					}
 				});
