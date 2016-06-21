@@ -48,12 +48,12 @@ public class StoryController {
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET, produces="application/json; charset=UTF-8")
 	ResponseEntity<StoryContainer> getStory(@PathVariable("name") String fileName) {
 		try {
-			Resource res = resourceLoader.getResource("classpath:public/text/" + fileName + ".txt");
+			Resource res = resourceLoader.getResource("classpath:public/html/" + fileName + ".html");
 			BufferedReader br = new BufferedReader(new InputStreamReader(res.getInputStream()));
 			StringBuilder stringBuilder = new StringBuilder();
 			String line;
 			while ((line = br.readLine()) != null) {
-				stringBuilder.append(line).append("<br />");
+				stringBuilder.append(line);
 			}
 			br.close();
 			return new ResponseEntity<>(new StoryContainer(stringBuilder.toString()), HttpStatus.OK);

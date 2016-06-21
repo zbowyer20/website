@@ -122,6 +122,21 @@
   width: 69%;
   margin-top: 50px; }
 
+.story:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 95%;
+  margin: 20px auto;
+  background: blue;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(25%, #1B212D), color-stop(75%, #1B212D)); }
+
+.story__paragraph {
+  text-indent: 40px;
+  margin: 0 10px; }
+  .story__paragraph:first-child {
+    text-indent: 0; }
+
 .input--wide {
   width: 80%; }
 
