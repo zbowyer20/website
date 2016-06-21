@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'youtube-embed'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'home.html',
@@ -83,6 +83,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 		$scope.images = {
 				current: null,
 				container: []
+		}
+		$scope.video = "LgLjNDhPfew";
+		$scope.playerVars = {
+				controls: 0,
+				autoplay: 1
 		}
 		
 		$http.get('api/story').then(function(response) {
@@ -230,6 +235,10 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize'])
 			$scope.showContent($scope.selected.scrollPrev);
 		}
 		
+		$scope.$on('youtube.player.ended', function($event, player) {
+			player.playVideo();
+		})
+				
 	})
 	.directive('scrolly', function() {
 		return {
