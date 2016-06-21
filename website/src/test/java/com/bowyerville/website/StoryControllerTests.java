@@ -68,7 +68,6 @@ public class StoryControllerTests {
 		repository.delete(story1);
 		repository.delete(story2);
 		repository.delete(story3);
-		repository.delete(story4);
 	}
 	
 	@Test
