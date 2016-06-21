@@ -130,6 +130,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 			$scope.selected.visible = true;
 			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
 			$scope.images.container[$scope.images.current] = content.img;
+			$scope.video = content.youtubeId;
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$scope.prev = $scope.selected;
 			});

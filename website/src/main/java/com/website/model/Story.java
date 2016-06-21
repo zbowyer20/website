@@ -14,6 +14,7 @@ public class Story {
 	String img;
 	Date timeSetting;
 	String next;
+	String youtubeId;
 
 	public Story() {
 
@@ -27,13 +28,14 @@ public class Story {
 		this.img = builder.img;
 		this.timeSetting = builder.timeSetting;
 		this.next = builder.next;
+		this.youtubeId = builder.youtubeId;
 	}
 	
 	public static Builder getBuilder() {
 		return new Builder();
 	}
 	
-	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next) {
+	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next, String youtubeId) {
 		this.fileName = fileName;
 		this.character = character;
 		this.title = title;
@@ -41,6 +43,7 @@ public class Story {
 		this.img = img;
 		this.timeSetting = timeSetting;
 		this.next = next;
+		this.youtubeId = youtubeId;
 	}
 	
 	public static class Builder {
@@ -51,6 +54,7 @@ public class Story {
 		private String img;
 		private Date timeSetting;
 		private String next;
+		private String youtubeId;
 		
 		private Builder() {}
 		
@@ -86,6 +90,11 @@ public class Story {
 		
 		public Builder next(String next) {
 			this.next = next;
+			return this;
+		}
+		
+		public Builder youtubeId(String youtubeId) {
+			this.youtubeId = youtubeId;
 			return this;
 		}
 		
@@ -158,6 +167,14 @@ public class Story {
 
 	public void setNext(String next) {
 		this.next = next;
+	}
+	
+	public String getYoutubeId() {
+		return youtubeId;
+	}
+
+	public void setYoutubeId(String youtubeId) {
+		this.youtubeId = youtubeId;
 	}
 
 }

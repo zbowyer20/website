@@ -14,7 +14,8 @@ public class StoryDTO {
 	private String img;
 	@JsonFormat(pattern="MM-dd-yyyy HH:mm")
 	private Date timeSetting;
-	
+	private String youtubeId;
+
 	public String getId() {
 		return id;
 	}
@@ -77,5 +78,13 @@ public class StoryDTO {
 
 	public void setNext(String next) {
 		this.next = next;
+	}
+	
+	public String getYoutubeId() {
+		return youtubeId;
+	}
+
+	public void setYoutubeId(String youtubeId) {
+		this.youtubeId = youtubeId;
 	}
 }
