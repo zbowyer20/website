@@ -13,6 +13,9 @@
 	</div>
 </div>
 
+<button ng-show="playingVideo" ng-click="toggleYoutube()">Stop video</button>
+<button ng-show="!playingVideo" ng-click="toggleYoutube()">Play video</button>
+
 <div id="container">
 	<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
 		<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[0]}}"></img>

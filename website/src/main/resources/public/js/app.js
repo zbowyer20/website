@@ -89,6 +89,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 				controls: 0,
 				autoplay: 1
 		}
+		$scope.playingVideo = true;
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
@@ -234,6 +235,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 		
 		$scope.getLast = function() {
 			$scope.showContent($scope.selected.scrollPrev);
+		}
+		
+		$scope.toggleYoutube = function() {
+			$scope.playingVideo ? $scope.youtube.pauseVideo() : $scope.youtube.playVideo();
+			$scope.playingVideo = !$scope.playingVideo;
 		}
 		
 		$scope.$on('youtube.player.ended', function($event, player) {
