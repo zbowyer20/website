@@ -87008,24 +87008,23 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 	})
 	.controller('viewstory', function($http, $scope) {
 		var dates = {};
-		$scope.icons = {
+		var icons = {
 				volume: "volume_up",
 				mute: "volume_off"
 		}
 		$scope.interactedWithTimeline = false;
 		$scope.selected = {};
 		$scope.content = "";
-		$scope.prev = {};
 		$scope.images = {
 				current: null,
 				container: []
 		}
 		$scope.video = {
-				icon: $scope.icons.volume
-		}
-		$scope.playerVars = {
-				controls: 0,
-				autoplay: 1
+				icon: icons.volume,
+				player: {
+					controls: 0,
+					autoplay: 1
+				}
 		}
 		
 		$http.get('api/story').then(function(response) {
@@ -87072,9 +87071,6 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			if ($scope.youtube != null && $scope.video.id == null) {
 				$scope.youtube.stopVideo();
 			}
-			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
-				$scope.prev = $scope.selected;
-			});
 		}
 		
 		$scope.loadContent = function(story) {
@@ -87178,12 +87174,12 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 		}
 		
 		$scope.toggleYoutube = function() {
-			if ($scope.video.icon === $scope.icons.volume) {
+			if ($scope.video.icon === icons.volume) {
 				$scope.youtube.pauseVideo();
-				$scope.video.icon = $scope.icons.mute;
+				$scope.video.icon = icons.mute;
 			} else {
 				$scope.youtube.playVideo();
-				$scope.video.icon = $scope.icons.volume;
+				$scope.video.icon = icons.volume;
 			}
 		}
 		
