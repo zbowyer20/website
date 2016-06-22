@@ -1,7 +1,7 @@
 <div class="timeline">
-	<div class="header__text header__text--small">
-		<span class="header__text--timeline animate__fade" ng-show="!interactedWithTimeline">This is the timeline. Click a roundel to view its content.</span>
-		<span class="header__text--timeline animate__fade" ng-show="interactedWithTimeline">Timeline</span>
+	<div class="header header--timeline">
+		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!interactedWithTimeline">This is the timeline. Click a roundel to view its content.</span>
+		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="interactedWithTimeline">Timeline</span>
 	</div>
 	<div class="timeline-bar">
 		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
@@ -19,9 +19,10 @@
 		<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[1]}}"></img> 
 	</div>
 	<article class="article__story">
-		<h2 class="header__text header__text--medium" ng-bind="selected.title"></h2>
-		<md-icon>{{video.icon}}</md-icon>
-		<div ng-click="toggleYoutube()"><i class="material-icons">{{video.icon}}</i></div>
+		<div class="header">
+			<h2 class="header__text header__text--title header__text--medium" ng-bind="selected.title"></h2>
+			<md-button class="md-icon-button" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
+		</div>
 		<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
 	</article>
 </div>

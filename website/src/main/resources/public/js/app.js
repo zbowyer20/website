@@ -9,7 +9,7 @@ var angularUiBootstrap = require('angular-ui-bootstrap');
 var angularYoutubeEmbed = require('angular-youtube-embed');
 var angularAria = require('angular-aria');
 
-angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'youtube-embed'])
+angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngMaterial', 'youtube-embed'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
 			templateUrl: 'home.html',

@@ -54,11 +54,21 @@
 .animate__fade.ng-hide-add-active {
   opacity: 0; }
 
+.header {
+  text-align: center; }
+
+.header--timeline {
+  height: 50px; }
+
 .header__text {
+  display: block;
   color: white;
   text-align: center;
   padding: 10px 0;
-  height: 40px; }
+  margin: 0; }
+
+.header__text--title {
+  display: inline-block; }
 
 .header__text--small {
   font-size: 18px; }
@@ -220,6 +230,9 @@
 
 .roundel--passed {
   border-color: #003366; }
+
+.material-icons {
+  color: white; }
 
 .video {
   display: none; }
