@@ -92,11 +92,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 				mute: "volume_off"
 		}
 		$scope.interactedWithTimeline = false;
-		$scope.selected = {};
-		$scope.content = "";
+		$scope.selected = {}; // currently selected story
+		$scope.content = ""; // full text in story text box
 		$scope.images = {
-				current: null,
-				container: []
+				current: null, // current active image index in container
+				container: [] // contains 2 images for crossfade
 		}
 		$scope.video = {
 				icon: icons.volume,
@@ -106,12 +106,15 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 				}
 		}
 		
+		// pick up all available stories
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
 			$scope.init();
+			// TODO implement first story
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
 		
+		// set the start and end date of the timeline
 		function setDates() {
 			dates.end = new Date($scope.stories[0].timeSetting);
 			dates.start = new Date($scope.stories[$scope.stories.length - 1].timeSetting);
@@ -126,6 +129,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			setDates();
 		}
 		
+		// clear up all content in text box
 		$scope.refresh = function() {
 			$scope.content = "";
 			for (var i = 0; i < $scope.stories.length; i++) {
@@ -133,7 +137,9 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			}
 		}
 		
+		// display new content
 		$scope.showContent = function(content, refresh) {
+			// if content is to be cleared
 			if (refresh) {
 				$scope.refresh();
 				// TODO update angularly
@@ -144,15 +150,21 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			$scope.selected = content;
 			$scope.selected.x = $scope.setRoundelLocations(content);
 			$scope.selected.visible = true;
+			
+			// update the visible image
 			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
 			$scope.images.container[$scope.images.current] = content.img;
+			
+			// update playing video, if necessary
 			$scope.video.id = content.youtubeId;
 			if ($scope.youtube != null && $scope.video.id == null) {
 				$scope.youtube.stopVideo();
 			}
 		}
 		
+		// display story content, loading it from backend if necessary
 		$scope.loadContent = function(story) {
+			// only load from backend if it hasn't already been loaded
 			if (story.content == "") {
 				$http.get('api/story/' + story.fileName).then(function(response) {
 					story.content = response.data.story;
@@ -167,7 +179,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 		$scope.isSelected = function(title) {
 			return $scope.selected.title == title;
 		}
-				
+		
+		// get the proportion of time between a start and end date for a given date
 		$scope.getDateProportion = function(dateStr) {
 			if (dateStr === null) return 0;
 			var date = new Date(dateStr);
@@ -178,6 +191,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			return $scope.getDateProportion(dateStr) + "%";
 		}
 		
+		// set the timeline location for a story
 		$scope.setRoundelLocations = function(story) {
 			if (story.roundel.x == null) {
 				story.roundel.x = $scope.getDateProportion(story.timeSetting);
@@ -185,8 +199,11 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			reposition();
 		}
 		
+		// gather and sort visible roundels, then reposition them on timeline
+		// TODO refactor
 		function reposition() {
 			var stories = [];
+			// pick up all roundels on the timeline and sort them by timeline location
 			for (var i = 0; i < $scope.stories.length; i++) {
 				if ($scope.stories[i].roundel.x != null) {
 					if (stories.length == 0) {
@@ -195,6 +212,8 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 					else {
 						var inserted = false;
 						var j = 0;
+						// sorting by time
+						// TODO cleaner sorting algorithm
 						while (!inserted && j < stories.length) {
 							if (stories[j].roundel.x < $scope.stories[i].roundel.x) {
 								stories.splice(j + 1, 0, $scope.stories[i]);
@@ -202,6 +221,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 							}
 							j++;
 						}
+						// if not inserted, this is the most recent time
 						if (!inserted) {
 							stories[j] = $scope.stories[i];
 						}
@@ -211,15 +231,19 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			repositionStories(stories);
 		}
 		
+		// reposition timeline roundels, to avoid them getting too close together
 		function repositionStories(stories) {
 			var repositioned = false;
 			for (var i = 0; i < stories.length - 1; i++) {
 				var distance = stories[i].roundel.x - stories[i+1].roundel.x;
+				// if distance is too low between two roundels, move them further apart
 				if (distance < 2) {
 					stories[i].roundel.x += 2 - distance;
 					repositioned = true;
 				}
 			}
+			// reposition until all roundels are far enough apart
+			// TODO danger of too many roundels
 			if (repositioned) repositionStories(stories);
 		}
 		
@@ -227,6 +251,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			return $scope.images.container[$scope.images.current] != "";
 		}
 		
+		// check if the currently selected story's date is past another
 		$scope.isPassed = function(dateStr) {
 			var date = new Date(dateStr);
 			return new Date($scope.selected.timeSetting) > date;
@@ -238,6 +263,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			}
 		}
 		
+		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function() {
 			if ($scope.selected.next != "") {
 				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
@@ -248,10 +274,12 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			}
 		}
 		
+		// get the previous story, eg. scrolling back to the top of current story
 		$scope.getLast = function() {
 			$scope.showContent($scope.selected.scrollPrev);
 		}
 		
+		// toggle between mute and volume for currently playing youtube video
 		$scope.toggleYoutube = function() {
 			if ($scope.video.icon === icons.volume) {
 				$scope.youtube.pauseVideo();
@@ -262,6 +290,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			}
 		}
 		
+		// loop youtube video forever
 		$scope.$on('youtube.player.ended', function($event, player) {
 			player.playVideo();
 		})
