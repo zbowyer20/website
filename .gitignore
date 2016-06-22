@@ -6,3 +6,4 @@ website/target
 .recommenders
 website/src/main/resources/public/.sass-cache/2993eee2e83e158cb0d2d2b2b5d1fc06fe934d0d/style.scssc
 website/src/main/resources/public/.sass-cache/d0d1b66c9316af55ac4076f56928335393a4a37e/style.scssc
+node_modules

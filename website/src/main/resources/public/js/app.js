@@ -1,3 +1,14 @@
+var angular = require('angular');
+var angularMaterial = require('angular-material');
+var angularAnimate = require('angular-animate');
+var angularTouch = require('angular-touch');
+var angularRoute = require('angular-route');
+var angularSanitize = require('angular-sanitize');
+var jQuery = require('jquery');
+var angularUiBootstrap = require('angular-ui-bootstrap');
+var angularYoutubeEmbed = require('angular-youtube-embed');
+var angularAria = require('angular-aria');
+
 angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'youtube-embed'])
 	.config(function($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
@@ -76,6 +87,10 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 	})
 	.controller('viewstory', function($http, $scope) {
 		var dates = {};
+		$scope.ICONS = {
+				volume: "volume_up",
+				mute: "volume_off"
+		}
 		$scope.interactedWithTimeline = false;
 		$scope.selected = {};
 		$scope.content = "";
@@ -84,12 +99,14 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 				current: null,
 				container: []
 		}
-		$scope.video = "LgLjNDhPfew";
+		$scope.video = {
+				id: "LgLjNDhPfew",
+				icon: "volume_up"
+		}
 		$scope.playerVars = {
 				controls: 0,
 				autoplay: 1
 		}
-		$scope.playingVideo = true;
 		
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
@@ -131,7 +148,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 			$scope.selected.visible = true;
 			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
 			$scope.images.container[$scope.images.current] = content.img;
-			$scope.video = content.youtubeId;
+			$scope.video.id = content.youtubeId;
 			$(".image__story").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function() {
 				$scope.prev = $scope.selected;
 			});
@@ -238,8 +255,14 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'yo
 		}
 		
 		$scope.toggleYoutube = function() {
-			$scope.playingVideo ? $scope.youtube.pauseVideo() : $scope.youtube.playVideo();
-			$scope.playingVideo = !$scope.playingVideo;
+			console.log('toggling');
+			if ($scope.video.icon === $scope.ICONS.volume) {
+				$scope.youtube.pauseVideo();
+				$scope.video.icon = $scope.ICONS.mute;
+			} else {
+				$scope.youtube.playVideo();
+				$scope.video.icon = $scope.ICONS.volume;
+			}
 		}
 		
 		$scope.$on('youtube.player.ended', function($event, player) {
