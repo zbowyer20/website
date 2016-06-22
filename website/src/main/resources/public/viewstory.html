@@ -21,7 +21,7 @@
 	<article class="article__story">
 		<div class="header">
 			<h2 class="header__text header__text--title header__text--medium" ng-bind="selected.title"></h2>
-			<md-button class="md-icon-button" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
+			<md-button class="md-icon-button" ng-show="video.id" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
 		</div>
 		<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
 	</article>
