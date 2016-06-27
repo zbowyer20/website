@@ -22,6 +22,11 @@
 		    {
 		    	start: new Date("08/15/2020 03:00"),
 		    	end: new Date("08/15/2020 12:00"),
+		    	timeline: 97
+		    },
+		    {
+		    	start: new Date("08/16/2020 01:00"),
+		    	end: new Date("08/16/2020 03:00"),
 		    	timeline: 100
 		    }
 		];
@@ -140,7 +145,7 @@
 					var storyDate = (timeProportion * totalTimePeriodProportion) + currentProportion;
 					return storyDate;
 				}
-				currentProportion += $scope.TIME_PERIODS[i].timeline;
+				currentProportion = $scope.TIME_PERIODS[i].timeline;
 			}
 		}
 		
