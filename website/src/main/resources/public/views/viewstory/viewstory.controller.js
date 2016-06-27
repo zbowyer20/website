@@ -46,8 +46,11 @@
 		$scope.init = function() {
 			$scope.refresh();
 			for (var i = 0; i < $scope.stories.length; i++) {
-				$scope.stories[i].roundel = {};
+				$scope.stories[i].roundel = {
+						x: null
+				}
 			}
+			console.log($scope.stories);
 			setDates();
 		}
 			
@@ -70,7 +73,7 @@
 			}
 			$scope.loadContent(content);
 			$scope.selected = content;
-			$scope.selected.x = $scope.setRoundelLocations(content);
+			$scope.setRoundelLocations(content);
 			$scope.selected.visible = true;
 			
 			// update the visible image
@@ -122,34 +125,14 @@
 		}
 		
 		// gather and sort visible roundels, then reposition them on timeline
-		// TODO refactor
 		function reposition() {
-			var stories = [];
+			var stories = $scope.stories.slice();
 			// pick up all roundels on the timeline and sort them by timeline location
-			for (var i = 0; i < $scope.stories.length; i++) {
-				if ($scope.stories[i].roundel.x != null) {
-					if (stories.length == 0) {
-						stories[0] = $scope.stories[i];
-					}
-					else {
-						var inserted = false;
-						var j = 0;
-						// sorting by time
-						// TODO cleaner sorting algorithm
-						while (!inserted && j < stories.length) {
-							if (stories[j].roundel.x < $scope.stories[i].roundel.x) {
-								stories.splice(j + 1, 0, $scope.stories[i]);
-								inserted = true;
-							}
-							j++;
-						}
-						// if not inserted, this is the most recent time
-						if (!inserted) {
-							stories[j] = $scope.stories[i];
-						}
-					}
-				}
-			}
+			stories = stories.filter(function(el) { 
+				return el.roundel.x != null
+			}).sort(function(a, b) {
+				return a.roundel.x - b.roundel.x;
+			});
 			repositionStories(stories);
 		}
 		
@@ -157,10 +140,10 @@
 		function repositionStories(stories) {
 			var repositioned = false;
 			for (var i = 0; i < stories.length - 1; i++) {
-				var distance = stories[i].roundel.x - stories[i+1].roundel.x;
+				var distance = stories[i + 1].roundel.x - stories[i].roundel.x;
 				// if distance is too low between two roundels, move them further apart
 				if (distance < 2) {
-					stories[i].roundel.x += 2 - distance;
+					stories[i + 1].roundel.x += 2 - distance;
 					repositioned = true;
 				}
 			}
