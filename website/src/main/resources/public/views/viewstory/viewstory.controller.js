@@ -146,6 +146,11 @@
 					stories[i + 1].roundel.x += 2 - distance;
 					repositioned = true;
 				}
+				if (stories[i].timeSetting > stories[i + 1].timeSetting) {
+					var temp = stories[i + 1];
+					stories[i + 1] = stories[i];
+					stories[i] = temp;
+				}
 			}
 			// reposition until all roundels are far enough apart
 			// TODO danger of too many roundels
