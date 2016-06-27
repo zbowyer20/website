@@ -263,6 +263,14 @@ $content--background-colour: white;
 	}
 }
 
+.timeline__segment {
+	position: absolute;
+	height: 35px;
+	width: 2px;
+	bottom: -15px;
+	background: white;
+}
+
 .roundel {
 	transition: all 0.3s;
 	position: absolute;

@@ -13,6 +13,18 @@
 			volume: "volume_up",
 			mute: "volume_off"
 		}
+		$scope.TIME_PERIODS = [
+		    {
+		    	start: new Date("01/01/1970 00:00"),
+		    	end: new Date("01/02/1970 00:00"),
+		    	timeline: 20
+		    },
+		    {
+		    	start: new Date("08/15/2020 03:00"),
+		    	end: new Date("08/15/2020 12:00"),
+		    	timeline: 100
+		    }
+		];
 		$scope.interactedWithTimeline = false;
 		$scope.selected = {}; // currently selected story
 		$scope.content = ""; // full text in story text box
@@ -116,10 +128,26 @@
 			return $scope.getDateProportion(dateStr) + "%";
 		}
 		
+		$scope.getRoundelLocation = function(dateStr) {
+			var currentProportion = 0;
+			var date = new Date(dateStr);
+			for (var i = 0; i < $scope.TIME_PERIODS.length; i++) {
+				if (date > $scope.TIME_PERIODS[i].start && date < $scope.TIME_PERIODS[i].end) {
+					var timeIntoPeriod = date - $scope.TIME_PERIODS[i].start;
+					var periodTotal = $scope.TIME_PERIODS[i].end - $scope.TIME_PERIODS[i].start;
+					var timeProportion = (timeIntoPeriod / periodTotal) * 100;
+					var totalTimePeriodProportion = ($scope.TIME_PERIODS[i].timeline - currentProportion) / 100;
+					var storyDate = (timeProportion * totalTimePeriodProportion) + currentProportion;
+					return storyDate;
+				}
+				currentProportion += $scope.TIME_PERIODS[i].timeline;
+			}
+		}
+		
 		// set the timeline location for a story
 		$scope.setRoundelLocations = function(story) {
 			if (story.roundel.x == null) {
-				story.roundel.x = $scope.getDateProportion(story.timeSetting);
+				story.roundel.x = $scope.getRoundelLocation(story.timeSetting);
 			}
 			reposition();
 		}

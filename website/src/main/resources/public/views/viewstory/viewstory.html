@@ -9,7 +9,8 @@
 			<li class="list--unlabelled" ng-repeat="story in stories">
 				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{story.timeSetting}}: {{story.title}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
 			</li>
-		</ol>	
+		</ol>
+		<span class="timeline__segment" ng-repeat="period in TIME_PERIODS" ng-show="period.timeline != 100" ng-style="{left: period.timeline + '%'}"></span>
 	</div>
 </div>
 

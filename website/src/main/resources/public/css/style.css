@@ -191,6 +191,13 @@
     right: 0;
     background-image: linear-gradient(to left, #1B212D, transparent); }
 
+.timeline__segment {
+  position: absolute;
+  height: 35px;
+  width: 2px;
+  bottom: -15px;
+  background: white; }
+
 .roundel {
   transition: all 0.3s;
   position: absolute;
