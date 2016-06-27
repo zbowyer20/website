@@ -15,6 +15,7 @@ public class StoryDTO {
 	@JsonFormat(pattern="MM-dd-yyyy HH:mm")
 	private Date timeSetting;
 	private String youtubeId;
+	private boolean hiddenDate;
 
 	public String getId() {
 		return id;
@@ -86,5 +87,13 @@ public class StoryDTO {
 
 	public void setYoutubeId(String youtubeId) {
 		this.youtubeId = youtubeId;
+	}
+
+	public boolean isHiddenDate() {
+		return hiddenDate;
+	}
+
+	public void setHiddenDate(boolean hiddenDate) {
+		this.hiddenDate = hiddenDate;
 	}
 }

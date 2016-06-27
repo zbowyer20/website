@@ -25,7 +25,7 @@ public class MongoDBStoryService implements StoryService {
 	
 	@Override
 	public StoryDTO create(StoryDTO story) {
-		Story persisted = Story.getBuilder().fileName(story.getFileName()).character(story.getCharacter()).title(story.getTitle()).content(story.getContent()).img(story.getImg()).timeSetting(story.getTimeSetting()).next(story.getNext()).youtubeId(story.getYoutubeId()).build();
+		Story persisted = Story.getBuilder().fileName(story.getFileName()).character(story.getCharacter()).title(story.getTitle()).content(story.getContent()).img(story.getImg()).timeSetting(story.getTimeSetting()).next(story.getNext()).youtubeId(story.getYoutubeId()).hiddenDate(story.isHiddenDate()).build();
 		persisted = repository.save(persisted);
 		return convertToDTO(persisted);
 	}
@@ -64,7 +64,7 @@ public class MongoDBStoryService implements StoryService {
 	@Override
 	public StoryDTO update(StoryDTO Story) {
 		Story updated = findStoryById(Story.getId());
-		updated.update(Story.getFileName(), Story.getCharacter(), Story.getTitle(), Story.getContent(), Story.getImg(), Story.getTimeSetting(), Story.getNext(), Story.getYoutubeId());
+		updated.update(Story.getFileName(), Story.getCharacter(), Story.getTitle(), Story.getContent(), Story.getImg(), Story.getTimeSetting(), Story.getNext(), Story.getYoutubeId(), Story.isHiddenDate());
 		updated = repository.save(updated);
 		return convertToDTO(updated);
 	}
@@ -85,6 +85,7 @@ public class MongoDBStoryService implements StoryService {
 		dto.setTimeSetting(model.getTimeSetting());
 		dto.setNext(model.getNext());
 		dto.setYoutubeId(model.getYoutubeId());
+		dto.setHiddenDate(model.isHiddenDate());
 		//dto.setDateModified(model.getDateModified());
 		
 		return dto;

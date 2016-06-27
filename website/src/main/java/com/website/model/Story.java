@@ -15,6 +15,7 @@ public class Story {
 	Date timeSetting;
 	String next;
 	String youtubeId;
+	boolean hiddenDate;
 
 	public Story() {
 
@@ -29,13 +30,14 @@ public class Story {
 		this.timeSetting = builder.timeSetting;
 		this.next = builder.next;
 		this.youtubeId = builder.youtubeId;
+		this.hiddenDate = builder.hiddenDate;
 	}
 	
 	public static Builder getBuilder() {
 		return new Builder();
 	}
 	
-	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next, String youtubeId) {
+	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next, String youtubeId, boolean hiddenDate) {
 		this.fileName = fileName;
 		this.character = character;
 		this.title = title;
@@ -44,6 +46,7 @@ public class Story {
 		this.timeSetting = timeSetting;
 		this.next = next;
 		this.youtubeId = youtubeId;
+		this.hiddenDate = hiddenDate;
 	}
 	
 	public static class Builder {
@@ -55,6 +58,7 @@ public class Story {
 		private Date timeSetting;
 		private String next;
 		private String youtubeId;
+		private boolean hiddenDate;
 		
 		private Builder() {}
 		
@@ -95,6 +99,11 @@ public class Story {
 		
 		public Builder youtubeId(String youtubeId) {
 			this.youtubeId = youtubeId;
+			return this;
+		}
+		
+		public Builder hiddenDate(boolean hiddenDate) {
+			this.hiddenDate = hiddenDate;
 			return this;
 		}
 		
@@ -175,6 +184,15 @@ public class Story {
 
 	public void setYoutubeId(String youtubeId) {
 		this.youtubeId = youtubeId;
+	}
+	
+
+	public boolean isHiddenDate() {
+		return hiddenDate;
+	}
+
+	public void setHiddenDate(boolean hiddenDate) {
+		this.hiddenDate = hiddenDate;
 	}
 
 }

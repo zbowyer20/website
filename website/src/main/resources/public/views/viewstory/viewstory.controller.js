@@ -201,6 +201,10 @@
 			}
 		}
 		
+		$scope.getTooltipText = function(story) {
+			return story.hiddenDate ? story.title : story.timeSetting + ": " + story.title;
+		}
+		
 		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function() {
 			if ($scope.selected.next != "") {
