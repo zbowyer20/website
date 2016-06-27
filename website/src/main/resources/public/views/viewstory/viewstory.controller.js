@@ -45,7 +45,7 @@
 			$scope.stories = response.data;
 			$scope.init();
 			// TODO implement first story
-			$scope.showContent($scope.getStoryByFileName("victoria-1"));
+			$scope.showContent($scope.getStoryByFileName("albert-1"));
 		});
 			
 		// set the start and end date of the timeline
