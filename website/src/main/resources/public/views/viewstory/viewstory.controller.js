@@ -1,76 +1,64 @@
-var angular = require('angular');
-var angularMaterial = require('angular-material');
-var angularAnimate = require('angular-animate');
-var angularTouch = require('angular-touch');
-var angularRoute = require('angular-route');
-var angularSanitize = require('angular-sanitize');
-var jQuery = require('jquery');
-var angularUiBootstrap = require('angular-ui-bootstrap');
-var angularYoutubeEmbed = require('angular-youtube-embed');
-var angularAria = require('angular-aria');
-
-angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ngMaterial', 'youtube-embed'])
-	.config(function($routeProvider, $httpProvider) {
-		$routeProvider.when('/', {
-			templateUrl: 'home.html',
-			controller: 'home',
-			controllerAs: 'controller'
-		}).when('/addstory', {
-			templateUrl: 'views/addStory.html',
-			controller: 'addstory',
-			controllerAs: 'controller'
-		}).when('/viewstory', {
-			templateUrl: 'views/viewstory/viewStory.html',
-			controller: 'viewstory',
-			controllerAs: 'controller'
-		}).otherwise('/');
-		
-		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-	})
-	.controller('home', function($http) {
-		var self = this;
-		$http.get('/resource/').then(function(response) {
-			self.greeting = response.data;
-		})
-	})
-	.controller('addstory', function($http,$scope) {		
-		$scope.addStory = function() {
-			var data = {
-				id: "testtitle",
-				fileName: $scope.story.fileName,
-				character: $scope.story.character,
-				title: $scope.story.title,
-				//content: $scope.story.content,
-				content: "",
-				img: $scope.story.img,
-				timeSetting: $scope.story.timeSetting
-			};
-			$http.post("api/story/", data).success(function(data, status) {
-				console.log('done this');
-			})
-		}
-	})
-	.controller('viewstory', function($http, $scope) {
+(function() {
+	'use strict';
+	
+	angular
+		.module('bowyerville')
+		.controller('ViewStoryController', ViewStoryController)
+		.directive('scrolly', function() {
+			return {
+				restrict: 'A',
+				link: function(scope, element, attrs) {
+					var raw = element[0];
+					scope.selected.scrollPositions = {
+						start: 0
+					};
+					element.bind("scroll", function() {
+						scope.selected.scrollPositions = {
+							start: scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start,
+							end: scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end
+						}
+						var currentPosition = raw.scrollTop + raw.offsetHeight;
+						if (currentPosition < scope.selected.scrollPositions.start) {
+							scope.$apply(attrs.last);
+						}
+						else if (currentPosition >= scope.selected.scrollPositions.end) {
+							var nextStartPosition = scope.selected.scrollPositions.end;
+							scope.$apply(attrs.scrolly);
+							if (scope.selected.scrollPositions.start == null) {
+								scope.selected.scrollPositions = {
+									start: nextStartPosition,
+									end: raw.scrollEnd
+								}
+							}
+						}
+					});
+				}
+			}
+		});
+	
+	
+	/** @ngInject */
+	function ViewStoryController($http, $scope) {
 		var dates = {};
 		var icons = {
-				volume: "volume_up",
-				mute: "volume_off"
+			volume: "volume_up",
+			mute: "volume_off"
 		}
 		$scope.interactedWithTimeline = false;
 		$scope.selected = {}; // currently selected story
 		$scope.content = ""; // full text in story text box
 		$scope.images = {
-				current: null, // current active image index in container
-				container: [] // contains 2 images for crossfade
+			current: null, // current active image index in container
+			container: [] // contains 2 images for crossfade
 		}
 		$scope.video = {
-				icon: icons.volume,
-				player: {
-					controls: 0,
-					autoplay: 1
-				}
+			icon: icons.volume,
+			player: {
+				controls: 0,
+				autoplay: 1
+			}
 		}
-		
+			
 		// pick up all available stories
 		$http.get('api/story').then(function(response) {
 			$scope.stories = response.data;
@@ -78,7 +66,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			// TODO implement first story
 			$scope.showContent($scope.getStoryByFileName("victoria-1"));
 		});
-		
+			
 		// set the start and end date of the timeline
 		function setDates() {
 			dates.end = new Date($scope.stories[0].timeSetting);
@@ -93,7 +81,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 			}
 			setDates();
 		}
-		
+			
 		// clear up all content in text box
 		$scope.refresh = function() {
 			$scope.content = "";
@@ -101,7 +89,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 				$scope.stories[i].scrollPositions = {};
 			}
 		}
-		
+			
 		// display new content
 		$scope.showContent = function(content, refresh) {
 			// if content is to be cleared
@@ -259,36 +247,6 @@ angular.module('app', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize', 'ng
 		$scope.$on('youtube.player.ended', function($event, player) {
 			player.playVideo();
 		})
-				
-	})
-	.directive('scrolly', function() {
-		return {
-			restrict: 'A',
-			link: function(scope, element, attrs) {
-				var raw = element[0];
-				scope.selected.scrollPositions = {
-						start: 0
-				};
-				element.bind("scroll", function() {
-					scope.selected.scrollPositions = {
-							start: scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start,
-							end: scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end
-					}
-					var currentPosition = raw.scrollTop + raw.offsetHeight;
-					if (currentPosition < scope.selected.scrollPositions.start) {
-						scope.$apply(attrs.last);
-					}
-					else if (currentPosition >= scope.selected.scrollPositions.end){
-						var nextStartPosition = scope.selected.scrollPositions.end;
-						scope.$apply(attrs.scrolly);
-						if (scope.selected.scrollPositions.start == null) {
-							scope.selected.scrollPositions = {
-									start: nextStartPosition,
-									end: raw.scrollEnd
-							}
-						}
-					}
-				});
-			}
-		}
-	});
+					
+	}
+})();
