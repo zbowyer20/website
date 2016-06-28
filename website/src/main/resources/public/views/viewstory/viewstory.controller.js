@@ -138,6 +138,8 @@
 				$http.get('api/story/' + story.fileName).then(function(response) {
 					story.content = response.data.story;
 					$scope.content += story.content;
+					$cookieStore.put("latestViewedStory", story.fileName);
+					$cookieStore.put("nextStory", story.next);
 				})
 			}
 			else if (story.scrollPositions.start == null) {
@@ -202,7 +204,6 @@
 		function updateCookie(story) {
 			if (!storyIsInCookie(story)) {
 				$scope.viewedStories.push(story.fileName);
-				$cookieStore.put("nextStory", story.next);
 			}
 			$cookieStore.put("viewedStories", $scope.viewedStories);
 		}
@@ -237,9 +238,8 @@
 			if ($scope.selected.next != "") {
 				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
 				if (story != null) {
-					$cookieStore.put("latestViewedStory", story.fileName);
 					story.scrollPrev = $scope.selected;
-					updateCookie($scope.selected);
+					updateCookie(story);
 					$scope.showContent(story);
 				}
 			}
