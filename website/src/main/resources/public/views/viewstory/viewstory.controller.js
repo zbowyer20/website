@@ -8,11 +8,12 @@
 	
 	/** @ngInject */
 	function ViewStoryController($http, $scope, $cookieStore) {
-		var dates = {};
 		var icons = {
 			volume: "volume_up",
 			mute: "volume_off"
 		}
+		var data = {};
+		$scope.stories = [];
 		$scope.TIME_PERIODS = [
 		    {
 		    	start: new Date("01/01/1970 00:00"),
@@ -57,40 +58,47 @@
 			
 		// pick up all available stories
 		$http.get('api/story').then(function(response) {
-			$scope.stories = response.data;
+			data = response.data;
 			$scope.init();
 			// TODO implement first story
 			$scope.showContent($scope.getStoryByFileName($scope.settings.latestStoryViewed || "albert-1"));
+			updateCookie($scope.selected);
 			$scope.selected.visible = true;
 		});
-			
-		// set the start and end date of the timeline
-		function setDates() {
-			dates.end = new Date($scope.stories[0].timeSetting);
-			dates.start = new Date($scope.stories[$scope.stories.length - 1].timeSetting);
-			dates.time = new Date(dates.end - dates.start);
-		}
 		
 		$scope.init = function() {
 			$scope.refresh();
-			for (var i = 0; i < $scope.stories.length; i++) {
-				$scope.stories[i].roundel = {
+			for (var i = 0; i < data.length; i++) {
+				data[i].roundel = {
 					x: null
 				};
 			}
-			for (var i = 0; i < $scope.stories.length; i++) {
-				if (storyIsInCookie($scope.stories[i])) {
-					$scope.setRoundelLocations($scope.stories[i]);
+			for (var i = 0; i < data.length; i++) {
+				if (storyIsInCookie(data[i])) {
+					addStoryToTimeline(data[i]);
 				}
 			}
-			setDates();
+		}
+		
+		function storyIsInTimeline(story) {
+			return $scope.stories.indexOf(story) > -1;
+		}
+		
+		function addStoryToTimeline(story) {
+			if (!storyIsInTimeline(story)) {
+				$scope.stories.push(story);
+				$scope.stories.sort(function(a, b) {
+					return new Date(a.timeSetting) - new Date(b.timeSetting);
+				});
+				$scope.setRoundelLocations(story);
+			}
 		}
 			
 		// clear up all content in text box
 		$scope.refresh = function() {
 			$scope.content = "";
-			for (var i = 0; i < $scope.stories.length; i++) {
-				$scope.stories[i].scrollPositions = {};
+			for (var i = 0; i < data.length; i++) {
+				data[i].scrollPositions = {};
 			}
 		}
 			
@@ -103,9 +111,9 @@
 				$(".article__content").scrollTop(0);
 				$scope.settings.interactedWithTimeline = true;
 			}
+			addStoryToTimeline(content);
 			$scope.loadContent(content);
 			$scope.selected = content;
-			$scope.setRoundelLocations(content);
 			updateLatestDate(content.timeSetting);
 			
 			// update the visible image
@@ -116,6 +124,10 @@
 			$scope.video.id = content.youtubeId;
 			if ($scope.youtube != null && $scope.video.id == null) {
 				$scope.youtube.stopVideo();
+			}
+			
+			if ($scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != $scope.settings.cookieNextStory) {
+				addStoryToTimeline($scope.getStoryByFileName($scope.selected.next));
 			}
 		}
 		
@@ -135,17 +147,6 @@
 		
 		$scope.isSelected = function(title) {
 			return $scope.selected.title == title;
-		}
-		
-		// get the proportion of time between a start and end date for a given date
-		$scope.getDateProportion = function(dateStr) {
-			if (dateStr === null) return 0;
-			var date = new Date(dateStr);
-			return (((date - dates.start) / dates.time) * 100);
-		}
-		
-		$scope.getDateProportionPercentage = function(dateStr) {
-			return $scope.getDateProportion(dateStr) + "%";
 		}
 				
 		$scope.getRoundelLocation = function(dateStr) {
@@ -179,35 +180,12 @@
 		
 		// gather and sort visible roundels, then reposition them on timeline
 		function reposition() {
-			var stories = $scope.stories.slice();
-			// pick up all roundels on the timeline and sort them by timeline location
-			stories = stories.filter(function(el) { 
-				return el.roundel.x != null
-			}).sort(function(a, b) {
-				return a.roundel.x - b.roundel.x;
-			});
-			repositionStories(stories);
-		}
-		
-		// reposition timeline roundels, to avoid them getting too close together
-		function repositionStories(stories) {
-			var repositioned = false;
-			for (var i = 0; i < stories.length - 1; i++) {
-				var distance = stories[i + 1].roundel.x - stories[i].roundel.x;
-				// if distance is too low between two roundels, move them further apart
+			for (var i = 0; i < $scope.stories.length - 1; i++) {
+				var distance = $scope.stories[i + 1].roundel.x - $scope.stories[i].roundel.x;
 				if (distance < 2) {
-					stories[i + 1].roundel.x += 2 - distance;
-					repositioned = true;
-				}
-				if (stories[i].timeSetting > stories[i + 1].timeSetting) {
-					var temp = stories[i + 1];
-					stories[i + 1] = stories[i];
-					stories[i] = temp;
+					$scope.stories[i + 1].roundel.x += 2 - distance;
 				}
 			}
-			// reposition until all roundels are far enough apart
-			// TODO danger of too many roundels
-			if (repositioned) repositionStories(stories);
 		}
 		
 		function updateLatestDate(dateStr) {
@@ -245,8 +223,8 @@
 		}
 		
 		$scope.getStoryByFileName = function(fileName) {
-			for (var i = 0; i < $scope.stories.length; i++) {
-				if ($scope.stories[i].fileName == fileName) return $scope.stories[i];
+			for (var i = 0; i < data.length; i++) {
+				if (data[i].fileName == fileName) return data[i];
 			}
 		}
 		
@@ -256,12 +234,12 @@
 		
 		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function() {
-			updateCookie($scope.selected);
 			if ($scope.selected.next != "") {
 				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
 				if (story != null) {
 					$cookieStore.put("latestViewedStory", story.fileName);
 					story.scrollPrev = $scope.selected;
+					updateCookie($scope.selected);
 					$scope.showContent(story);
 				}
 			}
