@@ -17,17 +17,20 @@
 		    {
 		    	start: new Date("01/01/1970 00:00"),
 		    	end: new Date("01/02/1970 00:00"),
-		    	timeline: 20
+		    	timeline: 20,
+		    	visible: false
 		    },
 		    {
 		    	start: new Date("08/15/2020 03:00"),
 		    	end: new Date("08/15/2020 12:00"),
-		    	timeline: 97
+		    	timeline: 97,
+		    	visible: true,
 		    },
 		    {
 		    	start: new Date("08/16/2020 01:00"),
 		    	end: new Date("08/16/2020 03:00"),
-		    	timeline: 100
+		    	timeline: 100,
+		    	visible: false
 		    }
 		];
 		$scope.settings = {

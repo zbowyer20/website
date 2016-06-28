@@ -10,7 +10,7 @@
 				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
 			</li>
 		</ol>
-		<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.timeline != 100" ng-style="{left: period.timeline + '%'}"></span>
+		<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
 	</div>
 </div>
 
