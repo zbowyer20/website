@@ -50,6 +50,7 @@
 				autoplay: 1
 			}
 		}
+		$scope.teaser = "";
 			
 		// pick up all available stories
 		$http.get('api/story').then(function(response) {
@@ -238,11 +239,15 @@
 					$scope.showContent(story);
 				}
 			}
+			else {
+				$scope.teaser = $scope.selected.teaser;
+			}
 		}
 		
 		// get the previous story, eg. scrolling back to the top of current story
 		$scope.getLast = function() {
 			$scope.showContent($scope.selected.scrollPrev);
+			$scope.teaser = "";
 		}
 		
 		// toggle between mute and volume for currently playing youtube video

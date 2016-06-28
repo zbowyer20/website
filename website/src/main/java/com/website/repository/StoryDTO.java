@@ -16,6 +16,7 @@ public class StoryDTO {
 	private Date timeSetting;
 	private String youtubeId;
 	private boolean hiddenDate;
+	private String teaser;
 
 	public String getId() {
 		return id;
@@ -95,5 +96,13 @@ public class StoryDTO {
 
 	public void setHiddenDate(boolean hiddenDate) {
 		this.hiddenDate = hiddenDate;
+	}
+
+	public String getTeaser() {
+		return teaser;
+	}
+
+	public void setTeaser(String teaser) {
+		this.teaser = teaser;
 	}
 }
