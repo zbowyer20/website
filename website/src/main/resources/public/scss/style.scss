@@ -269,6 +269,30 @@ $content--background-colour: white;
 	width: 2px;
 	bottom: -15px;
 	background: white;
+	
+	&.ng-hide-remove {
+		height: 0;
+		width: 0;
+		bottom: 0;
+	}
+	
+	&.ng-hide-remove-active {
+		height: 35px;
+		width: 2px;
+		bottom: -15px;
+	}
+	
+	&.ng-hide-add {
+		height: 35px;
+		width: 2px;
+		bottom: -15px;
+	}
+	
+	&.ng-hide-add-active {
+		height: 0;
+		width: 0;
+		bottom: 0;
+	}
 }
 
 .roundel {
