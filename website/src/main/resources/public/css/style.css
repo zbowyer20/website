@@ -254,6 +254,16 @@
 .roundel--passed {
   border-color: #003366; }
 
+.roundel--new {
+  border-color: #62eaea; }
+  .roundel--new::before {
+    position: absolute;
+    content: "NEW";
+    color: white;
+    bottom: 16px;
+    left: -5px;
+    font-size: 12px; }
+
 .material-icons {
   color: white; }
 

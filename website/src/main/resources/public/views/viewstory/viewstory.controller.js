@@ -180,6 +180,10 @@
 					($scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != $scope.settings.cookieNextStory);
 		}
 		
+		$scope.storyIsNew = function(story) {
+			return (!storyIsInCookie(story) && $scope.roundelIsVisible(story));
+		}
+		
 		// gather and sort visible roundels, then reposition them on timeline
 		function reposition() {
 			for (var i = 0; i < $scope.stories.length - 1; i++) {
