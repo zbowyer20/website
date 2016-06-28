@@ -6,11 +6,9 @@
 	</div>
 	<div class="timeline-bar">
 		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
-		<ol>
-			<li class="list--unlabelled" ng-repeat="story in stories">
-				<a class="roundel" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
-			</li>
-		</ol>
+		<ul>
+			<a class="roundel" ng-repeat="story in stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
+		</ul>
 		<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
 	</div>
 </div>

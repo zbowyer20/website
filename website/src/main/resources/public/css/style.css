@@ -215,7 +215,7 @@
     bottom: 0; }
 
 .roundel {
-  transition: all 0.3s;
+  transition: all 0.2s;
   position: absolute;
   left: 50%;
   height: 20px;
