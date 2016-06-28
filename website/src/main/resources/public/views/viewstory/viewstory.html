@@ -1,7 +1,7 @@
 <div class="timeline">
 	<div class="header header--timeline">
-		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!interactedWithTimeline">This is the timeline. Click a roundel to view its content.</span>
-		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="interactedWithTimeline">Timeline</span>
+		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline">This is the timeline. Click a roundel to view its content.</span>
+		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline">Timeline</span>
 	</div>
 	<div class="timeline-bar">
 		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
@@ -10,7 +10,7 @@
 				<a class="roundel" ng-show="story.visible" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
 			</li>
 		</ol>
-		<span class="timeline__segment" ng-repeat="period in TIME_PERIODS" ng-show="period.timeline != 100" ng-style="{left: period.timeline + '%'}"></span>
+		<span class="timeline__segment" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.timeline != 100" ng-style="{left: period.timeline + '%'}"></span>
 	</div>
 </div>
 

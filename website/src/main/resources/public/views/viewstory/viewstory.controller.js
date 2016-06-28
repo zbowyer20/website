@@ -30,7 +30,10 @@
 		    	timeline: 100
 		    }
 		];
-		$scope.interactedWithTimeline = false;
+		$scope.settings = {
+				interactedWithTimeline: false,
+				latestDate: $scope.TIME_PERIODS[0].start
+		}
 		$scope.selected = {}; // currently selected story
 		$scope.content = ""; // full text in story text box
 		$scope.images = {
@@ -86,12 +89,13 @@
 				$scope.refresh();
 				// TODO update angularly
 				$(".article__content").scrollTop(0);
-				$scope.interactedWithTimeline = true;
+				$scope.settings.interactedWithTimeline = true;
 			}
 			$scope.loadContent(content);
 			$scope.selected = content;
 			$scope.setRoundelLocations(content);
 			$scope.selected.visible = true;
+			updateLatestDate(content.timeSetting);
 			
 			// update the visible image
 			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
@@ -190,6 +194,13 @@
 			if (repositioned) repositionStories(stories);
 		}
 		
+		function updateLatestDate(dateStr) {
+			var date = new Date(dateStr);
+			if (date > $scope.settings.latestDate) {
+				$scope.settings.latestDate = date;
+			}
+		}
+		
 		$scope.isImageActive = function() {
 			return $scope.images.container[$scope.images.current] != "";
 		}
@@ -198,6 +209,11 @@
 		$scope.isPassed = function(dateStr) {
 			var date = new Date(dateStr);
 			return new Date($scope.selected.timeSetting) > date;
+		}
+		
+		$scope.hasPassed = function(dateStr) {
+			var date = new Date(dateStr);
+			return date <= $scope.settings.latestDate;
 		}
 		
 		$scope.getStoryByFileName = function(fileName) {
