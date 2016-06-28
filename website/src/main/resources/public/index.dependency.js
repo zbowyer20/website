@@ -7,6 +7,7 @@
 	var angularTouch = require('angular-touch');
 	var angularRoute = require('angular-route');
 	var angularSanitize = require('angular-sanitize');
+	var angularCookies = require('angular-cookies');
 	var jQuery = require('jquery');
 	var angularUiBootstrap = require('angular-ui-bootstrap');
 	var angularYoutubeEmbed = require('angular-youtube-embed');
