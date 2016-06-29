@@ -271,7 +271,12 @@
 		
 		// loop youtube video forever
 		$scope.$on('youtube.player.ended', function($event, player) {
-			player.playVideo();
+			if ($scope.selected.type == 'video') {
+				$scope.getNext();
+			}
+			else {
+				player.playVideo();
+			}
 		})
 					
 	}

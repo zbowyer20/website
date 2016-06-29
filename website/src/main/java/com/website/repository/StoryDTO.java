@@ -17,6 +17,7 @@ public class StoryDTO {
 	private String youtubeId;
 	private boolean hiddenDate;
 	private String teaser;
+	private String type;
 
 	public String getId() {
 		return id;
@@ -104,5 +105,13 @@ public class StoryDTO {
 
 	public void setTeaser(String teaser) {
 		this.teaser = teaser;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

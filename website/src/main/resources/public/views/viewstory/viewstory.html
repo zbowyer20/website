@@ -13,7 +13,7 @@
 	</div>
 </div>
 
-<div id="container">
+<div id="container" class="animate__fade" ng-show="selected.type != 'video'">
 	<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
 		<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[0]}}"></img>
 		<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[1]}}"></img> 
@@ -27,4 +27,4 @@
 	</article>
 </div>
 
-<div class="video"><youtube-video video-id="video.id" player="youtube" player-vars="video.player"></youtube-video></div>
+<div class="video animate__fade" ng-show="selected.type == 'video'"><youtube-video video-id="video.id" player="youtube" player-vars="video.player"></youtube-video></div>

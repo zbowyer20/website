@@ -17,6 +17,7 @@ public class Story {
 	String youtubeId;
 	boolean hiddenDate;
 	String teaser;
+	String type;
 
 	public Story() {
 
@@ -39,7 +40,7 @@ public class Story {
 		return new Builder();
 	}
 	
-	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next, String youtubeId, boolean hiddenDate, String teaser) {
+	public void update(String fileName, String character, String title, String content, String img, Date timeSetting, String next, String youtubeId, boolean hiddenDate, String teaser, String type) {
 		this.fileName = fileName;
 		this.character = character;
 		this.title = title;
@@ -50,6 +51,7 @@ public class Story {
 		this.youtubeId = youtubeId;
 		this.hiddenDate = hiddenDate;
 		this.teaser = teaser;
+		this.type = type;
 	}
 	
 	public static class Builder {
@@ -63,6 +65,7 @@ public class Story {
 		private String youtubeId;
 		private boolean hiddenDate;
 		private String teaser;
+		private String type;
 		
 		private Builder() {}
 		
@@ -113,6 +116,11 @@ public class Story {
 		
 		public Builder teaser(String teaser) {
 			this.teaser = teaser;
+			return this;
+		}
+		
+		public Builder type(String type) {
+			this.type = type;
 			return this;
 		}
 		
@@ -211,6 +219,14 @@ public class Story {
 
 	public void setTeaser(String teaser) {
 		this.teaser = teaser;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }
