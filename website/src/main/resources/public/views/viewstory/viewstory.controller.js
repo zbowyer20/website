@@ -110,6 +110,7 @@
 				// TODO update angularly
 				$(".article__content").scrollTop(0);
 				$scope.settings.interactedWithTimeline = true;
+				updateCookie(content);
 			}
 			addStoryToTimeline(content);
 			$scope.loadContent(content);
@@ -126,7 +127,7 @@
 				$scope.youtube.stopVideo();
 			}
 			
-			if ($scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != $scope.settings.cookieNextStory) {
+			if (newStoryIsAvailable()) {
 				addStoryToTimeline($scope.getStoryByFileName($scope.selected.next));
 			}
 		}
@@ -176,7 +177,7 @@
 		
 		$scope.roundelIsVisible = function(story) {
 			return story.fileName == $scope.selected.fileName || storyIsInCookie(story) || 
-					($scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != $scope.settings.cookieNextStory);
+					newStoryIsAvailable();
 		}
 		
 		$scope.storyIsNew = function(story) {
@@ -210,6 +211,10 @@
 				$scope.viewedStories.push(story.fileName);
 			}
 			$cookieStore.put("viewedStories", $scope.viewedStories);
+		}
+		
+		function newStoryIsAvailable() {
+			return $scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != "" && "" == $scope.settings.cookieNextStory;
 		}
 		
 		$scope.isImageActive = function() {
