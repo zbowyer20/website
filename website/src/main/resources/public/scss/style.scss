@@ -6,6 +6,20 @@ $theme--background-colour: #003366;
 $theme--text-colour: white;
 $content--background-colour: white;
 
+@mixin transition($transition) {
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+}
+
+@mixin transition-delay($delay) {
+	-webkit-transition-delay: $delay;
+	-moz-transition-delay: $delay;
+	-o-transition-delay: $delay;
+	transition: $delay;
+}
+
 .body {
 	background-color: $base--background-colour;
 	overflow: hidden;
@@ -63,26 +77,27 @@ $content--background-colour: white;
 }
 
 .animate__fade {
+	@include transition(all linear 0.5s);
+	
 	&.ng-hide-remove {
-		-webkit-transition: all linear 0.5s;
-		transition: all linear 0.5s;
 		opacity: 0;
 	}
 	
 	&.ng-hide-remove-active {
 		opacity: 1;
-		transition-delay: 0.5s;
 	}
 	
 	&.ng-hide-add {
-		-webkit-transition: all linear 0.5s;
-		transition: all linear 0.5s;
 		opacity: 1;
 	}
 	
 	&.ng-hide-add-active {
 		opacity: 0;
 	}
+}
+
+.animate__delay--medium {
+	@include transition-delay(0.5s);
 }
 
 .header {
@@ -159,8 +174,7 @@ $content--background-colour: white;
 }
 
 .smooth-moves {
-	-webkit-transition: all linear 0.5s;
-	transition: all linear 0.5s;
+	@include transition(all linear 0.5s);
 }
 
 .image__story {
@@ -172,9 +186,9 @@ $content--background-colour: white;
 }
 
 .image__story--active {
+	@include transition(all ease-in 0.5s);
+
 	&.ng-hide-remove {
-		-webkit-transition: all ease-in 0.5s;
-		transition: all ease-in 0.5s;
 		opacity: 0;
 	}
 	
@@ -183,8 +197,6 @@ $content--background-colour: white;
 	}
 	
 	&.ng-hide-add {
-		-webkit-transition: all ease-out 0.5s;
-		transition: all ease-out 0.5s;
 		opacity: 1;
 	}
 	
@@ -240,7 +252,7 @@ $content--background-colour: white;
 .timeline-bar__tracker {
 	width: 0;
 	background-color: $theme--background-colour;
-	transition: all 0.5s;
+	@include transition(all 0.5s);
 	height: 5px;
 	
 	&::before, &::after {
@@ -296,7 +308,7 @@ $content--background-colour: white;
 }
 
 .roundel {
-	transition: all 0.2s;
+	@include transition(all 0.2s);
 	position: absolute;
 	left: 50%;
 	height: 20px;

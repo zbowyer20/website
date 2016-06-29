@@ -40,19 +40,25 @@
 .navigation__item--link {
   text-decoration: none; }
 
-.animate__fade.ng-hide-remove {
+.animate__fade {
   -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-  opacity: 0; }
-.animate__fade.ng-hide-remove-active {
-  opacity: 1;
-  transition-delay: 0.5s; }
-.animate__fade.ng-hide-add {
-  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-  opacity: 1; }
-.animate__fade.ng-hide-add-active {
-  opacity: 0; }
+  -moz-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+  .animate__fade.ng-hide-remove {
+    opacity: 0; }
+  .animate__fade.ng-hide-remove-active {
+    opacity: 1; }
+  .animate__fade.ng-hide-add {
+    opacity: 1; }
+  .animate__fade.ng-hide-add-active {
+    opacity: 0; }
+
+.animate__delay--medium {
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  transition: 0.5s; }
 
 .header {
   text-align: center; }
@@ -114,6 +120,8 @@
 
 .smooth-moves {
   -webkit-transition: all linear 0.5s;
+  -moz-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
   transition: all linear 0.5s; }
 
 .image__story {
@@ -123,18 +131,19 @@
   bottom: -100px;
   z-index: 0; }
 
-.image__story--active.ng-hide-remove {
+.image__story--active {
   -webkit-transition: all ease-in 0.5s;
-  transition: all ease-in 0.5s;
-  opacity: 0; }
-.image__story--active.ng-hide-remove-active {
-  opacity: 1; }
-.image__story--active.ng-hide-add {
-  -webkit-transition: all ease-out 0.5s;
-  transition: all ease-out 0.5s;
-  opacity: 1; }
-.image__story--active.ng-hide-add-active {
-  opacity: 0; }
+  -moz-transition: all ease-in 0.5s;
+  -o-transition: all ease-in 0.5s;
+  transition: all ease-in 0.5s; }
+  .image__story--active.ng-hide-remove {
+    opacity: 0; }
+  .image__story--active.ng-hide-remove-active {
+    opacity: 1; }
+  .image__story--active.ng-hide-add {
+    opacity: 1; }
+  .image__story--active.ng-hide-add-active {
+    opacity: 0; }
 
 .article__story {
   display: inline-block;
@@ -175,6 +184,9 @@
 .timeline-bar__tracker {
   width: 0;
   background-color: #003366;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
   height: 5px; }
   .timeline-bar__tracker::before, .timeline-bar__tracker::after {
@@ -215,6 +227,9 @@
     bottom: 0; }
 
 .roundel {
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
   transition: all 0.2s;
   position: absolute;
   left: 50%;
