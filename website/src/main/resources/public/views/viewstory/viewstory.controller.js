@@ -138,7 +138,6 @@
 				$http.get('api/story/' + story.fileName).then(function(response) {
 					story.content = response.data.story;
 					$scope.content += story.content;
-					$cookieStore.put("latestViewedStory", story.fileName);
 					$cookieStore.put("nextStory", story.next);
 				})
 			}
@@ -207,6 +206,7 @@
 		
 		function updateCookie(story) {
 			if (!storyIsInCookie(story)) {
+				$cookieStore.put("latestViewedStory", story.fileName);
 				$scope.viewedStories.push(story.fileName);
 			}
 			$cookieStore.put("viewedStories", $scope.viewedStories);
