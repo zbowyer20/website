@@ -243,13 +243,13 @@
 		}
 		
 		// show the next story, eg. after scrolling to end of current story
-		$scope.getNext = function() {
+		$scope.getNext = function(refresh) {
 			if ($scope.selected.next != "") {
 				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
 				if (story != null) {
 					story.scrollPrev = $scope.selected;
 					updateCookie(story);
-					$scope.showContent(story);
+					$scope.showContent(story, refresh);
 				}
 			}
 			else {
@@ -277,7 +277,7 @@
 		// loop youtube video forever
 		$scope.$on('youtube.player.ended', function($event, player) {
 			if ($scope.selected.type == 'video') {
-				$scope.getNext();
+				$scope.getNext(true);
 			}
 			else {
 				player.playVideo();
