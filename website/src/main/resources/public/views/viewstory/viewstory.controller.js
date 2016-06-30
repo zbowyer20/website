@@ -123,7 +123,7 @@
 			
 			// update playing video, if necessary
 			$scope.video.id = content.youtubeId;
-			if ($scope.youtube != null && $scope.video.id == null && $scope.youtube.playing) {
+			if ($scope.youtube != null && $scope.video.id == null && $scope.youtube.currentState == "playing") {
 				$scope.youtube.stopVideo();
 			}
 			
