@@ -55,7 +55,7 @@
 		}
 		$scope.teaser = "";
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
-			
+				
 		// pick up all available stories
 		$http.get('php/services/getStories.php').then(function(response) {
 			data = response.data;
@@ -122,7 +122,7 @@
 			$scope.images.container[$scope.images.current] = content.img;
 			
 			// update playing video, if necessary
-			$scope.video.id = content.youtubeId;
+			$scope.video.id = content.youtubeId || null;
 			if ($scope.youtube != null && $scope.video.id == null && $scope.youtube.currentState == "playing") {
 				$scope.youtube.stopVideo();
 			}
@@ -218,7 +218,7 @@
 		}
 		
 		$scope.isImageActive = function() {
-			return $scope.images.container[$scope.images.current] != "";
+			return $scope.images.container[$scope.images.current] != null;
 		}
 		
 		// check if the currently selected story's date is past another
