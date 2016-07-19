@@ -57,7 +57,7 @@
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
 			
 		// pick up all available stories
-		$http.get('api/story').then(function(response) {
+		$http.get('php/services/getStories.php').then(function(response) {
 			data = response.data;
 			$scope.init();
 			// TODO implement first story
@@ -135,9 +135,9 @@
 		// display story content, loading it from backend if necessary
 		$scope.loadContent = function(story) {
 			// only load from backend if it hasn't already been loaded
-			if (story.content == "") {
-				$http.get('api/story/' + story.fileName).then(function(response) {
-					story.content = response.data.story;
+			if (typeof story.content == 'undefined') {
+				$http.get('html/' + story.fileName + '.html').then(function(response) {
+					story.content = response.data;
 					$scope.content += story.content;
 					$cookieStore.put("nextStory", story.next);
 				})
