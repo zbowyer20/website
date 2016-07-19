@@ -4,6 +4,7 @@ $base__text--colour: white;
 $base__text--colour-dark: black;
 $theme--background-colour: #003366;
 $theme--text-colour: white;
+$colour--todo: #80A0BE;
 $content--background-colour: white;
 
 @mixin transition($transition) {
@@ -25,12 +26,20 @@ $content--background-colour: white;
 	overflow: hidden;
 }
 
+.align-left {
+	text-align: left;
+}
+
 .text {
 	color: $base__text--colour;
 }
 
 .text--dark {
 	color: $base__text--colour-dark;
+}
+
+.text--todo {
+	color: $colour--todo;
 }
 
 .container {

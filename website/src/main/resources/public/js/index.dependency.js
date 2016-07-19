@@ -14,6 +14,9 @@
 	var angularAria = require('angular-aria');
 	var modules = require('./index.module.js');
 	var routes = require('./index.route.js');
+	var home = {
+			controller: require('./../views/home/home.controller.js')
+	};
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
 			scroll: require('./../views/viewstory/viewstory.scroll.js')

@@ -87263,12 +87263,15 @@ return jQuery;
 	var angularAria = require('angular-aria');
 	var modules = require('./index.module.js');
 	var routes = require('./index.route.js');
+	var home = {
+			controller: require('./../views/home/home.controller.js')
+	};
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
 			scroll: require('./../views/viewstory/viewstory.scroll.js')
 	};
 })()
-},{"./../views/viewstory/viewstory.controller.js":25,"./../views/viewstory/viewstory.scroll.js":26,"./index.module.js":23,"./index.route.js":24,"angular":20,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-material":8,"angular-route":10,"angular-sanitize":12,"angular-touch":14,"angular-ui-bootstrap":16,"angular-youtube-embed":17,"jquery":21}],23:[function(require,module,exports){
+},{"./../views/home/home.controller.js":25,"./../views/viewstory/viewstory.controller.js":26,"./../views/viewstory/viewstory.scroll.js":27,"./index.module.js":23,"./index.route.js":24,"angular":20,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-material":8,"angular-route":10,"angular-sanitize":12,"angular-touch":14,"angular-ui-bootstrap":16,"angular-youtube-embed":17,"jquery":21}],23:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87286,8 +87289,8 @@ return jQuery;
 	/** @ngInject */
 	function routerConfig($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
-			templateUrl: 'home.html',
-			controller: 'home',
+			templateUrl: 'views/home/home.html',
+			controller: 'HomeController',
 			controllerAs: 'controller'
 		}).when('/addstory', {
 			templateUrl: 'views/addStory.html',
@@ -87303,6 +87306,21 @@ return jQuery;
 	}
 })();
 },{}],25:[function(require,module,exports){
+(function() {
+	'use strict';
+	
+	angular
+		.module('bowyerville')
+		.controller('HomeController', HomeController);
+	
+	
+	/** @ngInject */
+	function HomeController($http, $scope, $cookieStore) {
+					
+	}
+})();
+
+},{}],26:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87360,7 +87378,7 @@ return jQuery;
 		}
 		$scope.teaser = "";
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
-			
+				
 		// pick up all available stories
 		$http.get('php/services/getStories.php').then(function(response) {
 			data = response.data;
@@ -87427,7 +87445,7 @@ return jQuery;
 			$scope.images.container[$scope.images.current] = content.img;
 			
 			// update playing video, if necessary
-			$scope.video.id = content.youtubeId;
+			$scope.video.id = content.youtubeId || null;
 			if ($scope.youtube != null && $scope.video.id == null && $scope.youtube.currentState == "playing") {
 				$scope.youtube.stopVideo();
 			}
@@ -87523,7 +87541,7 @@ return jQuery;
 		}
 		
 		$scope.isImageActive = function() {
-			return $scope.images.container[$scope.images.current] != "";
+			return $scope.images.container[$scope.images.current] != null;
 		}
 		
 		// check if the currently selected story's date is past another
@@ -87592,7 +87610,7 @@ return jQuery;
 	}
 })();
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function() {
 	'use strict';
 	

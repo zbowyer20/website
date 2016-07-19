@@ -8,8 +8,8 @@
 	/** @ngInject */
 	function routerConfig($routeProvider, $httpProvider) {
 		$routeProvider.when('/', {
-			templateUrl: 'home.html',
-			controller: 'home',
+			templateUrl: 'views/home/home.html',
+			controller: 'HomeController',
 			controllerAs: 'controller'
 		}).when('/addstory', {
 			templateUrl: 'views/addStory.html',
