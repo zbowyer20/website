@@ -55,6 +55,7 @@
 		}
 		$scope.teaser = "";
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
+		$scope.loading = true;
 				
 		// pick up all available stories
 		$http.get('php/services/getStories.php').then(function(response) {
@@ -64,6 +65,7 @@
 			$scope.showContent($scope.getStoryByFileName($scope.settings.latestStoryViewed || "albert-1"));
 			updateCookie($scope.selected);
 			$scope.selected.visible = true;
+			$scope.loading = false;
 		});
 		
 		$scope.init = function() {

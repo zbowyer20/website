@@ -1,30 +1,42 @@
-<div class="timeline">
-	<div class="header header--timeline">
-		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline && !teaser">This is the timeline. Click a roundel to view its content.</span>
-		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline && !teaser">Timeline</span>
-		<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="teaser">{{teaser}}</span>
-	</div>
-	<div class="timeline-bar">
-		<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
-		<ul>
-			<a class="roundel" ng-repeat="story in stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
-		</ul>
-		<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
-	</div>
-</div>
-
-<div id="container" class="animate__fade" ng-show="selected.type != 'video'">
-	<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
-		<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[0]}}"></img>
-		<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[1]}}"></img> 
-	</div>
-	<article class="article__story">
-		<div class="header">
-			<h2 class="header__text header__text--title header__text--medium" ng-bind="selected.title"></h2>
-			<md-button class="md-icon-button" ng-show="video.id" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
+<div class="visible-md-block visible-lg-block">
+	<div class="timeline">
+		<div class="header header--timeline">
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline && !teaser">This is the timeline. Click a roundel to view its content.</span>
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline && !teaser">Timeline</span>
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="teaser">{{teaser}}</span>
 		</div>
-		<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
-	</article>
+		<div class="timeline-bar">
+			<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
+			<ul>
+				<a class="roundel" ng-repeat="story in stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
+			</ul>
+			<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
+		</div>
+	</div>
+	
+	<div id="container" class="animate__fade" ng-show="selected.type != 'video'">
+		<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
+			<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[0]}}"></img>
+			<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[1]}}"></img> 
+		</div>
+		<article class="article__story">
+			<div class="header">
+				<h2 class="header__text header__text--title header__text--medium" ng-bind="selected.title"></h2>
+				<md-button class="md-icon-button" ng-show="video.id" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
+			</div>
+			<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
+		</article>
+	</div>
+	
+	<div class="video animate__fade" ng-show="selected.type == 'video'"><youtube-video video-id="video.id" player="youtube" player-vars="video.player" player-width="'80%'" player-height="'600px'"></youtube-video></div>
 </div>
 
-<div class="video animate__fade" ng-show="selected.type == 'video'"><youtube-video video-id="video.id" player="youtube" player-vars="video.player" player-width="'80%'" player-height="'600px'"></youtube-video></div>
+<div class="visible-xs-block visible-sm-block">
+	<img class="image__unavailable" src="images/kate-sad.png" />
+	<h1 class="header__text">Sorry, this page is currently unavailable on your device.</h1>
+</div>
+
+<div class="container--full-screen animate__fade smooth-moves" ng-show="loading">
+	<img src="images/components/ajax-loader.gif">
+	<h2 class="header__text">Loading...</h2>
+</div>
