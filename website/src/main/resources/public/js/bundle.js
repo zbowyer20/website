@@ -87654,10 +87654,10 @@ return jQuery;
 							end: scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end
 						}
 						var currentPosition = raw.scrollTop + raw.offsetHeight;
-						if (currentPosition < scope.selected.scrollPositions.start) {
+						if (currentPosition < scope.selected.scrollPositions.start && scope.selected.type != 'video') {
 							scope.$apply(attrs.last);
 						}
-						else if (currentPosition >= scope.selected.scrollPositions.end) {
+						else if (currentPosition >= scope.selected.scrollPositions.end && scope.selected.type != 'video') {
 							var nextStartPosition = scope.selected.scrollPositions.end;
 							scope.$apply(attrs.scrolly);
 							if (scope.selected.scrollPositions.start == null) {
