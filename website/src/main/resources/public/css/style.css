@@ -89,6 +89,30 @@
 .header__text--medium {
   font-size: 26px; }
 
+.header__text--Albert {
+  font-family: 'Dosis', sans-serif; }
+
+.header__text--The-Stranger {
+  font-family: 'Inconsolata', monospace; }
+
+.header__text--Victoria {
+  font-family: 'Farsan', cursive; }
+
+.header__text--Tom {
+  font-family: 'Lemonada', sans-serif; }
+
+.header__text--Zak {
+  font-family: 'Cormorant', sans-serif; }
+
+.header__text--Joe {
+  font-family: 'Gloria Hallelujah', cursive; }
+
+.header__text--Kate, .header__text--Grace {
+  font-family: 'Coming Soon', cursive; }
+
+.header__text--Kevin {
+  font-family: 'Pattaya', sans-serif; }
+
 .header__text--timeline {
   position: absolute;
   left: 0;
@@ -184,7 +208,8 @@
 
 .story__paragraph {
   text-indent: 40px;
-  margin: 0 10px; }
+  margin: 0 10px;
+  font-family: 'Raleway', sans-serif; }
   .story__paragraph:first-child {
     text-indent: 0; }
 

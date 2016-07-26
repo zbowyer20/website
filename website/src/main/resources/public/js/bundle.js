@@ -87465,7 +87465,7 @@ return jQuery;
 		// display story content, loading it from backend if necessary
 		$scope.loadContent = function(story) {
 			// only load from backend if it hasn't already been loaded
-			if (typeof story.content == 'undefined') {
+			if (typeof story.content == 'undefined' && story.type != 'video') {
 				loading();
 				$http.get('html/' + story.fileName + '.html').then(function(response) {
 					stopLoading();

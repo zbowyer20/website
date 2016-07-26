@@ -1,3 +1,6 @@
+<link href="https://fonts.googleapis.com/css?family=Coming+Soon|Cormorant|Dosis|Farsan|Gloria+Hallelujah|Inconsolata|Lemonada|Pattaya|Raleway" rel="stylesheet">
+
+
 <div class="visible-md-block visible-lg-block">
 	<div class="timeline">
 		<div class="header header--timeline">
@@ -21,7 +24,7 @@
 		</div>
 		<article class="article__story">
 			<div class="header">
-				<h2 class="header__text header__text--title header__text--medium" ng-bind="selected.title"></h2>
+				<h2 class="header__text header__text--title header__text--medium header__text--{{selected.character.replace(' ', '-')}}" ng-bind="selected.title"></h2>
 				<md-button class="md-icon-button" ng-show="video.id" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
 			</div>
 			<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
