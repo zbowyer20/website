@@ -8,23 +8,23 @@
 				restrict: 'A',
 				link: function(scope, element, attrs) {
 					var raw = element[0];
-					scope.selected.scrollPositions = {
+					scope.content.selected.scrollPositions = {
 						start: 0
 					};
 					element.bind("scroll", function() {
-						scope.selected.scrollPositions = {
-							start: scope.selected.scrollPositions.start == null ? 0 : scope.selected.scrollPositions.start,
-							end: scope.selected.scrollPositions.end == null ? raw.scrollHeight : scope.selected.scrollPositions.end
+						scope.content.selected.scrollPositions = {
+							start: scope.content.selected.scrollPositions.start == null ? 0 : scope.content.selected.scrollPositions.start,
+							end: scope.content.selected.scrollPositions.end == null ? raw.scrollHeight : scope.content.selected.scrollPositions.end
 						}
 						var currentPosition = raw.scrollTop + raw.offsetHeight;
-						if (currentPosition < scope.selected.scrollPositions.start && scope.selected.type != 'video') {
+						if (currentPosition < scope.content.selected.scrollPositions.start && scope.content.selected.type != 'video') {
 							scope.$apply(attrs.last);
 						}
-						else if (currentPosition >= scope.selected.scrollPositions.end && scope.selected.type != 'video') {
-							var nextStartPosition = scope.selected.scrollPositions.end;
+						else if (currentPosition >= scope.content.selected.scrollPositions.end && scope.content.selected.type != 'video') {
+							var nextStartPosition = scope.content.selected.scrollPositions.end;
 							scope.$apply(attrs.scrolly);
-							if (scope.selected.scrollPositions.start == null) {
-								scope.selected.scrollPositions = {
+							if (scope.content.selected.scrollPositions.start == null) {
+								scope.content.selected.scrollPositions = {
 									start: nextStartPosition,
 									end: raw.scrollEnd
 								}

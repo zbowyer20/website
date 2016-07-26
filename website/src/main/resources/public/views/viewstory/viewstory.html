@@ -4,34 +4,34 @@
 <div class="visible-md-block visible-lg-block">
 	<div class="timeline">
 		<div class="header header--timeline">
-			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline && !teaser">This is the timeline. Click a roundel to view its content.</span>
-			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline && !teaser">Timeline</span>
-			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="teaser">{{teaser}}</span>
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline && !content.teaser">This is the timeline. Click a roundel to view its content.</span>
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline && !content.teaser">Timeline</span>
+			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="content.teaser">{{teaser}}</span>
 		</div>
 		<div class="timeline-bar">
-			<div class="timeline-bar__tracker" ng-style="{width: selected.roundel.x + '%'}" />
+			<div class="timeline-bar__tracker" ng-style="{width: content.selected.roundel.x + '%'}" />
 			<ul>
-				<a class="roundel" ng-repeat="story in stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
+				<a class="roundel" ng-repeat="story in content.stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
 			</ul>
 			<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
 		</div>
 	</div>
 	
-	<div id="container" class="animate__fade" ng-show="selected.type != 'video'">
+	<div id="container" class="animate__fade" ng-show="content.selected.type != 'video'">
 		<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
-			<img class="image__story" ng-show="images.current === 0 && images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[0]}}"></img>
-			<img class="image__story" ng-show="images.current === 1 && images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{images.container[1]}}"></img> 
+			<img class="image__story" ng-show="content.images.current === 0 && content.images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[0]}}"></img>
+			<img class="image__story" ng-show="content.images.current === 1 && content.images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[1]}}"></img> 
 		</div>
 		<article class="article__story">
 			<div class="header">
-				<h2 class="header__text header__text--title header__text--medium header__text--{{selected.character.replace(' ', '-')}}" ng-bind="selected.title"></h2>
-				<md-button class="md-icon-button" ng-show="video.id" ng-click="toggleYoutube()"><md-icon>{{video.icon}}</md-icon></md-button>
+				<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
+				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()"><md-icon>{{content.video.icon}}</md-icon></md-button>
 			</div>
-			<div class="article__content" ng-bind-html="content" scrolly="getNext()" last="getLast()"></div>
+			<div class="article__content" ng-bind-html="content.text" scrolly="getNext()" last="getLast()"></div>
 		</article>
 	</div>
 	
-	<div class="video animate__fade" ng-show="selected.type == 'video'"><youtube-video video-id="video.id" player="youtube" player-vars="video.player" player-width="'80%'" player-height="'600px'"></youtube-video></div>
+	<div class="video animate__fade" ng-show="content.selected.type == 'video'"><youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video></div>
 </div>
 
 <div class="visible-xs-block visible-sm-block">

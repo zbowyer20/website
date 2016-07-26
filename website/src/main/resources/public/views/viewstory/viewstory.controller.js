@@ -13,7 +13,6 @@
 			mute: "volume_off"
 		}
 		var data = {};
-		$scope.stories = [];
 		$scope.TIME_PERIODS = [
 		    {
 		    	start: new Date("01/01/1970 00:00"),
@@ -42,19 +41,23 @@
 				muted: $cookieStore.get("muted") || false
 		}
 		$scope.selected = {}; // currently selected story
-		$scope.content = ""; // full text in story text box
-		$scope.images = {
-			current: null, // current active image index in container
-			container: [] // contains 2 images for crossfade
-		}
-		$scope.video = {
-			icon: $scope.settings.muted ? icons.mute : icons.volume,
-			player: {
-				controls: 0,
-				autoplay: $scope.settings.muted ? 0 : 1
+		$scope.content = {
+			stories: [],
+			selected: {},
+			teaser: "",
+			text: "",
+			images: {
+				current: null,
+				container: []
+			},
+			video: {
+				icon: $scope.settings.muted ? icons.mute : icons.volume,
+				player: {
+					controls: 0,
+					autoplay: $scope.settings.muted ? 0 : 1
+				}
 			}
-		}
-		$scope.teaser = "";
+		}; // full text in story text box
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
 		$scope.loading = {
 			on: false,
@@ -69,8 +72,8 @@
 			$scope.init();
 			// TODO implement first story
 			$scope.showContent($scope.getStoryByFileName($scope.settings.latestStoryViewed || "albert-1"));
-			updateCookie($scope.selected);
-			$scope.selected.visible = true;
+			updateCookie($scope.content.selected);
+			$scope.content.selected.visible = true;
 			stopLoading();
 		});
 		
@@ -89,13 +92,13 @@
 		}
 		
 		function storyIsInTimeline(story) {
-			return $scope.stories.indexOf(story) > -1;
+			return $scope.content.stories.indexOf(story) > -1;
 		}
 		
 		function addStoryToTimeline(story) {
 			if (!storyIsInTimeline(story)) {
-				$scope.stories.push(story);
-				$scope.stories.sort(function(a, b) {
+				$scope.content.stories.push(story);
+				$scope.content.stories.sort(function(a, b) {
 					return new Date(a.timeSetting) - new Date(b.timeSetting);
 				});
 				$scope.setRoundelLocations(story);
@@ -104,7 +107,7 @@
 			
 		// clear up all content in text box
 		$scope.refresh = function() {
-			$scope.content = "";
+			$scope.content.text = "";
 			for (var i = 0; i < data.length; i++) {
 				data[i].scrollPositions = {};
 			}
@@ -122,21 +125,21 @@
 			}
 			addStoryToTimeline(content);
 			$scope.loadContent(content);
-			$scope.selected = content;
+			$scope.content.selected = content;
 			updateLatestDate(content.timeSetting);
 			
 			// update the visible image
-			$scope.images.current = $scope.images.current === 0 ? 1 : 0;
-			$scope.images.container[$scope.images.current] = content.img;
+			$scope.content.images.current = $scope.content.images.current === 0 ? 1 : 0;
+			$scope.content.images.container[$scope.content.images.current] = content.img;
 			
 			// update playing video, if necessary
-			$scope.video.id = content.youtubeId || null;
-			if ($scope.youtube != null && $scope.video.id == null && $scope.youtube.currentState == "playing") {
+			$scope.content.video.id = content.youtubeId || null;
+			if ($scope.youtube != null && $scope.content.video.id == null && $scope.youtube.currentState == "playing") {
 				$scope.youtube.stopVideo();
 			}
 			
 			if (newStoryIsAvailable()) {
-				addStoryToTimeline($scope.getStoryByFileName($scope.selected.next));
+				addStoryToTimeline($scope.getStoryByFileName($scope.content.selected.next));
 			}
 		}
 		
@@ -148,12 +151,12 @@
 				$http.get('html/' + story.fileName + '.html').then(function(response) {
 					stopLoading();
 					story.content = response.data;
-					$scope.content += story.content;
+					$scope.content.text += story.content;
 					$cookieStore.put("nextStory", story.next);
 				})
 			}
 			else if (story.scrollPositions.start == null) {
-				$scope.content += story.content;
+				$scope.content.text += story.content;
 			}
 		}
 		
@@ -173,7 +176,7 @@
 		}
 		
 		$scope.isSelected = function(title) {
-			return $scope.selected.title == title;
+			return $scope.content.selected.title == title;
 		}
 				
 		$scope.getRoundelLocation = function(dateStr) {
@@ -211,10 +214,10 @@
 		
 		// gather and sort visible roundels, then reposition them on timeline
 		function reposition() {
-			for (var i = 0; i < $scope.stories.length - 1; i++) {
-				var distance = $scope.stories[i + 1].roundel.x - $scope.stories[i].roundel.x;
+			for (var i = 0; i < $scope.content.stories.length - 1; i++) {
+				var distance = $scope.content.stories[i + 1].roundel.x - $scope.content.stories[i].roundel.x;
 				if (distance < 2) {
-					$scope.stories[i + 1].roundel.x += 2 - distance;
+					$scope.content.stories[i + 1].roundel.x += 2 - distance;
 				}
 			}
 		}
@@ -239,17 +242,17 @@
 		}
 		
 		function newStoryIsAvailable() {
-			return $scope.settings.latestStoryViewed == $scope.selected.fileName && $scope.selected.next != "" && "" == $scope.settings.cookieNextStory;
+			return $scope.settings.latestStoryViewed == $scope.content.selected.fileName && $scope.content.selected.next != "" && "" == $scope.settings.cookieNextStory;
 		}
 		
 		$scope.isImageActive = function() {
-			return $scope.images.container[$scope.images.current] != null;
+			return $scope.content.images.container[$scope.content.images.current] != null;
 		}
 		
 		// check if the currently selected story's date is past another
 		$scope.isPassed = function(dateStr) {
 			var date = new Date(dateStr);
-			return new Date($scope.selected.timeSetting) > date;
+			return new Date($scope.content.selected.timeSetting) > date;
 		}
 		
 		$scope.hasPassed = function(dateStr) {
@@ -269,23 +272,23 @@
 		
 		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function(refresh) {
-			if ($scope.selected.next != "") {
-				var story = $scope.selected.scrollNext == null ? $scope.getStoryByFileName($scope.selected.next) : $scope.selected.scrollNext;
+			if ($scope.content.selected.next != "") {
+				var story = $scope.content.selected.scrollNext == null ? $scope.getStoryByFileName($scope.content.selected.next) : $scope.content.selected.scrollNext;
 				if (story != null) {
-					story.scrollPrev = $scope.selected;
+					story.scrollPrev = $scope.content.selected;
 					updateCookie(story);
 					$scope.showContent(story, refresh);
 				}
 			}
 			else {
-				$scope.teaser = $scope.selected.teaser;
+				$scope.content.teaser = $scope.content.selected.teaser;
 			}
 		}
 		
 		// get the previous story, eg. scrolling back to the top of current story
 		$scope.getLast = function() {
-			$scope.showContent($scope.selected.scrollPrev);
-			$scope.teaser = "";
+			$scope.showContent($scope.content.selected.scrollPrev);
+			$scope.content.teaser = "";
 		}
 		
 		function updateMute(muted) {
@@ -297,18 +300,18 @@
 		$scope.toggleYoutube = function() {
 			if (!$scope.settings.muted) {
 				$scope.youtube.pauseVideo();
-				$scope.video.icon = icons.mute;
+				$scope.content.video.icon = icons.mute;
 				updateMute(true);
 			} else {
 				$scope.youtube.playVideo();
-				$scope.video.icon = icons.volume;
+				$scope.content.video.icon = icons.volume;
 				updateMute(false);
 			}
 		}
 		
 		// loop youtube video forever
 		$scope.$on('youtube.player.ended', function($event, player) {
-			if ($scope.selected.type == 'video') {
+			if ($scope.content.selected.type == 'video') {
 				$scope.getNext(true);
 			}
 			else {
