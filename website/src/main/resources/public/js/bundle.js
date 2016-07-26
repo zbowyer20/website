@@ -87330,7 +87330,7 @@ return jQuery;
 	
 	
 	/** @ngInject */
-	function ViewStoryController($http, $scope, $cookieStore) {
+	function ViewStoryController($http, $scope, $cookieStore, $timeout) {
 		var icons = {
 			volume: "volume_up",
 			mute: "volume_off"
@@ -87378,8 +87378,13 @@ return jQuery;
 		}
 		$scope.teaser = "";
 		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
-		$scope.loading = true;
-				
+		$scope.loading = {
+			on: false,
+			pending: false
+		};
+		
+		loading();
+
 		// pick up all available stories
 		$http.get('php/services/getStories.php').then(function(response) {
 			data = response.data;
@@ -87388,7 +87393,7 @@ return jQuery;
 			$scope.showContent($scope.getStoryByFileName($scope.settings.latestStoryViewed || "albert-1"));
 			updateCookie($scope.selected);
 			$scope.selected.visible = true;
-			$scope.loading = false;
+			stopLoading();
 		});
 		
 		$scope.init = function() {
@@ -87461,7 +87466,9 @@ return jQuery;
 		$scope.loadContent = function(story) {
 			// only load from backend if it hasn't already been loaded
 			if (typeof story.content == 'undefined') {
+				loading();
 				$http.get('html/' + story.fileName + '.html').then(function(response) {
+					stopLoading();
 					story.content = response.data;
 					$scope.content += story.content;
 					$cookieStore.put("nextStory", story.next);
@@ -87470,6 +87477,21 @@ return jQuery;
 			else if (story.scrollPositions.start == null) {
 				$scope.content += story.content;
 			}
+		}
+		
+		function loading() {
+			$scope.loading.pending = true;
+			$timeout(function() {
+				if ($scope.loading.pending) {
+					$scope.loading.pending = false;
+					$scope.loading.on = true;
+				}
+			}, 300)
+		}
+		
+		function stopLoading() {
+			$scope.loading.pending = false;
+			$scope.loading.on = false;
 		}
 		
 		$scope.isSelected = function(title) {
