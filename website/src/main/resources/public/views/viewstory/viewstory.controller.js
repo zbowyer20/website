@@ -38,7 +38,8 @@
 				interactedWithTimeline: false,
 				latestDate: $scope.TIME_PERIODS[0].start,
 				latestStoryViewed: $cookieStore.get("latestViewedStory"),
-				cookieNextStory: $cookieStore.get("nextStory")
+				cookieNextStory: $cookieStore.get("nextStory"),
+				muted: $cookieStore.get("muted") || false
 		}
 		$scope.selected = {}; // currently selected story
 		$scope.content = ""; // full text in story text box
@@ -47,10 +48,10 @@
 			container: [] // contains 2 images for crossfade
 		}
 		$scope.video = {
-			icon: icons.volume,
+			icon: $scope.settings.muted ? icons.mute : icons.volume,
 			player: {
 				controls: 0,
-				autoplay: 1
+				autoplay: $scope.settings.muted ? 0 : 1
 			}
 		}
 		$scope.teaser = "";
@@ -287,14 +288,21 @@
 			$scope.teaser = "";
 		}
 		
+		function updateMute(muted) {
+			$scope.settings.muted = muted;
+			$cookieStore.put("muted", muted);
+		}
+		
 		// toggle between mute and volume for currently playing youtube video
 		$scope.toggleYoutube = function() {
-			if ($scope.video.icon === icons.volume) {
+			if (!$scope.settings.muted) {
 				$scope.youtube.pauseVideo();
 				$scope.video.icon = icons.mute;
+				updateMute(true);
 			} else {
 				$scope.youtube.playVideo();
 				$scope.video.icon = icons.volume;
+				updateMute(false);
 			}
 		}
 		
