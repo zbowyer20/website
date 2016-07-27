@@ -11,9 +11,9 @@
 		<div class="timeline-bar">
 			<div class="timeline-bar__tracker" ng-style="{width: content.selected.roundel.x + '%'}" />
 			<ul>
-				<a class="roundel" ng-repeat="story in content.stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="showContent(story, true)"></a>
+				<a class="roundel" ng-repeat="story in content.stories" ng-show="roundelIsVisible(story)" tooltip-placement="bottom" uib-tooltip="{{getTooltipText(story)}}" ng-class="{'roundel--selected': isSelected(story.title), 'roundel--passed': isPassed(story.timeSetting), 'roundel--new': storyIsNew(story)}" ng-style="{left: story.roundel.x + '%'}" ng-click="goToContent(story)"></a>
 			</ul>
-			<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="hasPassed(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
+			<span class="timeline__segment smooth-moves" ng-repeat="period in TIME_PERIODS" ng-show="dateIsLessThanLatestDate(period.end) && period.visible" ng-style="{left: period.timeline + '%'}"></span>
 		</div>
 	</div>
 	
