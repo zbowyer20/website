@@ -87357,13 +87357,17 @@ return jQuery;
 		    }
 		];
 		$scope.settings = {
+				loading: {
+					on: false,
+					pending: false
+				},
 				interactedWithTimeline: false,
 				latestDate: $scope.TIME_PERIODS[0].start,
+				viewedStories: $cookieStore.get("viewedStories") || [],
 				latestStoryViewed: $cookieStore.get("latestViewedStory"),
 				cookieNextStory: $cookieStore.get("nextStory"),
 				muted: $cookieStore.get("muted") || false
 		}
-		$scope.selected = {}; // currently selected story
 		$scope.content = {
 			stories: [],
 			selected: {},
@@ -87380,11 +87384,6 @@ return jQuery;
 					autoplay: $scope.settings.muted ? 0 : 1
 				}
 			}
-		}; // full text in story text box
-		$scope.viewedStories = $cookieStore.get("viewedStories") || [];
-		$scope.loading = {
-			on: false,
-			pending: false
 		};
 		
 		loading();
@@ -87440,6 +87439,8 @@ return jQuery;
 		$scope.showContent = function(content, refresh) {
 			// if content is to be cleared
 			if (refresh) {
+				console.log("Showing refreshed story: ");
+				console.log(content);
 				$scope.refresh();
 				// TODO update angularly
 				$(".article__content").scrollTop(0);
@@ -87484,18 +87485,18 @@ return jQuery;
 		}
 		
 		function loading() {
-			$scope.loading.pending = true;
+			$scope.settings.loading.pending = true;
 			$timeout(function() {
-				if ($scope.loading.pending) {
-					$scope.loading.pending = false;
-					$scope.loading.on = true;
+				if ($scope.settings.loading.pending) {
+					$scope.settings.loading.pending = false;
+					$scope.settings.loading.on = true;
 				}
 			}, 300)
 		}
 		
 		function stopLoading() {
-			$scope.loading.pending = false;
-			$scope.loading.on = false;
+			$scope.settings.loading.pending = false;
+			$scope.settings.loading.on = false;
 		}
 		
 		$scope.isSelected = function(title) {
@@ -87527,7 +87528,7 @@ return jQuery;
 		}
 		
 		$scope.roundelIsVisible = function(story) {
-			return story.fileName == $scope.selected.fileName || storyIsInCookie(story) || 
+			return story.fileName == $scope.content.selected.fileName || storyIsInCookie(story) || 
 					newStoryIsAvailable();
 		}
 		
@@ -87553,15 +87554,15 @@ return jQuery;
 		}
 		
 		function storyIsInCookie(story) {
-			return $scope.viewedStories.indexOf(story.fileName) > -1;
+			return $scope.settings.viewedStories.indexOf(story.fileName) > -1;
 		}
 		
 		function updateCookie(story) {
 			if (!storyIsInCookie(story)) {
 				$cookieStore.put("latestViewedStory", story.fileName);
-				$scope.viewedStories.push(story.fileName);
+				$scope.settings.viewedStories.push(story.fileName);
 			}
-			$cookieStore.put("viewedStories", $scope.viewedStories);
+			$cookieStore.put("viewedStories", $scope.settings.viewedStories);
 		}
 		
 		function newStoryIsAvailable() {
