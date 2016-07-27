@@ -8,10 +8,12 @@
 	
 	/** @ngInject */
 	function ViewStoryController($http, $scope, $cookieStore, $timeout) {
-		var icons = {
+		$scope.icons = {
 			volume: "volume_up",
-			mute: "volume_off"
-		}
+			mute: "volume_off",
+			back: "arrow_back",
+			forward: "arrow_forward"
+		};
 		var data = {};
 		$scope.TIME_PERIODS = [
 		    {
@@ -55,7 +57,7 @@
 				container: []
 			},
 			video: {
-				icon: $scope.settings.muted ? icons.mute : icons.volume,
+				icon: $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
 				player: {
 					controls: 0,
 					autoplay: $scope.settings.muted ? 0 : 1
@@ -308,8 +310,9 @@
 		}
 		
 		// get the previous story, eg. scrolling back to the top of current story
-		$scope.getLast = function() {
-			updateContent($scope.content.selected.scrollPrev);
+		$scope.getLast = function(refresh) {
+			var previousStory = getStoryByFileName($scope.content.selected.prev);
+			refresh ? $scope.goToContent(previousStory) : updateContent(previousStory);
 			$scope.content.teaser = "";
 		}
 		
@@ -317,11 +320,11 @@
 		$scope.toggleYoutube = function() {
 			if (!$scope.settings.muted) {
 				$scope.youtube.pauseVideo();
-				$scope.content.video.icon = icons.mute;
+				$scope.content.video.icon = $scope.icons.mute;
 				updateMute(true);
 			} else {
 				$scope.youtube.playVideo();
-				$scope.content.video.icon = icons.volume;
+				$scope.content.video.icon = $scope.icons.volume;
 				updateMute(false);
 			}
 		}

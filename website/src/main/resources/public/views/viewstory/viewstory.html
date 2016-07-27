@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Coming+Soon|Cormorant|Dosis|Farsan|Gloria+Hallelujah|Inconsolata|Lemonada|Pattaya|Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Coming+Soon|Cormorant|Dosis|Farsan|Gloria+Hallelujah|Inconsolata|Lemonada|Pattaya|Raleway|Shadows+Into+Light" rel="stylesheet">
 
 
 <div class="visible-md-block visible-lg-block">
@@ -24,7 +24,11 @@
 		</div>
 		<article class="article__story">
 			<div class="header">
+				<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)"><md-icon>{{icons.back}}</md-icon></md-button>
 				<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
+				<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)"><md-icon>{{icons.forward}}</md-icon></md-button>
+			</div>
+			<div class="header header--right">
 				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()"><md-icon>{{content.video.icon}}</md-icon></md-button>
 			</div>
 			<div class="article__content" ng-bind-html="content.text" scrolly="getNext()" last="getLast()"></div>

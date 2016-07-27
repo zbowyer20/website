@@ -112,7 +112,11 @@ $priority--top: 100;
 }
 
 .header {
-	text-align: center;
+	display: inline-block;
+}
+
+.header--right {
+	float: right;
 }
 
 .header--timeline {
@@ -289,6 +293,20 @@ $priority--top: 100;
 	&:first-child {
 		text-indent: 0;
 	}
+}
+
+.story__paragraph--notice {
+	text-indent: 0;
+	font-family: 'Cormorant', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	margin: 15px;
+}
+
+.story__paragraph--letter-albert {
+	font-size: 18px;
+	margin: 10px;
+	font-family: 'Shadows Into Light', cursive;
 }
 
 .input--wide {
