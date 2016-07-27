@@ -235,8 +235,8 @@ $priority--top: 100;
 .image__story {
 	height: 760px;
 	margin: auto;
-	position: absolute;
-	bottom: -150px;
+	position: fixed;
+	bottom: -100px;
 	z-index: 0;
 }
 
