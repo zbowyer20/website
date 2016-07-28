@@ -248,6 +248,14 @@ $width-desktop: 1025px;
 		width: auto;
 		display: block;
 		margin: 0 auto;
+		position: relative;
+		height: 650px;
+	}
+}
+
+.container__image--inactive {
+	@include only-mobile-and-tablet {
+		height: 0px;
 	}
 }
 
@@ -271,7 +279,7 @@ $width-desktop: 1025px;
 	z-index: 0;
 	
 	@include only-mobile-and-tablet {
-		position: static;
+		position: absolute;
 		bottom: 0;
 		height: auto;
 		max-width: 100%;
