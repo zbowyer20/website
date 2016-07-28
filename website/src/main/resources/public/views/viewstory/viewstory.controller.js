@@ -313,13 +313,31 @@
 			if ($scope.content.selected.next != "") {
 				var story = $scope.content.selected.scrollNext == null ? getStoryByFileName($scope.content.selected.next) : $scope.content.selected.scrollNext;
 				if (story != null) {
+					var storyInCookie = storyIsInCookie(story);
 					story.scrollPrev = $scope.content.selected;
-					updateCookie(story);
-					refresh ? $scope.goToContent(story) : updateContent(story);
+					if (refresh) {
+						$scope.goToContent(story);
+					}
+					else {
+						updateContent(story);
+					}
+					if (!storyIsInCookie) {
+						updateCookie(story);
+						if (refresh) {
+							document.body.scrollTop = document.documentElement.scrollTop = 0;
+						}
+					}
+
 				}
 			}
 			else {
 				$scope.content.teaser = $scope.content.selected.teaser;
+			}
+		}
+		
+		$scope.scrollNext = function() {
+			if (window.innerWidth >= 1025) {
+				$scope.getNext(false);
 			}
 		}
 		

@@ -32,7 +32,7 @@
 			<div class="header header--right">
 				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()"><md-icon>{{content.video.icon}}</md-icon></md-button>
 			</div>
-			<div class="article__content" ng-bind-html="content.text" scrolly="getNext()" last="getLast()" preload="preloadImage(content.selected.next)"></div>
+			<div class="article__content" ng-bind-html="content.text" scrolly="scrollNext()" last="getLast()" preload="preloadImage(content.selected.next)"></div>
 		</article>
 	</div>
 	
