@@ -1,8 +1,8 @@
 <link href="https://fonts.googleapis.com/css?family=Coming+Soon|Cormorant|Dosis|Farsan|Gloria+Hallelujah|Inconsolata|Lemonada|Pattaya|Raleway|Shadows+Into+Light" rel="stylesheet">
 
 
-<div class="visible-md-block visible-lg-block">
-	<div class="timeline">
+<div>
+	<div class="timeline visible-md-block visible-lg-block">
 		<div class="header header--timeline">
 			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="!settings.interactedWithTimeline && !content.teaser">This is the timeline. Click a roundel to view its content.</span>
 			<span class="header__text header__text--small header__text--timeline animate__fade" ng-show="settings.interactedWithTimeline && !content.teaser">Timeline</span>
@@ -36,13 +36,20 @@
 		</article>
 	</div>
 	
-	<div class="video animate__fade" ng-show="content.selected.type == 'video'"><youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video></div>
+	<div class="video animate__fade" ng-show="content.selected.type == 'video'">
+		<div class="header--video">
+			<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)"><md-icon>{{icons.back}}</md-icon></md-button>
+			<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
+			<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)"><md-icon>{{icons.forward}}</md-icon></md-button>
+		</div>
+		<youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video>
+	</div>
 </div>
 
-<div class="visible-xs-block visible-sm-block">
+<!-- <div class="visible-xs-block visible-sm-block">
 	<img class="image__unavailable" src="images/kate-sad.png" />
 	<h1 class="header__text">Sorry, this page is currently unavailable on your device.</h1>
-</div>
+</div> -->
 
 <div class="container--full-screen animate__fade smooth-moves" ng-show="settings.loading.on">
 	<img src="images/components/ajax-loader.gif">

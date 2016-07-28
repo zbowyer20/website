@@ -8,6 +8,14 @@ $colour--todo: #80A0BE;
 $content--background-colour: white;
 $priority--top: 100;
 
+$width-desktop: 1025px;
+
+@mixin only-mobile-and-tablet {
+  @media screen and (max-width: $width-desktop - 1px) {
+    @content;
+  }
+}
+
 @mixin transition($transition) {
 	-webkit-transition: $transition;
 	-moz-transition: $transition;
@@ -25,6 +33,11 @@ $priority--top: 100;
 .body {
 	background-color: $base--background-colour;
 	overflow: hidden;
+	height: auto;
+	
+	@include only-mobile-and-tablet {
+		overflow: auto;
+	}
 }
 
 .align-left {
@@ -113,6 +126,10 @@ $priority--top: 100;
 
 .header {
 	display: inline-block;
+}
+
+.header--video {
+	display: block;
 }
 
 .header--right {
@@ -226,10 +243,20 @@ $priority--top: 100;
 	display: inline-block;
 	vertical-align: top;
 	width: 15.5%;
+	
+	@include only-mobile-and-tablet {
+		width: auto;
+		display: block;
+		margin: 0 auto;
+	}
 }
 
 .container__image--active {
 	width: 30%;
+	
+	@include only-mobile-and-tablet {
+		width: auto;
+	}
 }
 
 .smooth-moves {
@@ -242,6 +269,13 @@ $priority--top: 100;
 	position: fixed;
 	bottom: -100px;
 	z-index: 0;
+	
+	@include only-mobile-and-tablet {
+		position: static;
+		bottom: 0;
+		height: auto;
+		max-width: 100%;
+	}
 }
 
 .image__unavailable {
@@ -274,6 +308,12 @@ $priority--top: 100;
 	display: inline-block;
 	width: 69%;
 	margin-top: 50px;
+	
+	@include only-mobile-and-tablet {
+		display: block;
+		width: auto;
+		margin: 0;
+	}
 }
 
 .story:after {
