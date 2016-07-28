@@ -21,6 +21,7 @@
 		<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive()}">
 			<img class="image__story" ng-show="content.images.current === 0 && content.images.container[0]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[0]}}"></img>
 			<img class="image__story" ng-show="content.images.current === 1 && content.images.container[1]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[1]}}"></img> 
+			<img class="image__story" ng-show="content.images.current === 2 && content.images.container[2]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[2]}}"></img> 
 		</div>
 		<article class="article__story">
 			<div class="header">
@@ -31,7 +32,7 @@
 			<div class="header header--right">
 				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()"><md-icon>{{content.video.icon}}</md-icon></md-button>
 			</div>
-			<div class="article__content" ng-bind-html="content.text" scrolly="getNext()" last="getLast()"></div>
+			<div class="article__content" ng-bind-html="content.text" scrolly="getNext()" last="getLast()" preload="preloadImage(content.selected.next)"></div>
 		</article>
 	</div>
 	

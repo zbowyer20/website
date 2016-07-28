@@ -17,17 +17,22 @@
 							end: scope.content.selected.scrollPositions.end == null ? raw.scrollHeight : scope.content.selected.scrollPositions.end
 						}
 						var currentPosition = raw.scrollTop + raw.offsetHeight;
-						if (currentPosition < scope.content.selected.scrollPositions.start && scope.content.selected.type != 'video') {
-							scope.$apply(attrs.last);
-						}
-						else if (currentPosition >= scope.content.selected.scrollPositions.end && scope.content.selected.type != 'video') {
-							var nextStartPosition = scope.content.selected.scrollPositions.end;
-							scope.$apply(attrs.scrolly);
-							if (scope.content.selected.scrollPositions.start == null) {
-								scope.content.selected.scrollPositions = {
-									start: nextStartPosition,
-									end: raw.scrollEnd
+						if (scope.content.selected.type != 'video') {
+							if (currentPosition < scope.content.selected.scrollPositions.start) {
+								scope.$apply(attrs.last);
+							}
+							else if (currentPosition >= scope.content.selected.scrollPositions.end) {
+								var nextStartPosition = scope.content.selected.scrollPositions.end;
+								scope.$apply(attrs.scrolly);
+								if (scope.content.selected.scrollPositions.start == null) {
+									scope.content.selected.scrollPositions = {
+											start: nextStartPosition,
+											end: raw.scrollEnd
+									}
 								}
+							}
+							else if ((currentPosition - scope.content.selected.scrollPositions.start) >= ((scope.content.selected.scrollPositions.end - scope.content.selected.scrollPositions.start) / 2)) {
+								scope.$apply(attrs.preload);
 							}
 						}
 					});

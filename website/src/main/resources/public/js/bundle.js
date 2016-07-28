@@ -87337,6 +87337,7 @@ return jQuery;
 			back: "arrow_back",
 			forward: "arrow_forward"
 		};
+		var IMAGES = 3;
 		var data = {};
 		$scope.TIME_PERIODS = [
 		    {
@@ -87441,12 +87442,12 @@ return jQuery;
 		/*
 		 * Display new content
 		 */
-		function updateContent(story) {
+		function updateContent(story, preloading) {
 			addStoryToTimeline(story);
-			$scope.content.selected = story;
+			$scope.content.selected = preloading ? $scope.content.selected : story;
 			displayContent(story);
 			
-			if (newStoryIsAvailable()) {
+			if (!preloading && newStoryIsAvailable()) {
 				addStoryToTimeline(getStoryByFileName(story.next));
 			}
 		}
@@ -87468,8 +87469,9 @@ return jQuery;
 			else if (story.scrollPositions.start == null) {
 				$scope.content.text += story.content;
 			}
+			
 			updateLatestDate(story.timeSetting);
-			updateImage(story.img);
+			updateImage(story.img, false);
 			updateVideo(story.youtubeId);
 		}
 
@@ -87480,9 +87482,12 @@ return jQuery;
 			}
 		}
 		
-		function updateImage(image) {
-			$scope.content.images.current = $scope.content.images.current ? 0 : 1;
-			$scope.content.images.container[$scope.content.images.current] = image;
+		function updateImage(image, preloading) {
+			var imageSlot = ($scope.content.images.current + 1) % IMAGES;
+			$scope.content.images.container[imageSlot] = image;
+			if (!preloading) {
+				$scope.content.images.current = imageSlot;
+			}
 		}
 		
 		function updateVideo(id) {
@@ -87617,6 +87622,15 @@ return jQuery;
 			return story.hiddenDate ? story.title : story.timeSetting + ": " + story.title;
 		}
 		
+		$scope.preloadImage = function(fileName) {
+			if (fileName != "") {
+				console.log(fileName);
+				var story = getStoryByFileName(fileName);
+				console.log(story);
+				updateImage(story.img, true);
+			}
+		}
+		
 		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function(refresh) {
 			if ($scope.content.selected.next != "") {
@@ -87698,17 +87712,22 @@ return jQuery;
 							end: scope.content.selected.scrollPositions.end == null ? raw.scrollHeight : scope.content.selected.scrollPositions.end
 						}
 						var currentPosition = raw.scrollTop + raw.offsetHeight;
-						if (currentPosition < scope.content.selected.scrollPositions.start && scope.content.selected.type != 'video') {
-							scope.$apply(attrs.last);
-						}
-						else if (currentPosition >= scope.content.selected.scrollPositions.end && scope.content.selected.type != 'video') {
-							var nextStartPosition = scope.content.selected.scrollPositions.end;
-							scope.$apply(attrs.scrolly);
-							if (scope.content.selected.scrollPositions.start == null) {
-								scope.content.selected.scrollPositions = {
-									start: nextStartPosition,
-									end: raw.scrollEnd
+						if (scope.content.selected.type != 'video') {
+							if (currentPosition < scope.content.selected.scrollPositions.start) {
+								scope.$apply(attrs.last);
+							}
+							else if (currentPosition >= scope.content.selected.scrollPositions.end) {
+								var nextStartPosition = scope.content.selected.scrollPositions.end;
+								scope.$apply(attrs.scrolly);
+								if (scope.content.selected.scrollPositions.start == null) {
+									scope.content.selected.scrollPositions = {
+											start: nextStartPosition,
+											end: raw.scrollEnd
+									}
 								}
+							}
+							else if ((currentPosition - scope.content.selected.scrollPositions.start) >= ((scope.content.selected.scrollPositions.end - scope.content.selected.scrollPositions.start) / 2)) {
+								scope.$apply(attrs.preload);
 							}
 						}
 					});

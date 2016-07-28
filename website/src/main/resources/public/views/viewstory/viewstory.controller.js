@@ -14,6 +14,7 @@
 			back: "arrow_back",
 			forward: "arrow_forward"
 		};
+		var IMAGES = 3;
 		var data = {};
 		$scope.TIME_PERIODS = [
 		    {
@@ -118,12 +119,12 @@
 		/*
 		 * Display new content
 		 */
-		function updateContent(story) {
+		function updateContent(story, preloading) {
 			addStoryToTimeline(story);
-			$scope.content.selected = story;
+			$scope.content.selected = preloading ? $scope.content.selected : story;
 			displayContent(story);
 			
-			if (newStoryIsAvailable()) {
+			if (!preloading && newStoryIsAvailable()) {
 				addStoryToTimeline(getStoryByFileName(story.next));
 			}
 		}
@@ -145,8 +146,9 @@
 			else if (story.scrollPositions.start == null) {
 				$scope.content.text += story.content;
 			}
+			
 			updateLatestDate(story.timeSetting);
-			updateImage(story.img);
+			updateImage(story.img, false);
 			updateVideo(story.youtubeId);
 		}
 
@@ -157,9 +159,12 @@
 			}
 		}
 		
-		function updateImage(image) {
-			$scope.content.images.current = $scope.content.images.current ? 0 : 1;
-			$scope.content.images.container[$scope.content.images.current] = image;
+		function updateImage(image, preloading) {
+			var imageSlot = ($scope.content.images.current + 1) % IMAGES;
+			$scope.content.images.container[imageSlot] = image;
+			if (!preloading) {
+				$scope.content.images.current = imageSlot;
+			}
 		}
 		
 		function updateVideo(id) {
@@ -292,6 +297,15 @@
 		
 		$scope.getTooltipText = function(story) {
 			return story.hiddenDate ? story.title : story.timeSetting + ": " + story.title;
+		}
+		
+		$scope.preloadImage = function(fileName) {
+			if (fileName != "") {
+				console.log(fileName);
+				var story = getStoryByFileName(fileName);
+				console.log(story);
+				updateImage(story.img, true);
+			}
 		}
 		
 		// show the next story, eg. after scrolling to end of current story
