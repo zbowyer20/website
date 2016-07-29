@@ -58,10 +58,10 @@
 				container: []
 			},
 			video: {
-				icon: $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
+				icon: !usingDesktop() || $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
 				player: {
 					controls: 0,
-					autoplay: $scope.settings.muted ? 0 : 1
+					autoplay: !usingDesktop() || $scope.settings.muted ? 0 : 1
 				}
 			}
 		};
@@ -169,6 +169,9 @@
 		
 		function updateVideo(id) {
 			$scope.content.video.id = id || null;
+			if (!usingDesktop() && $scope.content.video.id != null) {
+				pauseVideo();
+			}
 			cleanVideo(0);
 			cleanVideo(500);
 		}
@@ -254,6 +257,24 @@
 			$cookieStore.put("muted", muted);
 		}
 		
+		function pauseVideo() {
+			if (typeof $scope.youtube != 'undefined') {
+				$scope.youtube.pauseVideo();
+				$scope.content.video.icon = $scope.icons.mute;
+				updateMute(true);
+			}
+		}
+		
+		function playVideo() {
+			$scope.youtube.playVideo();
+			$scope.content.video.icon = $scope.icons.volume;
+			updateMute(false);
+		}
+		
+		function usingDesktop() {
+			return window.innerWidth >= 1025;
+		}
+		
 		/*
 		 * Refresh the story and jump to a piece of content
 		 */
@@ -336,7 +357,7 @@
 		}
 		
 		$scope.scrollNext = function() {
-			if (window.innerWidth >= 1025) {
+			if (usingDesktop()) {
 				$scope.getNext(false);
 			}
 		}
@@ -351,13 +372,9 @@
 		// toggle between mute and volume for currently playing youtube video
 		$scope.toggleYoutube = function() {
 			if (!$scope.settings.muted) {
-				$scope.youtube.pauseVideo();
-				$scope.content.video.icon = $scope.icons.mute;
-				updateMute(true);
+				pauseVideo();
 			} else {
-				$scope.youtube.playVideo();
-				$scope.content.video.icon = $scope.icons.volume;
-				updateMute(false);
+				playVideo();
 			}
 		}
 		
