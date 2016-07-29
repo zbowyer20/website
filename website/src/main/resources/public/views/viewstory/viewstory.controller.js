@@ -322,9 +322,7 @@
 		
 		$scope.preloadImage = function(fileName) {
 			if (fileName != "") {
-				console.log(fileName);
 				var story = getStoryByFileName(fileName);
-				console.log(story);
 				updateImage(story.img, true);
 			}
 		}
@@ -342,7 +340,7 @@
 					else {
 						updateContent(story);
 					}
-					if (!storyIsInCookie) {
+					if (!storyIsInCookie(story)) {
 						updateCookie(story);
 						if (refresh) {
 							document.body.scrollTop = document.documentElement.scrollTop = 0;
