@@ -174,6 +174,9 @@
 			}
 			cleanVideo(0);
 			cleanVideo(500);
+			if ($scope.content.selected.type == 'video') {
+				$scope.content.text = "";
+			}
 		}
 		
 		function cleanVideo(timeout) {
@@ -279,8 +282,6 @@
 		 * Refresh the story and jump to a piece of content
 		 */
 		$scope.goToContent = function(story) {
-			console.log("Showing refreshed story: ");
-			console.log(story);
 			refresh();
 			$(".article__content").scrollTop(0);
 			$scope.settings.interactedWithTimeline = true;

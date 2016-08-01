@@ -87497,6 +87497,9 @@ return jQuery;
 			}
 			cleanVideo(0);
 			cleanVideo(500);
+			if ($scope.content.selected.type == 'video') {
+				$scope.content.text = "";
+			}
 		}
 		
 		function cleanVideo(timeout) {
@@ -87602,8 +87605,6 @@ return jQuery;
 		 * Refresh the story and jump to a piece of content
 		 */
 		$scope.goToContent = function(story) {
-			console.log("Showing refreshed story: ");
-			console.log(story);
 			refresh();
 			$(".article__content").scrollTop(0);
 			$scope.settings.interactedWithTimeline = true;
@@ -87744,7 +87745,7 @@ return jQuery;
 							start: scope.content.selected.scrollPositions.start == null ? 0 : scope.content.selected.scrollPositions.start,
 							end: scope.content.selected.scrollPositions.end == null ? raw.scrollHeight : scope.content.selected.scrollPositions.end
 						}
-						var currentPosition = raw.scrollTop + raw.offsetHeight;
+						var currentPosition = scope.content.text == "" ? 0 : raw.scrollTop + raw.offsetHeight;
 						if (scope.content.selected.type != 'video') {
 							if (currentPosition < scope.content.selected.scrollPositions.start) {
 								scope.$apply(attrs.last);
