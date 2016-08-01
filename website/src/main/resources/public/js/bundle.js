@@ -87369,7 +87369,8 @@ return jQuery;
 				viewedStories: $cookieStore.get("viewedStories") || [],
 				latestStoryViewed: $cookieStore.get("latestViewedStory"),
 				cookieNextStory: $cookieStore.get("nextStory"),
-				muted: $cookieStore.get("muted") || false
+				muted: $cookieStore.get("muted") || false,
+				infiniteScroll: false
 		}
 		$scope.content = {
 			stories: [],
@@ -87683,7 +87684,7 @@ return jQuery;
 		}
 		
 		$scope.scrollNext = function() {
-			if (usingDesktop()) {
+			if ($scope.settings.infiniteScroll && usingDesktop()) {
 				$scope.getNext(false);
 			}
 		}
