@@ -87471,7 +87471,9 @@ return jQuery;
 			}
 			
 			updateLatestDate(story.timeSetting);
-			updateImage(story.img, false);
+			if (story.type != 'video') {
+				updateImage(story.img, false);
+			}
 			updateVideo(story.youtubeId);
 		}
 
@@ -87605,7 +87607,9 @@ return jQuery;
 		 * Refresh the story and jump to a piece of content
 		 */
 		$scope.goToContent = function(story) {
-			refresh();
+			if (story.type != "video") {
+				refresh();
+			}
 			$(".article__content").scrollTop(0);
 			$scope.settings.interactedWithTimeline = true;
 			updateCookie(story);
