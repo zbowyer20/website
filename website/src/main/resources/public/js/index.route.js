@@ -19,6 +19,10 @@
 			templateUrl: 'views/viewstory/viewStory.html',
 			controller: 'ViewStoryController',
 			controllerAs: 'controller'
+		}).when('/credits', {
+			templateUrl: 'views/credits/credits.html',
+			controller: 'CreditsController',
+			controllerAs: 'controller'
 		}).otherwise('/');
 			
 		$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';

@@ -1,0 +1,11 @@
+<div id="container">
+	<div class="article__content">
+		<div ng-repeat="(key, value) in credits | groupBy: 'source'">
+			<h3 class="credit__header">{{key}}</h3>
+			<div ng-repeat="credit in value">
+				<span class="credit__name">{{credit.name}}</span>
+				<span class="credit__credit">{{credit.credit}}</span>
+			</div>
+		</div>
+	</div>
+</div>
