@@ -145,6 +145,11 @@
   border-radius: 5px;
   padding: 15px 5px; }
 
+.article__credits {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center; }
+
 ::-webkit-scrollbar {
   width: 10px; }
 
@@ -383,5 +388,11 @@
 .video {
   text-align: center;
   margin-top: 30px; }
+
+.credit__name {
+  font-weight: bold; }
+
+.credit__credit {
+  font-style: italic; }
 
 /*# sourceMappingURL=style.css.map */
