@@ -87276,13 +87276,14 @@ return jQuery;
 	};
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
-			scroll: require('./../views/viewstory/viewstory.scroll.js')
+			scroll: require('./../views/viewstory/viewstory.scroll.js'),
+			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
 })()
-},{"./../views/credits/credits.controller.js":26,"./../views/home/home.controller.js":27,"./../views/viewstory/viewstory.controller.js":28,"./../views/viewstory/viewstory.scroll.js":29,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/credits/credits.controller.js":26,"./../views/home/home.controller.js":27,"./../views/viewstory/components/viewstory.directives.storyheader.js":28,"./../views/viewstory/viewstory.controller.js":29,"./../views/viewstory/viewstory.scroll.js":30,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87357,6 +87358,13 @@ return jQuery;
 })();
 
 },{}],28:[function(require,module,exports){
+angular.module('bowyerville')
+	.directive("storyHeader", function() {
+		return {
+			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
+		};
+	});
+},{}],29:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87774,7 +87782,7 @@ return jQuery;
 	}
 })();
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 (function() {
 	'use strict';
 	

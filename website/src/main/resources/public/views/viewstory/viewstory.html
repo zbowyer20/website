@@ -20,11 +20,7 @@
 			<img ng-repeat="n in [0, 1, 2]" class="image__story" ng-show="content.images.current === n && content.images.container[n]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[n]}}"></img>
 		</div>
 		<article class="article__story">
-			<div class="header">
-				<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.back}}</md-icon></md-button>
-				<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
-				<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.forward}}</md-icon></md-button>
-			</div>
+			<div story-header class="header"></div>
 			<div class="header header--right">
 				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{content.video.icon}}</md-icon></md-button>
 			</div>
@@ -33,11 +29,7 @@
 	</div>
 	
 	<div class="video animate__fade" ng-show="content.selected.type == 'video'">
-		<div class="header--video">
-			<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.back}}</md-icon></md-button>
-			<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
-			<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.forward}}</md-icon></md-button>
-		</div>
+		<div story-header class="header--video"></div>
 		<youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video>
 	</div>
 </div>

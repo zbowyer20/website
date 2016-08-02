@@ -20,7 +20,8 @@
 	};
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
-			scroll: require('./../views/viewstory/viewstory.scroll.js')
+			scroll: require('./../views/viewstory/viewstory.scroll.js'),
+			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
