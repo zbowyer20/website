@@ -25,12 +25,12 @@
 		</div>
 		<article class="article__story">
 			<div class="header">
-				<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)"><md-icon>{{icons.back}}</md-icon></md-button>
+				<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.back}}</md-icon></md-button>
 				<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
-				<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)"><md-icon>{{icons.forward}}</md-icon></md-button>
+				<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.forward}}</md-icon></md-button>
 			</div>
 			<div class="header header--right">
-				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()"><md-icon>{{content.video.icon}}</md-icon></md-button>
+				<md-button class="md-icon-button" ng-show="content.video.id" ng-click="toggleYoutube()" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{content.video.icon}}</md-icon></md-button>
 			</div>
 			<div class="article__content" ng-bind-html="content.text" scrolly="scrollNext()" last="getLast()" preload="preloadImage(content.selected.next)"></div>
 		</article>
@@ -38,9 +38,9 @@
 	
 	<div class="video animate__fade" ng-show="content.selected.type == 'video'">
 		<div class="header--video">
-			<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)"><md-icon>{{icons.back}}</md-icon></md-button>
+			<md-button ng-if="content.selected.prev" class="md-icon-button" ng-click="getLast(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.back}}</md-icon></md-button>
 			<h2 class="header__text header__text--title header__text--medium header__text--{{content.selected.character.replace(' ', '-')}}" ng-bind="content.selected.title"></h2>
-			<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)"><md-icon>{{icons.forward}}</md-icon></md-button>
+			<md-button ng-if="content.selected.next" class="md-icon-button" ng-click="getNext(true)" ng-class="{'button--large': !usingDesktop()}"><md-icon ng-class="{'icon--large': !usingDesktop()}">{{icons.forward}}</md-icon></md-button>
 		</div>
 		<youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video>
 	</div>

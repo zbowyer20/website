@@ -8,6 +8,10 @@
 	
 	/** @ngInject */
 	function ViewStoryController($http, $scope, $cookieStore, $timeout) {
+		$scope.usingDesktop = function() {
+			return window.innerWidth >= 1025;
+		}
+			
 		$scope.icons = {
 			volume: "volume_up",
 			mute: "volume_off",
@@ -59,10 +63,10 @@
 				container: []
 			},
 			video: {
-				icon: !usingDesktop() || $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
+				icon: !$scope.usingDesktop() || $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
 				player: {
 					controls: 0,
-					autoplay: !usingDesktop() || $scope.settings.muted ? 0 : 1
+					autoplay: !$scope.usingDesktop() || $scope.settings.muted ? 0 : 1
 				}
 			}
 		};
@@ -116,7 +120,7 @@
 				if (data[i].fileName == fileName) return data[i];
 			}
 		}
-		
+
 		/*
 		 * Display new content
 		 */
@@ -172,7 +176,7 @@
 		
 		function updateVideo(id) {
 			$scope.content.video.id = id || null;
-			if (!usingDesktop() && $scope.content.video.id != null) {
+			if (!$scope.usingDesktop() && $scope.content.video.id != null) {
 				pauseVideo();
 			}
 			cleanVideo(0);
@@ -276,11 +280,7 @@
 			$scope.content.video.icon = $scope.icons.volume;
 			updateMute(false);
 		}
-		
-		function usingDesktop() {
-			return window.innerWidth >= 1025;
-		}
-		
+			
 		/*
 		 * Refresh the story and jump to a piece of content
 		 */
@@ -361,7 +361,7 @@
 		}
 		
 		$scope.scrollNext = function() {
-			if ($scope.settings.infiniteScroll && usingDesktop()) {
+			if ($scope.settings.infiniteScroll && $scope.usingDesktop()) {
 				$scope.getNext(false);
 			}
 		}

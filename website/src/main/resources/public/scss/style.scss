@@ -16,6 +16,12 @@ $width-desktop: 1025px;
   }
 }
 
+@mixin desktop {
+	@media screen and (min-width: $width-desktop) {
+		@content;
+	}
+}
+
 @mixin transition($transition) {
 	-webkit-transition: $transition;
 	-moz-transition: $transition;
@@ -157,7 +163,10 @@ $width-desktop: 1025px;
 }
 
 .header__text--medium {
-	font-size: 26px;
+	font-size: 80px;
+	@include desktop {
+		font-size: 26px;
+	}
 }
 
 .header__text--Albert {
@@ -201,6 +210,18 @@ $width-desktop: 1025px;
 	left: 0;
 	right: 0;
 	margin: auto 0;
+	font-family: 'Dosis', sans-serif;
+}
+
+.md-button.md-icon-button.button--large {
+	height: 80px;
+	width: 80px;
+}
+
+.material-icons.icon--large {
+	font-size: 60px;
+	height: auto;
+	width: auto;
 }
 
 .article {
@@ -212,11 +233,15 @@ $width-desktop: 1025px;
 }
 
 .article__content {
-	max-height: 500px;
+	max-height: 800px;
 	overflow: auto;
 	background-color: $content--background-colour;
 	border-radius: 5px;
 	padding: 15px 5px;
+	
+	@include desktop {
+		max-height: 500px;
+	}
 }
 
 .article__credits {
@@ -259,7 +284,7 @@ $width-desktop: 1025px;
 		display: block;
 		margin: 0 auto;
 		position: relative;
-		height: 650px;
+		height: 900px;
 	}
 }
 
@@ -291,6 +316,8 @@ $width-desktop: 1025px;
 	@include only-mobile-and-tablet {
 		position: absolute;
 		bottom: 0;
+		left: 0;
+		right: 0;
 		height: auto;
 		max-width: 100%;
 	}
