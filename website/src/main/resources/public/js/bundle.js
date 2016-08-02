@@ -87415,7 +87415,7 @@ return jQuery;
 		$scope.content = {
 			stories: [],
 			selected: {},
-			teaser: "",
+			teaser: "This is the timeline. Click a roundel to view its content.",
 			text: "",
 			images: {
 				current: null,
@@ -87519,6 +87519,7 @@ return jQuery;
 				updateImage(story.img, false);
 			}
 			updateVideo(story.youtubeId);
+			updateTeaser(story);
 		}
 
 		function updateLatestDate(dateStr) {
@@ -87545,6 +87546,12 @@ return jQuery;
 			cleanVideo(500);
 			if ($scope.content.selected.type == 'video') {
 				$scope.content.text = "";
+			}
+		}
+		
+		function updateTeaser(story) {
+			if (story.next == null) {
+				$scope.content.teaser = story.teaser || "To be continued...";
 			}
 		}
 		
@@ -87651,7 +87658,6 @@ return jQuery;
 				refresh();
 			}
 			$(".article__content").scrollTop(0);
-			$scope.settings.interactedWithTimeline = true;
 			updateCookie(story);
 			updateContent(story);
 		}
@@ -87691,7 +87697,9 @@ return jQuery;
 		$scope.preloadImage = function(fileName) {
 			if (fileName != "") {
 				var story = getStoryByFileName(fileName);
-				updateImage(story.img, true);
+				if (story != null) {
+					updateImage(story.img, true);
+				}
 			}
 		}
 		
@@ -87717,9 +87725,6 @@ return jQuery;
 
 				}
 			}
-			else {
-				$scope.content.teaser = $scope.content.selected.teaser;
-			}
 		}
 		
 		$scope.scrollNext = function() {
@@ -87732,7 +87737,6 @@ return jQuery;
 		$scope.getLast = function(refresh) {
 			var previousStory = getStoryByFileName($scope.content.selected.prev);
 			refresh ? $scope.goToContent(previousStory) : updateContent(previousStory);
-			$scope.content.teaser = "";
 		}
 		
 		// toggle between mute and volume for currently playing youtube video
