@@ -87377,7 +87377,6 @@ return jQuery;
 			back: "arrow_back",
 			forward: "arrow_forward"
 		};
-		var IMAGES = 3;
 		var data = {};
 		$scope.TIME_PERIODS = [
 		    {
@@ -87404,6 +87403,7 @@ return jQuery;
 					on: false,
 					pending: false
 				},
+				images: 3,
 				interactedWithTimeline: false,
 				latestDate: $scope.TIME_PERIODS[0].start,
 				viewedStories: $cookieStore.get("viewedStories") || [],
@@ -87530,7 +87530,7 @@ return jQuery;
 		}
 		
 		function updateImage(image, preloading) {
-			var imageSlot = ($scope.content.images.current + 1) % IMAGES;
+			var imageSlot = ($scope.content.images.current + 1) % $scope.settings.images;
 			$scope.content.images.container[imageSlot] = image;
 			if (!preloading) {
 				$scope.content.images.current = imageSlot;
