@@ -87488,8 +87488,11 @@ return jQuery;
 			$scope.content.selected = preloading ? $scope.content.selected : story;
 			displayContent(story);
 			
-			if (!preloading && newStoryIsAvailable()) {
-				addStoryToTimeline(getStoryByFileName(story.next));
+			if (!preloading) {
+				$scope.preloadImage(story.next);
+				if (newStoryIsAvailable()) {
+					addStoryToTimeline(getStoryByFileName(story.next));
+				}
 			}
 		}
 		
