@@ -18,6 +18,16 @@
 .text--todo {
   color: #80A0BE; }
 
+.veil {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: black;
+  opacity: 0.6; }
+
 .container {
   overflow: hidden; }
 
@@ -38,6 +48,17 @@
   width: 15%;
   height: 300px;
   text-align: center; }
+
+.container__character-bio {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 25px;
+  height: 400px;
+  width: 60%;
+  background-color: white;
+  z-index: 100; }
 
 .navigation {
   display: block;
@@ -218,6 +239,13 @@
     .container__image--active {
       width: auto; } }
 
+.container__character-bio {
+  padding: 10px; }
+
+.character__bio {
+  display: inline-block;
+  vertical-align: top; }
+
 .smooth-moves {
   -webkit-transition: all linear 0.5s;
   -moz-transition: all linear 0.5s;
@@ -260,6 +288,10 @@
 
 .image__character--thumbnail {
   max-height: 250px; }
+
+.image__character--bio {
+  max-height: 350px;
+  display: inline-block; }
 
 .article__story {
   display: inline-block;

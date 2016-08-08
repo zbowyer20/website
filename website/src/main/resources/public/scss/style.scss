@@ -6,6 +6,7 @@ $theme--background-colour: #003366;
 $theme--text-colour: white;
 $colour--todo: #80A0BE;
 $content--background-colour: white;
+$priority--medium: 50;
 $priority--top: 100;
 
 $width-desktop: 1025px;
@@ -62,6 +63,17 @@ $width-desktop: 1025px;
 	color: $colour--todo;
 }
 
+.veil {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: $priority--medium;
+	background-color: black;
+	opacity: 0.6;
+}
+
 .container {
 	overflow: hidden;
 }
@@ -86,6 +98,18 @@ $width-desktop: 1025px;
 	width: 15%;
 	height: 300px;
 	text-align: center;
+}
+
+.container__character-bio {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 25px;
+	height: 400px;
+	width: 60%;
+	background-color: white;
+	z-index: $priority--top;
 }
 
 .navigation {
@@ -314,6 +338,15 @@ $width-desktop: 1025px;
 	}
 }
 
+.container__character-bio {
+	padding: 10px;
+}
+
+.character__bio {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .smooth-moves {
 	@include transition(all linear 0.5s);
 }
@@ -363,6 +396,11 @@ $width-desktop: 1025px;
 
 .image__character--thumbnail {
 	max-height: 250px;
+}
+
+.image__character--bio {
+	max-height: 350px;
+	display: inline-block;
 }
 
 .article__story {
