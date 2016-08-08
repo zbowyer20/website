@@ -110,6 +110,8 @@ $width-desktop: 1025px;
 	width: 60%;
 	background-color: white;
 	z-index: $priority--top;
+	padding: 10px;
+	border-radius: 4px;
 }
 
 .navigation {
@@ -203,6 +205,11 @@ $width-desktop: 1025px;
 .header__text--character {
 	margin: 0;
 	color: $theme--text-colour;
+}
+
+.header__text--underline {
+	width: 100%;
+	border-bottom: 1px solid black;
 }
 
 .header__text--Albert {
@@ -338,13 +345,10 @@ $width-desktop: 1025px;
 	}
 }
 
-.container__character-bio {
-	padding: 10px;
-}
-
 .character__bio {
 	display: inline-block;
 	vertical-align: top;
+	width: 62%;
 }
 
 .smooth-moves {

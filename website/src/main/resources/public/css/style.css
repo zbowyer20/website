@@ -58,7 +58,9 @@
   height: 400px;
   width: 60%;
   background-color: white;
-  z-index: 100; }
+  z-index: 100;
+  padding: 10px;
+  border-radius: 4px; }
 
 .navigation {
   display: block;
@@ -132,6 +134,10 @@
 .header__text--character {
   margin: 0;
   color: white; }
+
+.header__text--underline {
+  width: 100%;
+  border-bottom: 1px solid black; }
 
 .header__text--Albert {
   font-family: 'Dosis', sans-serif; }
@@ -239,12 +245,10 @@
     .container__image--active {
       width: auto; } }
 
-.container__character-bio {
-  padding: 10px; }
-
 .character__bio {
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  width: 62%; }
 
 .smooth-moves {
   -webkit-transition: all linear 0.5s;
