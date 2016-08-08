@@ -81,6 +81,13 @@ $width-desktop: 1025px;
 	margin-bottom: $base--margin;
 }
 
+.container__character {
+	display: inline-block;
+	width: 15%;
+	height: 300px;
+	text-align: center;
+}
+
 .navigation {
 	display: block;
 	background: $theme--background-colour;
@@ -167,6 +174,11 @@ $width-desktop: 1025px;
 	@include desktop {
 		font-size: 26px;
 	}
+}
+
+.header__text--character {
+	margin: 0;
+	color: $theme--text-colour;
 }
 
 .header__text--Albert {
@@ -347,6 +359,10 @@ $width-desktop: 1025px;
 	&.ng-hide-add-active {
 		opacity: 0;
 	}
+}
+
+.image__character--thumbnail {
+	max-height: 250px;
 }
 
 .article__story {

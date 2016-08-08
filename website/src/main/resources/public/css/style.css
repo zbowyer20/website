@@ -33,6 +33,12 @@
   margin-top: 10px;
   margin-bottom: 10px; }
 
+.container__character {
+  display: inline-block;
+  width: 15%;
+  height: 300px;
+  text-align: center; }
+
 .navigation {
   display: block;
   background: #003366;
@@ -101,6 +107,10 @@
   @media screen and (min-width: 1025px) {
     .header__text--medium {
       font-size: 26px; } }
+
+.header__text--character {
+  margin: 0;
+  color: white; }
 
 .header__text--Albert {
   font-family: 'Dosis', sans-serif; }
@@ -247,6 +257,9 @@
     opacity: 1; }
   .image__story--active.ng-hide-add-active {
     opacity: 0; }
+
+.image__character--thumbnail {
+  max-height: 250px; }
 
 .article__story {
   display: inline-block;

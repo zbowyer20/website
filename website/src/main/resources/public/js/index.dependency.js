@@ -23,6 +23,9 @@
 			scroll: require('./../views/viewstory/viewstory.scroll.js'),
 			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
+	var characters = {
+			controller: require('./../views/characters/characters.controller.js')
+	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};

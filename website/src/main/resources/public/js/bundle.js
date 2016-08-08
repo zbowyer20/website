@@ -87279,11 +87279,14 @@ return jQuery;
 			scroll: require('./../views/viewstory/viewstory.scroll.js'),
 			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
+	var characters = {
+			controller: require('./../views/characters/characters.controller.js')
+	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
 })()
-},{"./../views/credits/credits.controller.js":26,"./../views/home/home.controller.js":27,"./../views/viewstory/components/viewstory.directives.storyheader.js":28,"./../views/viewstory/viewstory.controller.js":29,"./../views/viewstory/viewstory.scroll.js":30,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/credits/credits.controller.js":27,"./../views/home/home.controller.js":28,"./../views/viewstory/components/viewstory.directives.storyheader.js":29,"./../views/viewstory/viewstory.controller.js":30,"./../views/viewstory/viewstory.scroll.js":31,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87312,6 +87315,10 @@ return jQuery;
 			templateUrl: 'views/viewstory/viewStory.html',
 			controller: 'ViewStoryController',
 			controllerAs: 'controller'
+		}).when('/characters', {
+			templateUrl: 'views/characters/characters.html',
+			controller: 'CharactersController',
+			controllerAs: 'controller'
 		}).when('/credits', {
 			templateUrl: 'views/credits/credits.html',
 			controller: 'CreditsController',
@@ -87322,6 +87329,28 @@ return jQuery;
 	}
 })();
 },{}],26:[function(require,module,exports){
+(function() {
+	'use strict';
+	
+	angular
+		.module('bowyerville')
+		.controller('CharactersController', CharactersController);
+	
+	
+	/** @ngInject */
+	function CharactersController($http, $scope) {
+		$scope.characters = [];
+
+		// pick up all available stories
+		$http.get('php/services/getCharacters.php').then(function(response) {
+			console.log(response);
+			$scope.characters = response.data;
+		});
+					
+	}
+})();
+
+},{}],27:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87342,7 +87371,7 @@ return jQuery;
 	}
 })();
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87357,14 +87386,14 @@ return jQuery;
 	}
 })();
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 angular.module('bowyerville')
 	.directive("storyHeader", function() {
 		return {
 			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
 		};
 	});
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87782,7 +87811,7 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function() {
 	'use strict';
 	

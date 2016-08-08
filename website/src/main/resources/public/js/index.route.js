@@ -19,6 +19,10 @@
 			templateUrl: 'views/viewstory/viewStory.html',
 			controller: 'ViewStoryController',
 			controllerAs: 'controller'
+		}).when('/characters', {
+			templateUrl: 'views/characters/characters.html',
+			controller: 'CharactersController',
+			controllerAs: 'controller'
 		}).when('/credits', {
 			templateUrl: 'views/credits/credits.html',
 			controller: 'CreditsController',
