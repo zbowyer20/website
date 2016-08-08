@@ -1,6 +1,9 @@
 <div dl-esc-key="closeCharacter()">
-	<div class="container__character" ng-repeat="character in characters" ng-click="character.fileName && showCharacter(character)">
-		<img class="image__character--thumbnail" ng-src="{{character.img}}" />
+	<div ng-repeat="(key, value) in characters | groupBy: 'group'">
+		<span class="header__text--bio header__text--medium" ng-class='header__title--{{stripGroup(key)}}'>{{key}}</span>
+		<div class="container__character" ng-repeat="character in value" ng-click="showCharacter(character)">
+			<img class="image__character--thumbnail" ng-src="{{character.img}}" />
+		</div>
 	</div>
 	
 	<div class="veil" ng-show="selected" />

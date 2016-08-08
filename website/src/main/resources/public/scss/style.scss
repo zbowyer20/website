@@ -216,6 +216,12 @@ $width-desktop: 1025px;
 	border-bottom: 1px solid black;
 }
 
+.header__text--bio {
+	display: block;
+	color: white;
+	margin: 10px 5px;
+}
+
 .header__text--Albert {
 	font-family: 'Dosis', sans-serif;
 }

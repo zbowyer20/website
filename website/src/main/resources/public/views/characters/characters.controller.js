@@ -19,7 +19,7 @@
 		
 		$scope.showCharacter = function(character) {
 			$scope.selected = character;
-			if (typeof (character.content) == "undefined") {
+			if (character.fileName != "" && typeof (character.content) == "undefined") {
 				$http.get(character.fileName).then(function(response) {
 					$scope.selected.content = response.data;
 				});
@@ -28,6 +28,10 @@
 		
 		$scope.closeCharacter = function() {
 			$scope.selected = null;
+		}
+		
+		$scope.stripGroup = function(str) {
+			return str.replace(/[\s:]/g, "");
 		}
 					
 	}

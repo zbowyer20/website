@@ -87351,7 +87351,7 @@ return jQuery;
 		
 		$scope.showCharacter = function(character) {
 			$scope.selected = character;
-			if (typeof (character.content) == "undefined") {
+			if (character.fileName != "" && typeof (character.content) == "undefined") {
 				$http.get(character.fileName).then(function(response) {
 					$scope.selected.content = response.data;
 				});
@@ -87359,13 +87359,11 @@ return jQuery;
 		}
 		
 		$scope.closeCharacter = function() {
-			console.log("close character");
 			$scope.selected = null;
 		}
 		
-		$scope.keyPress = function() {
-			console.log('press');
-			console.log(event);
+		$scope.stripGroup = function(str) {
+			return str.replace(/[\s:]/g, "");
 		}
 					
 	}
