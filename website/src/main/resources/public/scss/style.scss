@@ -37,6 +37,10 @@ $width-desktop: 1025px;
 	transition: $delay;
 }
 
+:focus {
+	outline: none;
+}
+
 .body {
 	background-color: $base--background-colour;
 	overflow: hidden;

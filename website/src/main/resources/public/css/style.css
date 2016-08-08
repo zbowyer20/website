@@ -1,3 +1,6 @@
+:focus {
+  outline: none; }
+
 .body {
   background-color: #1B212D;
   overflow: hidden;
