@@ -100,8 +100,14 @@ $width-desktop: 1025px;
 .container__character {
 	display: inline-block;
 	width: 12.5%;
-	height: 300px;
+	height: 250px;
 	text-align: center;
+}
+
+.container__characters {
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	padding: 10px 0;
 }
 
 .container__character-bio {
@@ -326,6 +332,7 @@ $width-desktop: 1025px;
 	text-align: center;
 	padding-top: 5%; 
 }
+
 
 .container__image {
 	display: inline-block;

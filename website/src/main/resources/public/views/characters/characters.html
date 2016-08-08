@@ -1,8 +1,10 @@
-<div dl-esc-key="closeCharacter()">
-	<div ng-repeat="(key, value) in characters | groupBy: 'group'">
+<div class="container--characters" dl-esc-key="closeCharacter()">
+	<div ng-repeat="(key, value) in characters | groupBy: 'group'" ng-class="container__characters--{{stripGroup(key)}}">
 		<span class="header__text--bio header__text--medium" ng-class='header__title--{{stripGroup(key)}}'>{{key}}</span>
-		<div class="container__character" ng-repeat="character in value" ng-click="showCharacter(character)">
-			<img class="image__character--thumbnail" ng-src="{{character.img}}" />
+		<div class="container__characters container__characters--{{stripGroup(key)}}">
+			<div class="container__character" ng-repeat="character in value" ng-click="showCharacter(character)">
+				<img class="image__character--thumbnail" ng-src="{{character.img}}" />
+			</div>
 		</div>
 	</div>
 	
