@@ -5,6 +5,7 @@
 <div class="veil smooth-moves" ng-show="selected" />
 
 <div class="container__character-bio smooth-moves" ng-show="selected">
+	<span class="character__bio--close" ng-click="closeCharacter()">x</span>
 	<img class="image__character--bio" ng-src="{{selected.img}}" />
 	<div class="character__bio">
 		<h2 class="header__text--underline header__text--{{selected.displayName}}">{{selected.displayName}}</h2>

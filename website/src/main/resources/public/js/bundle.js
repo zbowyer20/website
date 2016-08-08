@@ -87350,14 +87350,15 @@ return jQuery;
 		
 		$scope.showCharacter = function(character) {
 			$scope.selected = character;
-			console.log("Show character");
 			if (typeof (character.content) == "undefined") {
-				console.log("undefined");
 				$http.get(character.fileName).then(function(response) {
-					console.log(response);
 					$scope.selected.content = response.data;
 				});
 			}
+		}
+		
+		$scope.closeCharacter = function() {
+			$scope.selected = null;
 		}
 					
 	}

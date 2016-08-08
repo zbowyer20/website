@@ -351,6 +351,12 @@ $width-desktop: 1025px;
 	width: 62%;
 }
 
+.character__bio--close {
+	position: absolute;
+	right: 10px;
+	top: 0;
+}
+
 .smooth-moves {
 	@include transition(all linear 0.5s);
 }

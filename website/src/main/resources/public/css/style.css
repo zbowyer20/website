@@ -250,6 +250,11 @@
   vertical-align: top;
   width: 62%; }
 
+.character__bio--close {
+  position: absolute;
+  right: 10px;
+  top: 0; }
+
 .smooth-moves {
   -webkit-transition: all linear 0.5s;
   -moz-transition: all linear 0.5s;
