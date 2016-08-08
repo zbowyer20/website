@@ -87280,13 +87280,14 @@ return jQuery;
 			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
 	var characters = {
-			controller: require('./../views/characters/characters.controller.js')
+			controller: require('./../views/characters/characters.controller.js'),
+			esc: require('./../views/characters/components/characters.directives.keypress.js')
 	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
 })()
-},{"./../views/characters/characters.controller.js":26,"./../views/credits/credits.controller.js":27,"./../views/home/home.controller.js":28,"./../views/viewstory/components/viewstory.directives.storyheader.js":29,"./../views/viewstory/viewstory.controller.js":30,"./../views/viewstory/viewstory.scroll.js":31,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/home/home.controller.js":29,"./../views/viewstory/components/viewstory.directives.storyheader.js":30,"./../views/viewstory/viewstory.controller.js":31,"./../views/viewstory/viewstory.scroll.js":32,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87358,13 +87359,33 @@ return jQuery;
 		}
 		
 		$scope.closeCharacter = function() {
+			console.log("close character");
 			$scope.selected = null;
+		}
+		
+		$scope.keyPress = function() {
+			console.log('press');
+			console.log(event);
 		}
 					
 	}
 })();
 
 },{}],27:[function(require,module,exports){
+angular.module('bowyerville')
+	.directive("dlEscKey", function() {
+		return function(scope, element, attrs) {
+			element.bind("keydown keypress", function(event) {
+				if (event.which === 27) {
+					scope.$apply(function() {
+						scope.$eval(attrs.dlEscKey);
+					});
+					event.preventDefault();
+				}
+			})
+		}
+	});
+},{}],28:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87385,7 +87406,7 @@ return jQuery;
 	}
 })();
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87400,14 +87421,14 @@ return jQuery;
 	}
 })();
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 angular.module('bowyerville')
 	.directive("storyHeader", function() {
 		return {
 			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
 		};
 	});
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87825,7 +87846,7 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function() {
 	'use strict';
 	

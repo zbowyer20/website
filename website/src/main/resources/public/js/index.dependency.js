@@ -24,7 +24,8 @@
 			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
 	};
 	var characters = {
-			controller: require('./../views/characters/characters.controller.js')
+			controller: require('./../views/characters/characters.controller.js'),
+			esc: require('./../views/characters/components/characters.directives.keypress.js')
 	};
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
