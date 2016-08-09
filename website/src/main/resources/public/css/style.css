@@ -3,11 +3,14 @@
 
 .body {
   background-color: #1B212D;
-  overflow: hidden;
-  height: auto; }
+  height: auto;
+  overflow: hidden; }
   @media screen and (max-width: 1024px) {
     .body {
       overflow: auto; } }
+
+.full-page {
+  overflow: hidden; }
 
 .align-left {
   text-align: left; }
@@ -36,7 +39,8 @@
 
 .container--body {
   padding: 10px;
-  position: relative; }
+  position: relative;
+  overflow: auto; }
 
 .container--horizontal {
   margin-left: 10px;
@@ -48,14 +52,16 @@
 
 .container__character {
   display: inline-block;
-  width: 12.5%;
   height: 250px;
-  text-align: center; }
+  text-align: center;
+  position: absolute; }
 
 .container__characters {
   border-top: 5px solid black;
   border-bottom: 5px solid black;
-  padding: 10px 0; }
+  padding: 10px 0;
+  position: relative;
+  height: 250px; }
 
 .container__character-bio {
   position: absolute;

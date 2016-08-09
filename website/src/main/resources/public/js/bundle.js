@@ -87440,7 +87440,9 @@ angular.module('bowyerville')
 		$scope.usingDesktop = function() {
 			return window.innerWidth >= 1025;
 		}
-			
+		
+		$scope.fullPage = true;
+		
 		$scope.icons = {
 			volume: "volume_up",
 			mute: "volume_off",

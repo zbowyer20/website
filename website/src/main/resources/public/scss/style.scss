@@ -43,12 +43,16 @@ $width-desktop: 1025px;
 
 .body {
 	background-color: $base--background-colour;
-	overflow: hidden;
 	height: auto;
+	overflow: hidden;
 	
 	@include only-mobile-and-tablet {
 		overflow: auto;
 	}
+}
+
+.full-page {
+	overflow: hidden;
 }
 
 .align-left {
@@ -85,6 +89,7 @@ $width-desktop: 1025px;
 .container--body {
 	padding: 10px;
 	position: relative;
+	overflow: auto;
 }
 
 .container--horizontal {
@@ -99,15 +104,17 @@ $width-desktop: 1025px;
 
 .container__character {
 	display: inline-block;
-	width: 12.5%;
 	height: 250px;
 	text-align: center;
+	position: absolute;
 }
 
 .container__characters {
 	border-top: 5px solid black;
 	border-bottom: 5px solid black;
 	padding: 10px 0;
+	position: relative;
+	height: 250px;
 }
 
 .container__character-bio {
