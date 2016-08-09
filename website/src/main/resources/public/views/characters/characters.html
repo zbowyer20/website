@@ -7,17 +7,19 @@
 			<span class="header__text header__text--medium header__text--characters-story header__text--{{stripGroup(key)}}">{{key}}</span>
 		</div>
 	</div>
-	
-	<div class="veil" ng-show="selected" />
-	
-	<div class="container__character-bio" ng-show="selected">
-		<span class="character__bio--close" ng-click="closeCharacter()">x</span>
+</div>
+
+<div class="container__character-bio" ng-show="selected">
+	<span class="character__bio--close" ng-click="closeCharacter()">x</span>
+	<div class="character__bio--image">
 		<img class="image__character--bio" ng-src="{{selected.img}}" />
-		<div class="character__bio">
-			<h2 class="header__text--underline header__text--{{selected.displayName}}">{{selected.displayName}}</h2>
-			<p class="paragraph__character-bio">
-				{{selected.content}}
-			</p>
-		</div>
+	</div>
+	<div class="character__bio">
+		<h2 class="header__text--character header__text--left header__text--underline header__text--{{selected.displayName}}">{{selected.displayName}}</h2>
+		<p class="content__bio">
+			{{selected.content}}
+		</p>
 	</div>
 </div>
+
+<div class="veil" ng-show="selected" />
