@@ -89,7 +89,6 @@ $width-desktop: 1025px;
 .container--body {
 	padding: 10px;
 	position: relative;
-	overflow: auto;
 }
 
 .container--horizontal {
@@ -102,6 +101,12 @@ $width-desktop: 1025px;
 	margin-bottom: $base--margin;
 }
 
+.container__bio {
+	position: relative;
+	top: 50%;
+	transform: translateY(50%);
+}
+
 .container__character {
 	display: inline-block;
 	height: 250px;
@@ -110,11 +115,15 @@ $width-desktop: 1025px;
 }
 
 .container__characters {
-	border-top: 5px solid black;
-	border-bottom: 5px solid black;
-	padding: 10px 0;
+	display: inline-block;
 	position: relative;
 	height: 250px;
+	width: 100%;
+}
+
+.container__characters-group {
+	display: inline-block;
+	width: 50%;
 }
 
 .container__character-bio {
