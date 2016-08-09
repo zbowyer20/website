@@ -233,6 +233,13 @@ $width-desktop: 1025px;
 	color: $theme--text-colour;
 }
 
+.header__text--characters-story {
+	position: absolute;
+	bottom: -50px;
+	left: 0;
+	right: 0;
+}
+
 .header__text--underline {
 	width: 100%;
 	border-bottom: 1px solid black;
@@ -248,7 +255,7 @@ $width-desktop: 1025px;
 	font-family: 'Dosis', sans-serif;
 }
 
-.header__text--The-Stranger {
+.header__text--The-Stranger, .header__text--RunningWaterIntroduction {
 	font-family: 'Inconsolata', monospace;
 }
 
@@ -285,6 +292,10 @@ $width-desktop: 1025px;
 	left: 0;
 	right: 0;
 	margin: auto 0;
+	font-family: 'Dosis', sans-serif;
+}
+
+.header__text--TheCorrection {
 	font-family: 'Dosis', sans-serif;
 }
 

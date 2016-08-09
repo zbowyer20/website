@@ -4,6 +4,7 @@
 			<div class="container__character" ng-repeat="character in value" ng-click="showCharacter(character)" ng-style="{'left': getLeft($index, value), 'z-index': character.main == 1 ? 20 : 10}">
 				<img class="image__character--thumbnail" ng-src="{{character.img}}" />
 			</div>
+			<span class="header__text header__text--medium header__text--characters-story header__text--{{stripGroup(key)}}">{{key}}</span>
 		</div>
 	</div>
 	

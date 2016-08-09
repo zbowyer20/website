@@ -156,6 +156,12 @@
   margin: 0;
   color: white; }
 
+.header__text--characters-story {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0; }
+
 .header__text--underline {
   width: 100%;
   border-bottom: 1px solid black; }
@@ -168,7 +174,7 @@
 .header__text--Albert {
   font-family: 'Dosis', sans-serif; }
 
-.header__text--The-Stranger {
+.header__text--The-Stranger, .header__text--RunningWaterIntroduction {
   font-family: 'Inconsolata', monospace; }
 
 .header__text--Fido {
@@ -197,6 +203,9 @@
   left: 0;
   right: 0;
   margin: auto 0;
+  font-family: 'Dosis', sans-serif; }
+
+.header__text--TheCorrection {
   font-family: 'Dosis', sans-serif; }
 
 .md-button.md-icon-button.button--large {
