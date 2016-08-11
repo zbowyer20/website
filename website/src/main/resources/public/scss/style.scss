@@ -383,9 +383,7 @@ $width-desktop: 1025px;
 .article__content {
 	max-height: 800px;
 	overflow: auto;
-	background-color: $content--background-colour;
-	border-radius: 5px;
-	padding: 15px 5px;
+	padding: 15px 15px 5px 0;
 	
 	@include desktop {
 		max-height: 500px;
@@ -571,9 +569,14 @@ $width-desktop: 1025px;
 	background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(25%, $base--background-colour), color-stop(75%, $base--background-colour));
 }
 
+.story__text {
+	color: white;
+	margin: 0;
+}
+
 .story__paragraph {
 	text-indent: 40px;
-	margin: 0 10px;
+	margin: 0;
 	font-family: 'Raleway', sans-serif;
 	&:first-child {
 		text-indent: 0;
