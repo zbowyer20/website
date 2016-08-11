@@ -20,16 +20,14 @@
 		    	text: "WRITER"
 		    }
 		];
+		$scope.todo = "";
 		var todoSubheaders = ["OLYMPIAN", "ADVENTURER", "SPACEMAN", "WIZARD", "HUNK"];
 		
-		function addSubheader() {
+		function setTodo() {
 			var rand = Math.floor(Math.random() * todoSubheaders.length);
-			$scope.subheaders.push({
-				todo: true,
-				text: todoSubheaders[rand]
-			});
+			$scope.todo = todoSubheaders[rand];
 		}
 		
-		addSubheader();
+		setTodo();
 	}
 })();
