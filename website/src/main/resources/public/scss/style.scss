@@ -1,5 +1,5 @@
 $base--margin: 10px;
-$base--background-colour: #1B212D;
+$base--background-colour: #000000;
 $base__text--colour: white;
 $base__text--colour-dark: black;
 $theme--background-colour: #003366;
@@ -227,6 +227,47 @@ $width-desktop: 1025px;
 	}
 }
 
+.subheader__text {
+	color: black;		
+}
+
+.subheader__text--primary {
+	font-size: 80px;
+	@include desktop {
+		font-size: 24px;
+	}
+}
+
+.subheader__text {
+	&:hover {
+		color: black;
+	}
+}
+
+.subheader__link {
+	&:hover {
+		color: black;
+	}
+}
+
+.text__todo {
+	position: relative;
+	&:hover::before {
+		content: '(in progress)';
+		position: absolute;
+		left: 0;
+		right: 0;
+		background: #19B5FE;
+	}
+}
+
+.header__text--primary {
+	font-size: 100px;
+	@include desktop {
+		font-size: 64px;
+	}
+}
+
 .header__text--character {
 	margin: 0;
 	color: $theme--text-colour;
@@ -298,6 +339,24 @@ $width-desktop: 1025px;
 	font-family: 'Dosis', sans-serif;
 }
 
+.list {
+	padding: 0;
+	margin: 0;
+}
+
+.list-element--horizontal {
+	display: inline;
+}
+
+.list-element__subheader {
+	+ .list-element__subheader:before {
+		content: '•';
+		font-size: 24px;
+		color: black;
+		margin: 0 10px;
+	}
+}
+
 .md-button.md-icon-button.button--large {
 	height: 80px;
 	width: 80px;
@@ -345,6 +404,21 @@ $width-desktop: 1025px;
 
 ::-webkit-scrollbar-thumb {
 	background-color: $theme--background-colour;
+}
+
+.container__main {
+	position: absolute;
+	left: 50%;
+	top: 25%;
+	transform: translate(-50%, -25%);
+	text-align: center;
+}
+
+.container__subheader {
+	text-align: center;
+	background: white;
+	display: inline-block;
+	padding: 0 10%;
 }
 
 .container--full-screen {
