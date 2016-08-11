@@ -117,6 +117,9 @@
 .header {
   display: inline-block; }
 
+.header__story {
+  border-bottom: 1px solid white; }
+
 .header--video {
   display: block; }
 
@@ -273,10 +276,10 @@
 .article__content {
   max-height: 800px;
   overflow: auto;
-  padding: 15px 15px 5px 0; }
+  margin: 15px 0; }
   @media screen and (min-width: 1025px) {
     .article__content {
-      max-height: 500px; } }
+      max-height: 550px; } }
 
 .article__credits {
   width: 50%;
@@ -287,10 +290,10 @@
   width: 10px; }
 
 ::-webkit-scrollbar-track {
-  background-color: #e9fcfc; }
+  background-color: white; }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #003366; }
+  background-color: #19B5FE; }
 
 .container__main {
   position: absolute;
@@ -417,6 +420,9 @@
       display: block;
       width: auto;
       margin: 0; } }
+
+.story {
+  margin-right: 10px; }
 
 .story:after {
   content: "";
