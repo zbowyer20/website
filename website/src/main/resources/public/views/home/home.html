@@ -3,8 +3,8 @@
 <div class="container container__main">
 	<h1 class="header__text header__text--primary">ZAK BOWYER</h1>
 	<ul class="list container__subheader">
-		<li class="list-element--horizontal list-element__subheader"><a class="subheader__text subheader__text--primary subheader__link" href="#/developer">DEVELOPER</a></li>
-		<li class="list-element--horizontal list-element__subheader"><a class="subheader__text subheader__text--primary subheader__link" href="#/writer">WRITER</a></li>
-		<li class="list-element--horizontal list-element__subheader"><a class="subheader__text subheader__text--primary text__todo">OLYMPIC SWIMMER?</a></li>
+		<li class="list-element--horizontal list-element__subheader" ng-repeat="subheader in subheaders">
+			<a class="subheader__text subheader__text--primary" ng-class="{'subheader__link': subheader.link, 'text__todo': subheader.todo}" href="{{subheader.link}}">{{subheader.text}}</a>
+		</li>
 	</ul>
 </div>

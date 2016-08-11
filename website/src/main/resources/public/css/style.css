@@ -171,7 +171,7 @@
 .text__todo {
   position: relative; }
   .text__todo:hover::before {
-    content: '(in progress)';
+    content: '(tbc)';
     position: absolute;
     left: 0;
     right: 0;
