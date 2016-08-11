@@ -239,6 +239,7 @@ $width-desktop: 1025px;
 }
 
 .subheader__text {
+	font-family: 'Montserrat', sans-serif;
 	&:hover {
 		color: black;
 	}
@@ -257,8 +258,15 @@ $width-desktop: 1025px;
 		position: absolute;
 		left: 0;
 		right: 0;
+		top: 0;
+		bottom: 0;
+		line-height: 100%;
 		background: #19B5FE;
 	}
+}
+
+.header__text {
+	font-family: 'Montserrat', sans-serif;
 }
 
 .header__text--primary {

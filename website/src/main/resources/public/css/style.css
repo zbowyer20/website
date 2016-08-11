@@ -160,8 +160,10 @@
     .subheader__text--primary {
       font-size: 24px; } }
 
-.subheader__text:hover {
-  color: black; }
+.subheader__text {
+  font-family: 'Montserrat', sans-serif; }
+  .subheader__text:hover {
+    color: black; }
 
 .subheader__link:hover {
   color: black; }
@@ -173,7 +175,13 @@
     position: absolute;
     left: 0;
     right: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 100%;
     background: #19B5FE; }
+
+.header__text {
+  font-family: 'Montserrat', sans-serif; }
 
 .header__text--primary {
   font-size: 100px; }
