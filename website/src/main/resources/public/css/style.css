@@ -118,7 +118,6 @@
   text-align: center; }
 
 .container__subheader {
-  text-align: center;
   background: white;
   display: inline-block;
   padding: 0 10%; }
@@ -192,7 +191,6 @@
 
 .text__header {
   font-family: 'Montserrat', sans-serif;
-  display: block;
   color: white;
   text-align: center;
   padding: 10px 0;
@@ -240,9 +238,6 @@
   display: block;
   color: white;
   margin: 10px 5px; }
-
-.text__subheader {
-  color: black; }
 
 .text__subheader--primary {
   font-size: 80px; }
@@ -422,14 +417,7 @@
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
-  height: 5px; }
-  .timeline-bar__tracker::before, .timeline-bar__tracker::after {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    height: 100%;
-    width: 16px; }
+  height: 100%; }
 
 .timeline__segment {
   position: absolute;
@@ -466,7 +454,6 @@
   bottom: -8px;
   border-radius: 50%;
   border: 2px solid white;
-  z-index: 1;
   background: black; }
   .roundel:hover {
     background-color: #003366;

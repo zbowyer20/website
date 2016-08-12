@@ -182,7 +182,6 @@ $width__desktop: 1025px;
 }
 
 .container__subheader {
-	text-align: center;
 	background: white;
 	display: inline-block;
 	padding: 0 10%;
@@ -271,7 +270,6 @@ $width__desktop: 1025px;
 
 .text__header {
 	font-family: 'Montserrat', sans-serif;
-	display: block;
 	color: $text__colour--light;
 	text-align: center;
 	padding: 10px 0;
@@ -328,10 +326,6 @@ $width__desktop: 1025px;
 	display: block;
 	color: $text__colour--light;
 	margin: 10px 5px;
-}
-
-.text__subheader {
-	color: black;		
 }
 
 .text__subheader--primary {
@@ -554,16 +548,7 @@ $width__desktop: 1025px;
 	width: 0;
 	background-color: $theme__colour--light;
 	@include transition(all 0.5s);
-	height: 5px;
-	
-	&::before, &::after {
-		content: '';
-		position: absolute;
-		z-index: 0;
-		top: 0;
-		height: 100%;
-		width: 16px;
-	}
+	height: 100%;
 }
 
 .timeline__segment {
@@ -607,7 +592,6 @@ $width__desktop: 1025px;
 	bottom: -8px;
 	border-radius: 50%;
 	border: 2px solid white;
-	z-index: 1;
 	background: black;
 	
 	&:hover {
