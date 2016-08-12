@@ -227,6 +227,13 @@ $width-desktop: 1025px;
 	}
 }
 
+.header__text--book {
+	font-size: 80px;
+	@include desktop {
+		font-size: 48px;
+	}
+}
+
 .subheader__text {
 	color: black;		
 }
@@ -303,7 +310,7 @@ $width-desktop: 1025px;
 	font-family: 'Dosis', sans-serif;
 }
 
-.header__text--The-Stranger, .header__text--RunningWaterIntroduction {
+.header__text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
 	font-family: 'Inconsolata', monospace;
 }
 
@@ -343,7 +350,7 @@ $width-desktop: 1025px;
 	font-family: 'Dosis', sans-serif;
 }
 
-.header__text--TheCorrection {
+.header__text--TheCorrection, .text--TheCorrection {
 	font-family: 'Dosis', sans-serif;
 }
 

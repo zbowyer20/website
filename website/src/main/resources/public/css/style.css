@@ -151,6 +151,12 @@
     .header__text--medium {
       font-size: 26px; } }
 
+.header__text--book {
+  font-size: 80px; }
+  @media screen and (min-width: 1025px) {
+    .header__text--book {
+      font-size: 48px; } }
+
 .subheader__text {
   color: black; }
 
@@ -211,7 +217,7 @@
 .header__text--Albert {
   font-family: 'Dosis', sans-serif; }
 
-.header__text--The-Stranger, .header__text--RunningWaterIntroduction {
+.header__text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
   font-family: 'Inconsolata', monospace; }
 
 .header__text--Fido {
@@ -242,7 +248,7 @@
   margin: auto 0;
   font-family: 'Dosis', sans-serif; }
 
-.header__text--TheCorrection {
+.header__text--TheCorrection, .text--TheCorrection {
   font-family: 'Dosis', sans-serif; }
 
 .list {

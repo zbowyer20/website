@@ -391,6 +391,10 @@
 			}
 		}
 		
+		$scope.stripGroup = function(str) {
+			return str.replace(/[\s:]/g, "");
+		}
+		
 		// show the next story, eg. after scrolling to end of current story
 		$scope.getNext = function(refresh) {
 			if ($scope.content.selected.next != "") {
