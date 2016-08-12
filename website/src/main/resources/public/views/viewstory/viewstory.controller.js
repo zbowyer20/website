@@ -190,16 +190,14 @@
 		 * Load and show text, image and video relating to a story
 		 */
 		function displayContent(story) {
-			viewNewBook(story).then(function() {
-				getStoryContent(story).then(function() {
-					$scope.content.text = story.content;
-					updateLatestDate(story.timeSetting);
-					if (story.type != 'video') {
-						updateImage(story.img, false);
-					}
-					updateVideo(story.youtubeId);
-					updateTeaser(story);
-				});
+			$q.all([viewNewBook(story), getStoryContent(story)]).then(function() {
+				$scope.content.text = story.content;
+				updateLatestDate(story.timeSetting);
+				if (story.type != 'video') {
+					updateImage(story.img, false);
+				}
+				updateVideo(story.youtubeId);
+				updateTeaser(story);
 			});
 		}
 
