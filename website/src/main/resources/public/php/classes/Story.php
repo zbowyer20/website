@@ -12,8 +12,9 @@ class Story {
 	public $hiddenDate;
 	public $teaser;
 	public $type;
+	public $book;
 
-	public function __construct($id, $fileName, $character, $title, $content, $img, $timeSetting, $next, $youtubeId, $hiddenDate, $teaser, $type) {
+	public function __construct($id, $fileName, $character, $title, $content, $img, $timeSetting, $next, $youtubeId, $hiddenDate, $teaser, $type, $book) {
 		$this->id = $id;
 		$this->fileName = $fileName;
 		$this->character = $character;
@@ -26,6 +27,7 @@ class Story {
 		$this->hiddenDate = $hiddenDate;
 		$this->teaser = $teaser;
 		$this->type = $type;
+		$this->book = $book;
 	}
 
 }

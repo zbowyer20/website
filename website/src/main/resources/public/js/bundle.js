@@ -87498,7 +87498,7 @@ angular.module('bowyerville')
 	
 	
 	/** @ngInject */
-	function ViewStoryController($http, $scope, $cookieStore, $timeout) {
+	function ViewStoryController($http, $scope, $cookieStore, $timeout, $q) {
 		$scope.usingDesktop = function() {
 			return window.innerWidth >= 1025;
 		}
@@ -87541,6 +87541,7 @@ angular.module('bowyerville')
 				interactedWithTimeline: false,
 				latestDate: $scope.TIME_PERIODS[0].start,
 				viewedStories: $cookieStore.get("viewedStories") || [],
+				viewedBooks: $cookieStore.get("viewedBooks") || [],
 				latestStoryViewed: $cookieStore.get("latestViewedStory"),
 				cookieNextStory: $cookieStore.get("nextStory"),
 				muted: $cookieStore.get("muted") || false,
@@ -87561,6 +87562,9 @@ angular.module('bowyerville')
 					controls: 0,
 					autoplay: getAutoplay()
 				}
+			},
+			title: {
+				text: null
 			}
 		};
 		$scope.footer = [
@@ -87624,6 +87628,23 @@ angular.module('bowyerville')
 			}
 		}
 
+		function viewNewBook(story) {
+			return $q(function(resolve, reject) {
+				if (!bookIsInCookie(story.book)) {
+					$scope.content.title.text = story.book;
+					$timeout(function() {
+						$scope.content.title.text = null;
+						$scope.settings.viewedBooks.push(story.book);
+						$cookieStore.put("viewedBooks", $scope.settings.viewedBooks);
+						resolve("done");
+					}, 5000)
+				}
+				else {
+					resolve("done");
+				}
+			});
+		}
+		
 		/*
 		 * Display new content
 		 */
@@ -87640,30 +87661,37 @@ angular.module('bowyerville')
 			}
 		}
 		
+		function getStoryContent(story) {
+			return $q(function(resolve, reject) {
+				if (typeof story.content == 'undefined' && story.type != 'video') {
+					loading();
+					$http.get('html/' + story.fileName + '.html').then(function(response) {
+						stopLoading();
+						story.content = response.data;
+						$cookieStore.put("nextStory", story.next);
+						resolve("done");
+					});
+				} else {
+					resolve("done");
+				}
+			});
+		}
+		
 		/*
 		 * Load and show text, image and video relating to a story
 		 */
 		function displayContent(story) {
-			// only load from backend if it hasn't already been loaded
-			if (typeof story.content == 'undefined' && story.type != 'video') {
-				loading();
-				$http.get('html/' + story.fileName + '.html').then(function(response) {
-					stopLoading();
-					story.content = response.data;
-					$scope.content.text += story.content;
-					$cookieStore.put("nextStory", story.next);
-				})
-			}
-			else if (story.scrollPositions.start == null) {
-				$scope.content.text += story.content;
-			}
-			
-			updateLatestDate(story.timeSetting);
-			if (story.type != 'video') {
-				updateImage(story.img, false);
-			}
-			updateVideo(story.youtubeId);
-			updateTeaser(story);
+			viewNewBook(story).then(function() {
+				getStoryContent(story).then(function() {
+					$scope.content.text = story.content;
+					updateLatestDate(story.timeSetting);
+					if (story.type != 'video') {
+						updateImage(story.img, false);
+					}
+					updateVideo(story.youtubeId);
+					updateTeaser(story);
+				});
+			});
 		}
 
 		function updateLatestDate(dateStr) {
@@ -87727,6 +87755,10 @@ angular.module('bowyerville')
 		
 		function storyIsInCookie(story) {
 			return $scope.settings.viewedStories.indexOf(story.fileName) > -1;
+		}
+		
+		function bookIsInCookie(book) {
+			return $scope.settings.viewedBooks.indexOf(book) > -1;
 		}
 		
 		function updateCookie(story) {
