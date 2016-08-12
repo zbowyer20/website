@@ -25,7 +25,7 @@
 	</div>
 	
 	<div class="video animate__fade" ng-show="content.selected.type == 'video'">
-		<div story-header class="header--video"></div>
+		<div story-header class="header__video"></div>
 		<youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video>
 	</div>
 	
@@ -39,9 +39,9 @@
 
 <div class="container--full-screen animate__fade smooth-moves" ng-show="settings.loading.on">
 	<img src="images/components/ajax-loader.gif">
-	<h2 class="header__text">Loading...</h2>
+	<h2 class="text__header">Loading...</h2>
 </div>
 
 <div class="container--full-screen animate__fade smooth-moves" ng-show="content.title.text">
-	<h2 class="header__text text--{{stripGroup(content.title.text)}} header__text--book">{{content.title.text}}</h2>
+	<h2 class="text__header text--{{stripGroup(content.title.text)}} text__header--book">{{content.title.text}}</h2>
 </div>

@@ -173,7 +173,7 @@ $width-desktop: 1025px;
 	padding: 10px;
 }
 
-.container__main {
+.container__home {
 	position: absolute;
 	left: 50%;
 	top: 25%;
@@ -261,7 +261,7 @@ $width-desktop: 1025px;
 	border-bottom: 1px solid white;
 }
 
-.header--video {
+.header__video {
 	display: block;
 }
 
@@ -269,7 +269,7 @@ $width-desktop: 1025px;
 	float: right;
 }
 
-.header__text {
+.text__header {
 	font-family: 'Montserrat', sans-serif;
 	display: block;
 	color: $theme--text-colour;
@@ -278,32 +278,32 @@ $width-desktop: 1025px;
 	margin: 0;
 }
 
+.text__header--primary {
+	font-size: 100px;
+	@include desktop {
+		font-size: 64px;
+	}
+}
+
 .header__text--left {
 	text-align: left;
 }
 
-.header__text--title {
+.text__header--title {
 	display: inline-block;
 }
 
-.header__text--medium {
+.text--medium {
 	font-size: 80px;
 	@include desktop {
 		font-size: 26px;
 	}
 }
 
-.header__text--book {
+.text__header--book {
 	font-size: 80px;
 	@include desktop {
 		font-size: 48px;
-	}
-}
-
-.header__text--primary {
-	font-size: 100px;
-	@include desktop {
-		font-size: 64px;
 	}
 }
 
@@ -330,63 +330,64 @@ $width-desktop: 1025px;
 	margin: 10px 5px;
 }
 
-.subheader__text {
+.text__subheader {
 	color: black;		
 }
 
-.subheader__text--primary {
+.text__subheader--primary {
 	font-size: 80px;
 	@include desktop {
 		font-size: 24px;
 	}
 }
 
-.subheader__text {
+.text__subheader {
+	color: black;
 	font-family: 'Montserrat', sans-serif;
 	&:hover {
 		color: black;
 	}
 }
 
-.subheader__link {
+.link__subheader {
 	&:hover {
 		color: black;
 	}
 }
 
-.header__text--Albert {
+.text--Albert {
 	font-family: 'Dosis', sans-serif;
 }
 
-.header__text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
+.text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
 	font-family: 'Inconsolata', monospace;
 }
 
-.header__text--Fido {
+.text--Fido {
 	font-family: 'Dosis', sans-serif;
 }
 
-.header__text--Victoria {
+.text--Victoria {
 	font-family: 'Farsan', cursive;
 }
 
-.header__text--Tom {
+.text--Tom {
 	font-family: 'Lemonada', sans-serif;
 }
 
-.header__text--Zak {
+.text--Zak {
 	font-family: 'Cormorant', sans-serif;
 }
 
-.header__text--Joe {
+.text--Joe {
 	font-family: 'Gloria Hallelujah', cursive;
 }
 
-.header__text--Kate, .header__text--Grace {
+.text--Kate, .text--Grace {
 	font-family: 'Coming Soon', cursive;
 }
 
-.header__text--Kevin {
+.text--Kevin {
 	font-family: 'Pattaya', sans-serif;
 }
 
