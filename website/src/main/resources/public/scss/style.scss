@@ -513,12 +513,11 @@ $width-desktop: 1025px;
 .image__story {
 	height: 760px;
 	margin: auto;
-	position: fixed;
+	position: absolute;
 	bottom: -100px;
 	z-index: $priority--medium;
 	
 	@include only-mobile-and-tablet {
-		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
