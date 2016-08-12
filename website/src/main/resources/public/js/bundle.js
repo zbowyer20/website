@@ -87883,8 +87883,7 @@ angular.module('bowyerville')
 		}
 		
 		$scope.stripGroup = function(str) {
-			console.log(str);
-			return str.replace(/[\s:]/g, "");
+			return str == null ? null : str.replace(/[\s:]/g, "");
 		}
 		
 		// show the next story, eg. after scrolling to end of current story
