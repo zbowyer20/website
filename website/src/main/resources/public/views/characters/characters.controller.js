@@ -11,6 +11,16 @@
 		var viewedStories = $cookieStore.get("viewedStories");
 		$scope.characters = [];
 		$scope.selected = null;
+		$scope.footer = [
+		    {
+		        href: "#/",
+		        text: "HOME"
+		    },
+		    {
+		     	href: "#/runningwater",
+		     	text: "STORY"
+		    }
+		];
 		
 		// pick up all available stories
 		$http.get('php/services/getCharacters.php').then(function(response) {

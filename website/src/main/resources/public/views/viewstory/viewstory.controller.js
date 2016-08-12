@@ -68,7 +68,7 @@
 				icon: !$scope.usingDesktop() || $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
 				player: {
 					controls: 0,
-					autoplay: !$scope.usingDesktop() || $scope.settings.muted ? 0 : 1
+					autoplay: getAutoplay()
 				}
 			}
 		};
@@ -287,6 +287,11 @@
 		function updateMute(muted) {
 			$scope.settings.muted = muted;
 			$cookieStore.put("muted", muted);
+			$scope.content.video.player.autoplay = getAutoplay();
+		}
+		
+		function getAutoplay() {
+			return !$scope.usingDesktop() || $scope.settings.muted ? 0 : 1
 		}
 		
 		function pauseVideo() {

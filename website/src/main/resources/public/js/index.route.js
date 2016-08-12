@@ -15,7 +15,7 @@
 			templateUrl: 'views/addStory.html',
 			controller: 'addstory',
 			controllerAs: 'controller'
-		}).when('/viewstory', {
+		}).when('/runningwater', {
 			templateUrl: 'views/viewstory/viewStory.html',
 			controller: 'ViewStoryController',
 			controllerAs: 'controller'

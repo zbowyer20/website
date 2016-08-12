@@ -87315,7 +87315,7 @@ return jQuery;
 			templateUrl: 'views/addStory.html',
 			controller: 'addstory',
 			controllerAs: 'controller'
-		}).when('/viewstory', {
+		}).when('/runningwater', {
 			templateUrl: 'views/viewstory/viewStory.html',
 			controller: 'ViewStoryController',
 			controllerAs: 'controller'
@@ -87346,6 +87346,16 @@ return jQuery;
 		var viewedStories = $cookieStore.get("viewedStories");
 		$scope.characters = [];
 		$scope.selected = null;
+		$scope.footer = [
+		    {
+		        href: "#/",
+		        text: "HOME"
+		    },
+		    {
+		     	href: "#/runningwater",
+		     	text: "STORY"
+		    }
+		];
 		
 		// pick up all available stories
 		$http.get('php/services/getCharacters.php').then(function(response) {
@@ -87549,7 +87559,7 @@ angular.module('bowyerville')
 				icon: !$scope.usingDesktop() || $scope.settings.muted ? $scope.icons.mute : $scope.icons.volume,
 				player: {
 					controls: 0,
-					autoplay: !$scope.usingDesktop() || $scope.settings.muted ? 0 : 1
+					autoplay: getAutoplay()
 				}
 			}
 		};
@@ -87768,6 +87778,11 @@ angular.module('bowyerville')
 		function updateMute(muted) {
 			$scope.settings.muted = muted;
 			$cookieStore.put("muted", muted);
+			$scope.content.video.player.autoplay = getAutoplay();
+		}
+		
+		function getAutoplay() {
+			return !$scope.usingDesktop() || $scope.settings.muted ? 0 : 1
 		}
 		
 		function pauseVideo() {
