@@ -72,6 +72,16 @@
 				}
 			}
 		};
+		$scope.footer = [
+		    {
+		    	href: "#/",
+		    	text: "HOME"
+		    },
+		    {
+		    	href: "#/characters",
+		    	text: "CHARACTERS"
+		    }
+		];
 		
 		/*
 		 * Initialise stories

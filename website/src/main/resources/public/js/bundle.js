@@ -87286,8 +87286,11 @@ return jQuery;
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
+	var components = {
+			directives: require('./../views/directive.js')
+	};
 })()
-},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/home/home.controller.js":29,"./../views/viewstory/components/viewstory.directives.storyheader.js":30,"./../views/viewstory/viewstory.controller.js":31,"./../views/viewstory/viewstory.scroll.js":32,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/directive.js":29,"./../views/home/home.controller.js":30,"./../views/viewstory/components/viewstory.directives.storyheader.js":31,"./../views/viewstory/viewstory.controller.js":32,"./../views/viewstory/viewstory.scroll.js":33,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87409,6 +87412,13 @@ angular.module('bowyerville')
 })();
 
 },{}],29:[function(require,module,exports){
+angular.module('bowyerville')
+	.directive("siteFooter", function() {
+		return {
+			templateUrl: '../views/footer/footer.html'
+		};
+	});
+},{}],30:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87443,14 +87453,14 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 angular.module('bowyerville')
 	.directive("storyHeader", function() {
 		return {
 			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
 		};
 	});
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87525,6 +87535,16 @@ angular.module('bowyerville')
 				}
 			}
 		};
+		$scope.footer = [
+		    {
+		    	href: "#/",
+		    	text: "HOME"
+		    },
+		    {
+		    	href: "#/characters",
+		    	text: "CHARACTERS"
+		    }
+		];
 		
 		/*
 		 * Initialise stories
@@ -87870,7 +87890,7 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 (function() {
 	'use strict';
 	

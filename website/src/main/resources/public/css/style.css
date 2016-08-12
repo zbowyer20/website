@@ -252,11 +252,15 @@
 .list-element--horizontal {
   display: inline; }
 
-.list-element__subheader + .list-element__subheader:before {
+.list-element__separated + .list-element__separated:before {
   content: '•';
   font-size: 24px;
   color: black;
   margin: 0 10px; }
+.list-element__separated.list-element__separated--footer + .list-element__separated--footer:before {
+  margin: 0 5px;
+  font-size: 16px;
+  color: white; }
 
 .md-button.md-icon-button.button--large {
   height: 80px;
@@ -373,7 +377,7 @@
   margin: auto;
   position: fixed;
   bottom: -100px;
-  z-index: 0; }
+  z-index: 50; }
   @media screen and (max-width: 1024px) {
     .image__story {
       position: absolute;
@@ -423,15 +427,6 @@
 
 .story {
   margin-right: 10px; }
-
-.story:after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 95%;
-  margin: 20px auto;
-  background: blue;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(25%, #000000), color-stop(75%, #000000)); }
 
 .story__text {
   color: white;
@@ -579,5 +574,21 @@
 
 .credit__credit {
   font-style: italic; }
+
+.footer {
+  text-align: right;
+  padding-right: 5px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2); }
+
+.footer__text {
+  color: white;
+  font-family: 'Montserrat', sans-serif; }
+
+.footer__link:hover {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

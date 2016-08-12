@@ -30,4 +30,7 @@
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
+	var components = {
+			directives: require('./../views/directive.js')
+	};
 })()
