@@ -133,9 +133,10 @@
   text-align: center;
   padding-top: 5%; }
 
+.container__story-element {
+  display: inline-block; }
+
 .container__image {
-  display: inline-block;
-  vertical-align: top;
   width: 15.5%; }
   @media screen and (max-width: 1024px) {
     .container__image {
@@ -192,7 +193,6 @@
 .text__header {
   font-family: 'Montserrat', sans-serif;
   color: white;
-  text-align: center;
   padding: 10px 0;
   margin: 0; }
 
@@ -296,7 +296,6 @@
       max-height: 550px; } }
 
 .article__story {
-  display: inline-block;
   width: 69%;
   margin-top: 50px; }
   @media screen and (max-width: 1024px) {
@@ -333,7 +332,6 @@
 
 .image__story {
   height: 760px;
-  margin: auto;
   position: fixed;
   bottom: -100px;
   z-index: 50; }

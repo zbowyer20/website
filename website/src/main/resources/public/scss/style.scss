@@ -199,9 +199,11 @@ $width__desktop: 1025px;
 	padding-top: 5%; 
 }
 
-.container__image {
+.container__story-element {
 	display: inline-block;
-	vertical-align: top;
+}
+
+.container__image {
 	width: 15.5%;
 	
 	@include only-mobile-and-tablet {
@@ -271,7 +273,6 @@ $width__desktop: 1025px;
 .text__header {
 	font-family: 'Montserrat', sans-serif;
 	color: $text__colour--light;
-	text-align: center;
 	padding: 10px 0;
 	margin: 0;
 }
@@ -404,7 +405,6 @@ $width__desktop: 1025px;
 }
 
 .article__story {
-	display: inline-block;
 	width: 69%;
 	margin-top: 50px;
 	
@@ -448,7 +448,6 @@ $width__desktop: 1025px;
 
 .image__story {
 	height: 760px;
-	margin: auto;
 	position: fixed;
 	bottom: -100px;
 	z-index: $priority--medium;

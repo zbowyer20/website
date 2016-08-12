@@ -10,10 +10,10 @@
 	</div>
 	
 	<div id="container" class="animate__fade" ng-show="content.selected.type != 'video'">
-		<div class="container__image smooth-moves" ng-class="{'container__image--active': isImageActive(), 'container__image--inactive': !isImageActive()}">
+		<div class="container__image container__story-element smooth-moves" ng-class="{'container__image--active': isImageActive(), 'container__image--inactive': !isImageActive()}">
 			<img ng-repeat="n in [0, 1, 2]" class="image__story" ng-show="content.images.current === n && content.images.container[n]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[n]}}"></img>
 		</div>
-		<article class="article__story">
+		<article class="article__story container__story-element">
 			<div class="header__story">
 				<div story-header class="header"></div>
 				<div class="header header--right">
