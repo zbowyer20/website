@@ -7,7 +7,8 @@
 	
 	
 	/** @ngInject */
-	function CharactersController($http, $scope) {
+	function CharactersController($http, $scope, $cookieStore) {
+		var viewedStories = $cookieStore.get("viewedStories");
 		$scope.characters = [];
 		$scope.selected = null;
 		
@@ -16,6 +17,23 @@
 			console.log(response);
 			$scope.characters = response.data;
 		});
+		
+		function isInCookie(name) {
+			return viewedStories.indexOf(name) > -1;
+		}
+		
+		$scope.displayCharacter = function(character) {
+			return character.requiresBlackout == null || isInCookie(character.requiresBlackout);
+		}
+		
+		$scope.getCharacterImage = function(character) {
+			if (character.requiresFull == null || isInCookie(character.requiresFull)) {
+				return character.img;
+			}
+			else if (character.requiresBlackout == null || isInCookie(character.requiresBlackout)) {
+				return character.imgBlackout;
+			}
+		}
 		
 		$scope.showCharacter = function(character) {
 			$scope.selected = character;
