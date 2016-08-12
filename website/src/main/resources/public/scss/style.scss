@@ -182,7 +182,7 @@ $width__desktop: 1025px;
 }
 
 .container__subheader {
-	background: white;
+	background: $background__colour--light;
 	display: inline-block;
 	padding: 0 10%;
 }
@@ -259,7 +259,7 @@ $width__desktop: 1025px;
 }
 
 .header__story {
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid $text__colour--light;
 }
 
 .header__video {
@@ -320,7 +320,7 @@ $width__desktop: 1025px;
 
 .header__text--underline {
 	width: 100%;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid $text__colour--light;
 }
 
 .header__text--bio {
@@ -555,7 +555,7 @@ $width__desktop: 1025px;
 	height: 35px;
 	width: 2px;
 	bottom: -15px;
-	background: white;
+	background: $background__colour--light;
 	
 	&.ng-hide-remove {
 		height: 0;
@@ -590,8 +590,8 @@ $width__desktop: 1025px;
 	width: 20px;
 	bottom: -8px;
 	border-radius: 50%;
-	border: 2px solid white;
-	background: black;
+	border: 2px solid $background__colour--light;
+	background: $background__colour--dark;
 	
 	&:hover {
 		background-color: $theme__colour--dark;
