@@ -7,7 +7,12 @@ class CharacterRepository {
 	private static $characters = array();
 	
 	protected static function init() {
-		$environment = "local";
+		if (file_exists("../../_production.txt")) {
+			$environment = "production";
+		}
+		else {
+			$environment = "local";
+		}
 		$servername = "localhost";
 		$usernames = array(
 			"production" => "zakbvnkr_zb",
