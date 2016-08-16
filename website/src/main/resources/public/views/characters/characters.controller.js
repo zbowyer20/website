@@ -23,7 +23,7 @@
 		];
 		
 		// pick up all available stories
-		$http.get('php/services/getCharacters.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=characters').then(function(response) {
 			console.log(response);
 			$scope.characters = response.data;
 		});

@@ -11,7 +11,7 @@
 		$scope.credits = [];
 
 		// pick up all available stories
-		$http.get('php/services/getCredits.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=credits').then(function(response) {
 			$scope.credits = response.data;
 		});
 					

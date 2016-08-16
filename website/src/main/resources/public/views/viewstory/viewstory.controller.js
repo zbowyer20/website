@@ -453,7 +453,7 @@
 		loading();
 
 		// pick up all available stories
-		$http.get('php/services/getStories.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=stories').then(function(response) {
 			data = response.data;
 			init();
 			// TODO implement first story

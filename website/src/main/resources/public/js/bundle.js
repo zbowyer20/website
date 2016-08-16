@@ -87358,7 +87358,7 @@ return jQuery;
 		];
 		
 		// pick up all available stories
-		$http.get('php/services/getCharacters.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=characters').then(function(response) {
 			console.log(response);
 			$scope.characters = response.data;
 		});
@@ -87432,7 +87432,7 @@ angular.module('bowyerville')
 		$scope.credits = [];
 
 		// pick up all available stories
-		$http.get('php/services/getCredits.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=credits').then(function(response) {
 			$scope.credits = response.data;
 		});
 					
@@ -87944,7 +87944,7 @@ angular.module('bowyerville')
 		loading();
 
 		// pick up all available stories
-		$http.get('php/services/getStories.php').then(function(response) {
+		$http.get('php/services/getResults.php?type=stories').then(function(response) {
 			data = response.data;
 			init();
 			// TODO implement first story
