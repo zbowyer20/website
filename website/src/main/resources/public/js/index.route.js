@@ -11,6 +11,10 @@
 			templateUrl: 'views/home/home.html',
 			controller: 'HomeController',
 			controllerAs: 'controller'
+		}).when('/writer', {
+			templateUrl: 'views/writer/writer.html',
+			controller: 'WriterController',
+			controllerAs: 'controller'
 		}).when('/addstory', {
 			templateUrl: 'views/addStory.html',
 			controller: 'addstory',

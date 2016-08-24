@@ -233,6 +233,20 @@ $width__desktop: 1025px;
 	}
 }
 
+.container__writer-element {
+	position: relative;
+	display: inline-block;
+}
+
+.container__writer-text {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
 .veil {
 	position: absolute;
 	left: 0;
@@ -308,6 +322,16 @@ $width__desktop: 1025px;
 	@include desktop {
 		font-size: 48px;
 	}
+}
+
+.text__writer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	opacity: 0.7;
+	font-size: 80px;
 }
 
 .header__text--character {

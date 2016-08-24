@@ -87286,11 +87286,14 @@ return jQuery;
 	var credits = {
 			controller: require('./../views/credits/credits.controller.js')
 	};
+	var writer = {
+			controller: require('./../views/writer/writer.controller.js')
+	};
 	var components = {
 			directives: require('./../views/directive.js')
 	};
 })()
-},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/directive.js":29,"./../views/home/home.controller.js":30,"./../views/viewstory/components/viewstory.directives.storyheader.js":31,"./../views/viewstory/viewstory.controller.js":32,"./../views/viewstory/viewstory.scroll.js":33,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/directive.js":29,"./../views/home/home.controller.js":30,"./../views/viewstory/components/viewstory.directives.storyheader.js":31,"./../views/viewstory/viewstory.controller.js":32,"./../views/viewstory/viewstory.scroll.js":33,"./../views/writer/writer.controller.js":34,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87310,6 +87313,10 @@ return jQuery;
 		$routeProvider.when('/', {
 			templateUrl: 'views/home/home.html',
 			controller: 'HomeController',
+			controllerAs: 'controller'
+		}).when('/writer', {
+			templateUrl: 'views/writer/writer.html',
+			controller: 'WriterController',
 			controllerAs: 'controller'
 		}).when('/addstory', {
 			templateUrl: 'views/addStory.html',
@@ -88000,4 +88007,19 @@ angular.module('bowyerville')
 			}
 		});
 })();
+},{}],34:[function(require,module,exports){
+(function() {
+	'use strict';
+	
+	angular
+		.module('bowyerville')
+		.controller('WriterController', WriterController);
+	
+	
+	/** @ngInject */
+	function WriterController($http, $scope) {
+					
+	}
+})();
+
 },{}]},{},[23]);
