@@ -349,6 +349,8 @@ $width__desktop: 1025px;
 	left: 50%;
 	position: absolute;
 	top: 40%;
+	background: black;
+	padding: 10px;
 }
 
 .container__writer-text:hover {
@@ -411,7 +413,7 @@ $width__desktop: 1025px;
 	font-family: 'Dosis', sans-serif;
 }
 
-.text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
+.text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction, .text--Colourblind {
 	font-family: 'Inconsolata', monospace;
 }
 

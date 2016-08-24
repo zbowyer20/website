@@ -259,7 +259,9 @@
   transform: translate(-50%, -40%);
   left: 50%;
   position: absolute;
-  top: 40%; }
+  top: 40%;
+  background: black;
+  padding: 10px; }
 
 .container__writer-text:hover .text__writer {
   top: 10%;
@@ -305,7 +307,7 @@
 .text--Albert {
   font-family: 'Dosis', sans-serif; }
 
-.text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction {
+.text--The-Stranger, .header__text--RunningWaterIntroduction, .text--RunningWaterIntroduction, .text--Colourblind {
   font-family: 'Inconsolata', monospace; }
 
 .text--Fido {
