@@ -340,15 +340,25 @@ $width__desktop: 1025px;
 	color: white;
 	opacity: 0.7;
 	font-size: 80px;
+	width: 100%;
+}
+
+.text__writer--info {
+	opacity: 0;
+	color: white;
+	transform: translate(-50%, -32%);
+	left: 50%;
+	position: absolute;
+	top: 32%;
 }
 
 .text__writer--description {
 	opacity: 0;
 	color: white;
-	transform: translate(-50%, -40%);
+	transform: translate(-50%, -45%);
 	left: 50%;
 	position: absolute;
-	top: 40%;
+	top: 45%;
 	background: black;
 	padding: 10px;
 }
@@ -357,6 +367,10 @@ $width__desktop: 1025px;
 	.text__writer {
 		top: 10%;
 		transform: translate(-50%, 0);
+		opacity: 1;
+	}
+	
+	.text__writer--info {
 		opacity: 1;
 	}
 	
