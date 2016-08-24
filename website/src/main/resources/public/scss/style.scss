@@ -138,6 +138,10 @@ $width__desktop: 1025px;
 	@include transition(all linear 0.5s);
 }
 
+.fast-moves {
+	@include transition(all linear 0.3s);
+}
+
 .container {
 	overflow: hidden;
 }
@@ -231,6 +235,10 @@ $width__desktop: 1025px;
 	@include only-mobile-and-tablet {
 		width: auto;
 	}
+}
+
+.container__writer {
+	text-align: center;
 }
 
 .container__writer-element {
@@ -332,6 +340,27 @@ $width__desktop: 1025px;
 	color: white;
 	opacity: 0.7;
 	font-size: 80px;
+}
+
+.text__writer--description {
+	opacity: 0;
+	color: white;
+	transform: translate(-50%, -40%);
+	left: 50%;
+	position: absolute;
+	top: 40%;
+}
+
+.container__writer-text:hover {
+	.text__writer {
+		top: 10%;
+		transform: translate(-50%, 0);
+		opacity: 1;
+	}
+	
+	.text__writer--description {
+		opacity: 1;
+	}
 }
 
 .header__text--character {
