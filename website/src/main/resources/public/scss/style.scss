@@ -10,6 +10,7 @@ $priority--medium: 50;
 $priority--top: 100;
 
 $width__desktop: 1025px;
+$width__desktop--large: 1300px;
 
 @mixin only-mobile-and-tablet {
   @media screen and (max-width: $width__desktop - 1px) {
@@ -19,6 +20,12 @@ $width__desktop: 1025px;
 
 @mixin desktop {
 	@media screen and (min-width: $width__desktop) {
+		@content;
+	}
+}
+
+@mixin desktop--large {
+	@media screen and (min-width: $width__desktop--large) {
 		@content;
 	}
 }
@@ -240,11 +247,16 @@ $width__desktop: 1025px;
 .container__writer {
 	width: 100%;
 	text-align: center;
+	font-size: 0;
 }
 
 .container__writer-element {
 	position: relative;
-	width: 50%;
+	width: 100%;
+	display: inline-block;
+	@include desktop--large {
+		width: 50%;
+	}
 }
 
 .container__writer-text {
@@ -253,6 +265,11 @@ $width__desktop: 1025px;
 	bottom: 0;
 	left: 0;
 	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+	
+	@include desktop--large {
+		background: none;
+	}
 }
 
 .veil {
@@ -334,27 +351,39 @@ $width__desktop: 1025px;
 
 .text__writer {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	background: none;
+	top: 10%;
+	transform: translate(0, -50%);
+	opacity: 1;
 	color: white;
-	opacity: 0.7;
 	font-size: 80px;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.7);
+	
+	@include desktop--large {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0.7;
+		background: rgba(0, 0, 0, 0.7);
+	}
 }
 
 .text__writer--info {
-	opacity: 0;
+	opacity: 1;
 	color: white;
 	transform: translate(-50%, -32%);
 	left: 50%;
 	position: absolute;
 	top: 32%;
+	font-size: 18px;
+	
+	@include desktop--large {
+		opacity: 0;
+	}
 }
 
 .text__writer--description {
-	opacity: 0;
+	opacity: 1;
 	color: white;
 	transform: translate(-50%, -45%);
 	left: 50%;
@@ -362,24 +391,31 @@ $width__desktop: 1025px;
 	top: 45%;
 	background: black;
 	padding: 10px;
+	font-size: 14px;
+	
+	@include desktop--large {
+		opacity: 0;
+	}
 }
 
-.container__writer-text:hover {
-	background: rgba(0, 0, 0, 0.5);
-	
-	.text__writer {
-		background: none;
-		top: 10%;
-		transform: translate(-50%, 0);
-		opacity: 1;
-	}
-	
-	.text__writer--info {
-		opacity: 1;
-	}
-	
-	.text__writer--description {
-		opacity: 1;
+@include desktop--large {
+	.container__writer-text:hover {
+		background: rgba(0, 0, 0, 0.5);
+		
+		.text__writer {
+			background: none;
+			top: 10%;
+			transform: translate(-50%, 0);
+			opacity: 1;
+		}
+		
+		.text__writer--info {
+			opacity: 1;
+		}
+		
+		.text__writer--description {
+			opacity: 1;
+		}
 	}
 }
 
