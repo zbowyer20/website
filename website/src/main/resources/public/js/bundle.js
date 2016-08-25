@@ -87452,6 +87452,11 @@ angular.module('bowyerville')
 		return {
 			templateUrl: '../views/footer/footer.html'
 		};
+	})
+	.directive("siteHeader", function() {
+		return {
+			templateUrl: '../views/header/header.html'
+		}
 	});
 },{}],30:[function(require,module,exports){
 (function() {
@@ -88018,7 +88023,18 @@ angular.module('bowyerville')
 	
 	/** @ngInject */
 	function WriterController($http, $scope) {
-					
+		$scope.title = "Writer";
+		
+		$scope.footer = [
+		    {
+		     	href: "#/",
+		       	text: "HOME"
+		    },
+		    {
+		       	href: "#/developer",
+		       	text: "DEVELOPER"
+		    }
+		];
 	}
 })();
 
