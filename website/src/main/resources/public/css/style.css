@@ -166,11 +166,12 @@
       width: auto; } }
 
 .container__writer {
+  width: 100%;
   text-align: center; }
 
 .container__writer-element {
   position: relative;
-  display: inline-block; }
+  width: 50%; }
 
 .container__writer-text {
   position: absolute;
