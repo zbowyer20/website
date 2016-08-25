@@ -177,8 +177,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5); }
+  right: 0; }
 
 .veil {
   position: absolute;
@@ -252,7 +251,8 @@
   color: white;
   opacity: 0.7;
   font-size: 80px;
-  width: 100%; }
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7); }
 
 .text__writer--info {
   opacity: 0;
@@ -272,14 +272,17 @@
   background: black;
   padding: 10px; }
 
-.container__writer-text:hover .text__writer {
-  top: 10%;
-  transform: translate(-50%, 0);
-  opacity: 1; }
-.container__writer-text:hover .text__writer--info {
-  opacity: 1; }
-.container__writer-text:hover .text__writer--description {
-  opacity: 1; }
+.container__writer-text:hover {
+  background: rgba(0, 0, 0, 0.5); }
+  .container__writer-text:hover .text__writer {
+    background: none;
+    top: 10%;
+    transform: translate(-50%, 0);
+    opacity: 1; }
+  .container__writer-text:hover .text__writer--info {
+    opacity: 1; }
+  .container__writer-text:hover .text__writer--description {
+    opacity: 1; }
 
 .site-header {
   text-align: center; }
