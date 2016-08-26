@@ -24,11 +24,7 @@
 
 .body {
   background-color: black;
-  height: auto;
-  overflow: hidden; }
-  @media screen and (max-width: 1024px) {
-    .body {
-      overflow: auto; } }
+  height: auto; }
 
 .full-page {
   overflow: hidden; }
@@ -382,6 +378,9 @@
 
 .header__text--TheCorrection, .text--TheCorrection {
   font-family: 'Dosis', sans-serif; }
+
+.header__text--MeantToBe, .text--MeantToBe {
+  font-family: 'Cormorant', sans-serif; }
 
 .article {
   width: 66%; }

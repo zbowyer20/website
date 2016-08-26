@@ -75,11 +75,6 @@ $width__desktop--large: 1300px;
 .body {
 	background-color: $background__colour--dark;
 	height: auto;
-	overflow: hidden;
-	
-	@include only-mobile-and-tablet {
-		overflow: auto;
-	}
 }
 
 .full-page {
@@ -514,6 +509,10 @@ $width__desktop--large: 1300px;
 
 .header__text--TheCorrection, .text--TheCorrection {
 	font-family: 'Dosis', sans-serif;
+}
+
+.header__text--MeantToBe, .text--MeantToBe {
+	font-family: 'Cormorant', sans-serif;
 }
 
 .article {
