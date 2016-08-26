@@ -164,7 +164,8 @@
 .container__writer {
   width: 100%;
   text-align: center;
-  font-size: 0; }
+  font-size: 0;
+  padding: 30px 0; }
 
 .container__writer-element {
   position: relative;
@@ -297,7 +298,7 @@
     background: rgba(0, 0, 0, 0.5); }
     .container__writer-text:hover .text__writer {
       background: none;
-      top: 10%;
+      top: 0;
       transform: translate(-50%, 0);
       opacity: 1; }
     .container__writer-text:hover .text__writer--info {
