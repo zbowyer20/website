@@ -7,7 +7,7 @@
 	
 	
 	/** @ngInject */
-	function DeveloperController($scope, $timeout) {
+	function DeveloperController($scope, $timeout, $http) {
 		$scope.DATE_OF_BIRTH = new Date("03-01-1993");
 		$scope.TIME_PERIODS = {
 			DAYS: 0,
@@ -73,47 +73,54 @@
 		$scope.history = [
 		    {
 		    	tag: "General crawling around",
-		    	start: new Date("03-01-1993"),
-		    	end: new Date("09-07-1998"),
-		    	colour: "#123456"
-		    },
-		    {
-		    	tag: "Primary school",
-		    	start: new Date("09-07-1998"),
-		    	end: new Date("09-07-2004"),
-		    	colour: "#A56141"
+		    	date: new Date("03-01-1993"),
+		    	fileName: "birth.html"
 		    },
 		    {
 		    	tag: "Secondary school",
-		    	start: new Date("09-07-2004"),
-		    	end: new Date("09-07-2011"),
-		    	colour: "#005349"
+		    	date: new Date("09-07-2004"),
+		    	fileName: "shsb.html"
 		    },
 		    {
 		    	tag: "University of Kent",
-		    	start: new Date("09-07-2011"),
-		    	end: new Date("09-07-2014"),
-		    	colour: "#013986"
+		    	date: new Date("09-07-2011"),
+		    	fileName: "uni.html"
+		    },
+		    {
+		    	tag: "Likely",
+		    	date: new Date("09-07-2012"),
+		    	fileName: "likely.html"
+		    },
+		    {
+		    	tag: "RELEASE",
+		    	date: new Date("09-07-2013"),
+		    	fileName: "release.html"
 		    },
 		    {
 		    	tag: "Marks & Spencer",
-		    	start: new Date("09-07-2014"),
-		    	end: new Date(),
-		    	colour: "#C5D654"
+		    	date: new Date("09-07-2014"),
+		    	fileName: "mns.html"
 		    }
 		];
-		$scope.selected = {
-			tag: "Marks & Spencer",
-			text: "views/developer/history/marks.html"
-		}
+		$scope.content = "";
 		
 		$scope.getSkillWidth = function(level) {
 			return loaded ? level + '%' : 0;
 		}
 		
 		$scope.getHistoryPosition = function(date, right) {
-			var pos = (((date - $scope.DATE_OF_BIRTH) / (new Date() - $scope.DATE_OF_BIRTH)) * 100);
-			return right ? 100 - pos + "%" : pos + "%";
+			return (((date - $scope.DATE_OF_BIRTH) / (new Date() - $scope.DATE_OF_BIRTH)) * 100) + "%";
+		}
+		
+		$scope.populateHistory = function(period) {
+			$http.get('html/experience/' + period.fileName).then(function(response) {
+				$scope.content = response.data;
+				console.log($scope.content);
+			});
+		}
+		
+		$scope.clearHistory = function() {
+			$scope.content = "";
 		}
 		
 		$timeout( function() {
