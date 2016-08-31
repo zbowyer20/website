@@ -33,6 +33,9 @@
 	var writer = {
 			controller: require('./../views/writer/writer.controller.js')
 	};
+	var developer = {
+			controller: require('./../views/developer/developer.controller.js')
+	};
 	var components = {
 			directives: require('./../views/directive.js')
 	};

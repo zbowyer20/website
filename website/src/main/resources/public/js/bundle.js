@@ -87289,11 +87289,14 @@ return jQuery;
 	var writer = {
 			controller: require('./../views/writer/writer.controller.js')
 	};
+	var developer = {
+			controller: require('./../views/developer/developer.controller.js')
+	};
 	var components = {
 			directives: require('./../views/directive.js')
 	};
 })()
-},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/directive.js":29,"./../views/home/home.controller.js":30,"./../views/viewstory/components/viewstory.directives.storyheader.js":31,"./../views/viewstory/viewstory.controller.js":32,"./../views/viewstory/viewstory.scroll.js":33,"./../views/writer/writer.controller.js":34,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/developer/developer.controller.js":29,"./../views/directive.js":30,"./../views/home/home.controller.js":31,"./../views/viewstory/components/viewstory.directives.storyheader.js":32,"./../views/viewstory/viewstory.controller.js":33,"./../views/viewstory/viewstory.scroll.js":34,"./../views/writer/writer.controller.js":35,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87313,6 +87316,10 @@ return jQuery;
 		$routeProvider.when('/', {
 			templateUrl: 'views/home/home.html',
 			controller: 'HomeController',
+			controllerAs: 'controller'
+		}).when('/developer', {
+			templateUrl: 'views/developer/developer.html',
+			controller: 'DeveloperController',
 			controllerAs: 'controller'
 		}).when('/writer', {
 			templateUrl: 'views/writer/writer.html',
@@ -87447,6 +87454,91 @@ angular.module('bowyerville')
 })();
 
 },{}],29:[function(require,module,exports){
+(function() {
+	'use strict';
+	
+	angular
+		.module('bowyerville')
+		.controller('DeveloperController', DeveloperController);
+	
+	
+	/** @ngInject */
+	function DeveloperController($scope, $timeout) {
+		var DATE_OF_BIRTH = new Date("03-01-1993");
+		var TIME_PERIODS = {
+			DAYS: 0,
+			YEARS: 1
+		}
+		var loaded = false;
+		
+		$scope.me = {
+			name: "Zak Bowyer",
+			img: "images/developer/zak.png",
+			location: "London, UK",
+			level: getDifferenceIn(TIME_PERIODS.YEARS, new Date(), DATE_OF_BIRTH),
+			hp: {
+				current: 250,
+				max: 250
+			},
+			mp: {
+				current: 10,
+				max: 10
+			}
+		}
+		$scope.skills = [
+		    {
+		    	name: "HTML5",
+		    	level: 80
+		    },
+		    {
+		    	name: "SCSS",
+		    	level: 75
+		    },
+		    {
+		    	name: "AngularJS",
+		    	level: 45
+		    },
+		    {
+		    	name: "JavaScript",
+		    	level: 60
+		    },
+		    {
+		    	name: "Java",
+		    	level: 75
+		    },
+		    {
+		    	name: "Spring",
+		    	level: 50
+		    },
+		    {
+		    	name: "Git",
+		    	level: 75
+		    },
+		    {
+		    	name: "Humour",
+		    	level: 5
+		    }
+		]
+		
+		function getDifferenceIn(period, date1, date2) {
+			var difference = date1 - date2;
+			var days = difference / (1000 * 3600 * 24);
+			if (period === TIME_PERIODS.DAYS) return Math.floor(days);
+			if (period === TIME_PERIODS.YEARS) return Math.floor(days / 365.25);
+		}
+		
+		$scope.getSkillWidth = function(level) {
+			return loaded ? level + '%' : 0;
+		}
+		
+		$timeout( function() {
+			loaded = true;
+		}, 600)
+		
+	}
+})();
+
+},{}],30:[function(require,module,exports){
 angular.module('bowyerville')
 	.directive("siteFooter", function() {
 		return {
@@ -87458,7 +87550,7 @@ angular.module('bowyerville')
 			templateUrl: '../views/header/header.html'
 		}
 	});
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87493,14 +87585,14 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 angular.module('bowyerville')
 	.directive("storyHeader", function() {
 		return {
 			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
 		};
 	});
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87969,7 +88061,7 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -88012,7 +88104,7 @@ angular.module('bowyerville')
 			}
 		});
 })();
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 (function() {
 	'use strict';
 	

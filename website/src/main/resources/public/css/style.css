@@ -85,6 +85,14 @@
 .container {
   overflow: hidden; }
 
+.container__developer {
+  padding: 20px; }
+
+.container__developer-stats--high {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 15px; }
+
 .container__bio {
   position: relative;
   top: 50%;
@@ -186,6 +194,34 @@
     .container__writer-text {
       background: none; } }
 
+.row__developer {
+  display: block;
+  margin: 5px 0; }
+
+.section__developer-stats {
+  padding-bottom: 10px;
+  border-bottom: 1px solid white; }
+
+.section__developer-skills {
+  display: inline-block;
+  width: 40%; }
+
+.container__developer--skill {
+  display: inline-block;
+  height: 10px;
+  width: 100px;
+  position: relative;
+  background-color: white;
+  border-radius: 5px; }
+
+.container__developer--skill__progress {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background-color: #19B5FE;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
 .veil {
   position: absolute;
   left: 0;
@@ -211,6 +247,10 @@
 .header {
   display: inline-block; }
 
+.header__developer {
+  margin: 10px 0;
+  color: white; }
+
 .header__story {
   border-bottom: 1px solid white; }
 
@@ -220,11 +260,36 @@
 .header--right {
   float: right; }
 
+.developer__row {
+  display: block;
+  margin: 10px 0; }
+
+.developer__head {
+  color: white; }
+
+.developer__title {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  margin-right: 5px;
+  width: 160px;
+  display: inline-block;
+  text-align: center; }
+
+.developer__answer {
+  color: white;
+  text-transform: uppercase; }
+
+.developer__extra {
+  color: white; }
+
 .text__header {
   font-family: 'Montserrat', sans-serif;
   color: white;
   padding: 10px 0;
-  margin: 0; }
+  margin: 0;
+  text-transform: uppercase; }
 
 .text__header--primary {
   font-size: 100px; }
@@ -249,6 +314,24 @@
   @media screen and (min-width: 1025px) {
     .text__header--book {
       font-size: 48px; } }
+
+.text__developer-stats--name {
+  font-size: 32px;
+  color: white; }
+
+.text__developer-stats--type {
+  padding: 5px;
+  background: white;
+  text-transform: uppercase;
+  margin-right: 10px;
+  display: inline-block; }
+
+.text__developer-stats--type--medium {
+  width: 100px; }
+
+.text__developer-stats--value {
+  display: inline-block;
+  color: white; }
 
 .text__writer {
   position: absolute;
@@ -428,6 +511,10 @@
   font-family: 'Raleway', sans-serif;
   margin: 10px 0;
   color: white; }
+
+.image__developer {
+  display: inline-block;
+  height: 200px; }
 
 .image__story {
   height: 760px;

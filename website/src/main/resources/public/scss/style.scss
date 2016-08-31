@@ -148,6 +148,16 @@ $width__desktop--large: 1300px;
 	overflow: hidden;
 }
 
+.container__developer {
+	padding: 20px;
+}
+
+.container__developer-stats--high {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
 .container__bio {
 	position: relative;
 	top: 50%;
@@ -268,6 +278,39 @@ $width__desktop--large: 1300px;
 	}
 }
 
+.row__developer {
+	display: block;
+	margin: 5px 0;
+}
+
+.section__developer-stats {
+	padding-bottom: 10px;
+	border-bottom: 1px solid $background__colour--light;
+}
+
+.section__developer-skills {
+	display: inline-block;
+	width: 40%;
+}
+
+.container__developer--skill {
+	display: inline-block;
+	height: 10px;
+	width: 100px;
+	position: relative;
+	background-color: $background__colour--light;
+	border-radius: 5px;
+}
+
+.container__developer--skill__progress {
+	position: absolute;
+	left: 0;
+	height: 100%;
+	background-color: $theme__colour--light;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
 .veil {
 	position: absolute;
 	left: 0;
@@ -297,6 +340,11 @@ $width__desktop--large: 1300px;
 	display: inline-block;
 }
 
+.header__developer {
+	margin: 10px 0;
+	color: $text__colour--light;
+}
+
 .header__story {
 	border-bottom: 1px solid $text__colour--light;
 }
@@ -309,11 +357,41 @@ $width__desktop--large: 1300px;
 	float: right;
 }
 
+.developer__row {
+	display: block;
+	margin: 10px 0;
+}
+
+.developer__head {
+	color: $text__colour--light;
+}
+
+.developer__title {
+	background-color: $text__colour--light;
+	color: $text__colour--dark;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	margin-right: 5px;
+	width: 160px;
+	display: inline-block;
+	text-align: center;
+}
+
+.developer__answer {
+	color: $text__colour--light;
+	text-transform: uppercase;
+}
+
+.developer__extra {
+	color: $text__colour--light;
+}
+
 .text__header {
 	font-family: 'Montserrat', sans-serif;
 	color: $text__colour--light;
 	padding: 10px 0;
 	margin: 0;
+	text-transform: uppercase;
 }
 
 .text__header--primary {
@@ -343,6 +421,28 @@ $width__desktop--large: 1300px;
 	@include desktop {
 		font-size: 48px;
 	}
+}
+
+.text__developer-stats--name {
+	font-size: 32px;
+	color: $text__colour--light;
+}
+
+.text__developer-stats--type {
+	padding: 5px;
+	background: $background__colour--light;
+	text-transform: uppercase;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.text__developer-stats--type--medium {
+	width: 100px;
+}
+
+.text__developer-stats--value {
+	display: inline-block;
+	color: $text__colour--light;
 }
 
 .text__writer {
@@ -570,6 +670,11 @@ $width__desktop--large: 1300px;
 	font-family: 'Raleway', sans-serif;
 	margin: 10px 0;
 	color: $text__colour--light;
+}
+
+.image__developer {
+	display: inline-block;
+	height: 200px;
 }
 
 .image__story {
