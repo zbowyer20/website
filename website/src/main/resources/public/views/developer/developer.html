@@ -22,12 +22,21 @@
 		</div>
 	</section>
 	<section class="section__developer-skills">
-		<h3 class="header__developer">Skills</h3>
+		<h3 class="header__developer">Abilities</h3>
 		<div class="row__developer" ng-repeat="skill in skills">
 			<span class="text__developer-stats--type text__developer-stats--type--medium">{{skill.name}}</span>
 			<div class="container__developer--skill">
 				<div class="container__developer--skill__progress smooth-moves" ng-style="{'width': getSkillWidth(skill.level)}"></div>
 			</div>
 		</div>
+	</section>
+	<section class="section__developer-history">
+		<h3 class="header__developer">History</h3>
+		<div class="container__developer--history">
+			<div class="container__developer--period" ng-repeat="period in history" ng-class="{'active': selected.tag == period.tag}" ng-style="{'left': getHistoryPosition(period.start, false), 'right': getHistoryPosition(period.end, true)}">
+				<span class="text__developer--period">Lvl. {{getDifferenceIn(TIME_PERIODS.YEARS, period.start, DATE_OF_BIRTH)}}-{{getDifferenceIn(TIME_PERIODS.YEARS, period.end, DATE_OF_BIRTH)}}</span>
+			</div>
+		</div>
+		<div class="container__developer--background" ng-bind-html="selected.text"></div>
 	</section>
 </div>
