@@ -339,6 +339,9 @@
 .developer__extra {
   color: white; }
 
+.text__developer {
+  font-family: 'Montserrat', sans-serif; }
+
 .text__header {
   font-family: 'Montserrat', sans-serif;
   color: white;

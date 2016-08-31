@@ -1,37 +1,39 @@
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
 <div class="container__developer">
 	<section class="section__developer-stats">
 		<img class="image__developer" ng-src="{{me.img}}" />
 		<div class="container__developer-stats--high">
-			<span class="row__developer text__developer-stats--name">{{me.name}}</span>
+			<span class="row__developer text__developer text__developer-stats--name">{{me.name}}</span>
 			<div class="row__developer">
-				<span class="text__developer-stats--type">Location</span>
-				<span class="text__developer-stats--value">{{me.location}}</span>
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Location</span>
+				<span class="text__developer text__developer-stats--value">{{me.location}}</span>
 			</div>
 			<div class="row__developer">
-				<span class="text__developer-stats--type">Level</span>
-				<span class="text__developer-stats--value">{{me.level}}</span>
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Level</span>
+				<span class="text__developer text__developer-stats--value">{{me.level}}</span>
 			</div>
 			<div class="row__developer">
-				<span class="text__developer-stats--type">HP</span>
-				<span class="text__developer-stats--value">{{me.hp.current}} / {{me.hp.max}}</span>
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">HP</span>
+				<span class="text__developer text__developer-stats--value">{{me.hp.current}} / {{me.hp.max}}</span>
 			</div>
 			<div class="row__developer">
-				<span class="text__developer-stats--type">MP</span>
-				<span class="text__developer-stats--value">{{me.mp.current}} / {{me.mp.max}}</span>
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">MP</span>
+				<span class="text__developer text__developer-stats--value">{{me.mp.current}} / {{me.mp.max}}</span>
 			</div>
 		</div>
 	</section>
 	<section class="section__developer-skills">
-		<h3 class="header__developer">Abilities</h3>
+		<h3 class="header__developer text__developer">Abilities</h3>
 		<div class="row__developer" ng-repeat="skill in skills">
-			<span class="text__developer-stats--type text__developer-stats--type--medium">{{skill.name}}</span>
+			<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">{{skill.name}}</span>
 			<div class="container__developer--skill">
 				<div class="container__developer--skill__progress smooth-moves" ng-style="{'width': getSkillWidth(skill.level)}"></div>
 			</div>
 		</div>
 	</section>
 	<section class="section__developer-history">
-		<h3 class="header__developer">History</h3>
+		<h3 class="header__developer text__developer">History</h3>
 		<div class="container__developer--history">
 			<div class="roundel container__developer--period" ng-repeat="period in history" ng-mouseover="populateHistory(period)" ng-mouseleave="clearHistory()" ng-style="{'left': getHistoryPosition(period.date)}" />
 			<div class="container__developer--experience fast-moves" ng-class="{'active': content.length > 0}" ng-bind-html="content" />
