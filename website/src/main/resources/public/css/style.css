@@ -277,6 +277,11 @@
   display: none;
   background: white; }
 
+.text__developer-stats--comment {
+  font-size: 26px;
+  color: #19B5FE;
+  font-family: 'Cutive Mono', monospace; }
+
 .veil {
   position: absolute;
   left: 0;

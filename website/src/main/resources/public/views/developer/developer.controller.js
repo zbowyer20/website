@@ -29,7 +29,8 @@
 			email: "zak@zakbowyer.com",
 			level: {
 				current: $scope.getDifferenceIn($scope.TIME_PERIODS.YEARS, new Date(), $scope.DATE_OF_BIRTH),
-			}
+			},
+			comment: "// Junior developer looking for extra experience"
 		}
 		$scope.skills = [
 		    {

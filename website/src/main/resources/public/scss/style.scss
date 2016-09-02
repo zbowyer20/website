@@ -383,6 +383,12 @@ $width__desktop--large: 1300px;
 	background: $background__colour--light;
 }
 
+.text__developer-stats--comment {
+	font-size: 26px;
+	color: $theme__colour--light;
+	font-family: 'Cutive Mono', monospace;
+}
+
 .veil {
 	position: absolute;
 	left: 0;
