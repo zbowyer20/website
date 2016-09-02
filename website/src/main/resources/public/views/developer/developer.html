@@ -44,7 +44,7 @@
 	<section class="section__developer-history">
 		<h3 class="header__developer text__developer">History</h3>
 		<div class="container__developer--history">
-			<div class="roundel container__developer--period" ng-repeat="period in history" ng-mouseover="populateHistory(period)" ng-mouseleave="clearHistory()" ng-style="{'left': getHistoryPosition(period.date)}" />
+			<div class="roundel container__developer--period" ng-repeat="period in history" ng-mouseover="setActiveHistory(period.tag)" ng-class="{'active': period.tag == active.history.tag}" ng-style="{'left': getHistoryPosition(period.date)}" />
 			<div class="container__developer--experience fast-moves" ng-class="{'active': content.length > 0}" ng-bind-html="content" />
 		</div>
 	</section>

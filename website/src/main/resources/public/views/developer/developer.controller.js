@@ -95,10 +95,14 @@
 		    {
 		    	tag: "Marks & Spencer",
 		    	date: new Date("09-07-2014"),
-		    	fileName: "mns.html"
+		    	fileName: "mns.html",
+		    	initial: true
 		    }
 		];
 		$scope.content = "";
+		$scope.active = {
+			history: {}
+		};
 		
 		$scope.getSkillWidth = function(level) {
 			return loaded ? level + '%' : 0;
@@ -108,14 +112,18 @@
 			return (((date - $scope.DATE_OF_BIRTH) / (new Date() - $scope.DATE_OF_BIRTH)) * 100) + "%";
 		}
 		
-		$scope.populateHistory = function(period) {
-			$http.get('html/experience/' + period.fileName).then(function(response) {
+		function populateHistory(fileName) {
+			$http.get('html/experience/' + fileName).then(function(response) {
 				$scope.content = response.data;
 			});
 		}
 		
-		$scope.clearHistory = function() {
-			$scope.content = "";
+		$scope.setActiveHistory = function(tag) {
+			var history = $scope.history.filter(function(obj) {
+				return obj.tag == tag;
+			});
+			$scope.active.history = history[0];
+			populateHistory($scope.active.history.fileName);
 		}
 		
 		function init() {
@@ -123,6 +131,7 @@
 			$timeout( function() {
 				loaded = true;
 			}, 600)
+			$scope.setActiveHistory("Marks & Spencer")
 		}
 		
 		init();
