@@ -87482,6 +87482,7 @@ angular.module('bowyerville')
 			name: "Zak Bowyer",
 			img: "images/developer/zak.png",
 			location: "London, UK",
+			email: "zak@zakbowyer.com",
 			level: {
 				current: $scope.getDifferenceIn($scope.TIME_PERIODS.YEARS, new Date(), $scope.DATE_OF_BIRTH),
 			}
