@@ -11,9 +11,6 @@
 						<img class="image__social" src="https://static.licdn.com/scds/common/u/img/webpromo/btn_in_20x15.png" alt="View Zak Bowyer's LinkedIn profile" style="vertical-align:middle;" border="0">
 					</span>
 				</a>
-				<a target="_blank" href="https://github.com/zbowyer20">
-					<img class="image__social" src="images/developer/Octocat.png" />
-				</a>
 			</span>
 			<div class="row__developer">
 				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Location</span>
@@ -21,15 +18,13 @@
 			</div>
 			<div class="row__developer">
 				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Level</span>
-				<span class="text__developer text__developer-stats--value">{{me.level}}</span>
+				<span class="text__developer text__developer-stats--value">{{me.level.current}}</span>
 			</div>
 			<div class="row__developer">
-				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">HP</span>
-				<span class="text__developer text__developer-stats--value">{{me.hp.current}} / {{me.hp.max}}</span>
-			</div>
-			<div class="row__developer">
-				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">MP</span>
-				<span class="text__developer text__developer-stats--value">{{me.mp.current}} / {{me.mp.max}}</span>
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Next level</span>
+				<div class="container__developer--skill">
+					<div class="container__developer--skill__progress smooth-moves" ng-style="{'width': getSkillWidth(me.level.progress)}"></div>
+				</div>			
 			</div>
 		</div>
 	</section>

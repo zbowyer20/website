@@ -87482,14 +87482,8 @@ angular.module('bowyerville')
 			name: "Zak Bowyer",
 			img: "images/developer/zak.png",
 			location: "London, UK",
-			level: $scope.getDifferenceIn($scope.TIME_PERIODS.YEARS, new Date(), $scope.DATE_OF_BIRTH),
-			hp: {
-				current: 250,
-				max: 250
-			},
-			mp: {
-				current: 10,
-				max: 10
+			level: {
+				current: $scope.getDifferenceIn($scope.TIME_PERIODS.YEARS, new Date(), $scope.DATE_OF_BIRTH),
 			}
 		}
 		$scope.skills = [
@@ -87571,7 +87565,6 @@ angular.module('bowyerville')
 		$scope.populateHistory = function(period) {
 			$http.get('html/experience/' + period.fileName).then(function(response) {
 				$scope.content = response.data;
-				console.log($scope.content);
 			});
 		}
 		
@@ -87579,10 +87572,14 @@ angular.module('bowyerville')
 			$scope.content = "";
 		}
 		
-		$timeout( function() {
-			loaded = true;
-		}, 600)
+		function init() {
+			$scope.me.level.progress = $scope.getDifferenceIn($scope.TIME_PERIODS.DAYS, new Date(), new Date("03-01-" + ($scope.me.level.current + 1993))) / 3.65;
+			$timeout( function() {
+				loaded = true;
+			}, 600)
+		}
 		
+		init();
 	}
 })();
 
