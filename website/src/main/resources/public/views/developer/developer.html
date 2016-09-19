@@ -21,14 +21,8 @@
 				<span class="text__developer text__developer-stats--value">{{me.location}}</span>
 			</div>
 			<div class="row__developer">
-				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Level</span>
-				<span class="text__developer text__developer-stats--value">{{me.level.current}}</span>
-			</div>
-			<div class="row__developer">
-				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Next level</span>
-				<div class="container__developer--skill">
-					<div class="container__developer--skill__progress smooth-moves" ng-style="{'width': getSkillWidth(me.level.progress)}"></div>
-				</div>			
+				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">Born</span>
+				<span class="text__developer text__developer-stats--value">{{me.dob | date:"dd/MM/yyyy"}}</span>
 			</div>
 		</div>
 	</section>
@@ -53,6 +47,13 @@
 		</section>
 		<section class="section__developer-future">
 			<h3 class="header__developer text__developer">Future</h3>
+			<span class="text__developer text__developer--future">As well as building up my existing skills, I'm interested in learning new technologies and working practices, such as:</span>
+			<div class="section__developer-icons">
+				<div class="container__developer-icon" ng-repeat="skill in future">
+					<img class="image__developer-icon" ng-src="{{skill.img}}" />
+					<span class="text__developer-icon text__developer fast-moves">{{skill.name}}</span>
+				</div>
+			</div>
 		</section>
 	</section>
 </div>

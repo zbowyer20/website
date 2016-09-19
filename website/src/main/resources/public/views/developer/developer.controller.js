@@ -8,7 +8,6 @@
 	
 	/** @ngInject */
 	function DeveloperController($scope, $timeout, $http) {
-		$scope.DATE_OF_BIRTH = new Date("03-01-1993");
 		$scope.TIME_PERIODS = {
 			DAYS: 0,
 			YEARS: 1
@@ -27,11 +26,9 @@
 			img: "images/developer/zak.png",
 			location: "London, UK",
 			email: "zak@zakbowyer.com",
-			level: {
-				current: $scope.getDifferenceIn($scope.TIME_PERIODS.YEARS, new Date(), $scope.DATE_OF_BIRTH),
-			},
+			dob: new Date("03-01-1993"),
 			comment: "// Junior developer looking for extra experience"
-		}
+		};
 		$scope.skills = [
 		    {
 		    	name: "HTML5",
@@ -99,6 +96,36 @@
 		    	initial: true
 		    }
 		];
+		$scope.future = [
+		    {
+		    	name: "NodeJS",
+		    	img: "images/developer/nodejs.png"
+		    },
+		    {
+		    	name: "MongoDB",
+		    	img: "images/developer/mongodb.png"
+		    },
+		    {
+		    	name: "ReactJS",
+		    	img: "images/developer/react.png"
+		    },
+		    {
+		    	name: "Spring Security",
+		    	img: "images/developer/springsecurity.png"
+		    },
+		    {
+		    	name: "Docker",
+		    	img: "images/developer/docker.svg"
+		    },
+		    {
+		    	name: "Angular 2.0",
+		    	img: "images/developer/angular.png"
+		    },
+		    {
+		    	name: "Scala",
+		    	img: "images/developer/scala.png"
+		    }
+		];
 		$scope.content = "";
 		$scope.active = {
 			history: {}
@@ -109,7 +136,7 @@
 		}
 		
 		$scope.getHistoryPosition = function(date, right) {
-			return (((date - $scope.DATE_OF_BIRTH) / (new Date() - $scope.DATE_OF_BIRTH)) * 100) + "%";
+			return (((date - $scope.me.dob) / (new Date() - $scope.me.dob)) * 100) + "%";
 		}
 		
 		function populateHistory(fileName) {
@@ -127,7 +154,6 @@
 		}
 		
 		function init() {
-			$scope.me.level.progress = $scope.getDifferenceIn($scope.TIME_PERIODS.DAYS, new Date(), new Date("03-01-" + ($scope.me.level.current + 1993))) / 3.65;
 			$timeout( function() {
 				loaded = true;
 			}, 600)
