@@ -131,7 +131,6 @@
 		function stopLoading() {
 			$scope.settings.loading.pending = false;
 			$scope.settings.loading.on = false;
-			$scope.settings.loading.image = false;
 		}
 		
 		function getStoryByFileName(fileName) {
@@ -214,7 +213,7 @@
 			}
 		}
 		
-		function updateImage(image, preloading, storyInCookie) {
+		function updateImage(image, preloading) {
 			var imageSlot = ($scope.content.images.current + 1) % $scope.settings.images;
 			$scope.content.images.container[imageSlot] = image;
 			if (!preloading) {
