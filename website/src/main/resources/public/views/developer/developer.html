@@ -29,7 +29,7 @@
 	<section class="section__developer-left">
 		<section class="section__developer-skills">
 			<h3 class="header__developer text__developer">Abilities</h3>
-			<div class="row__developer" ng-repeat="skill in skills">
+			<div class="row__developer row__developer--skill" ng-repeat="skill in skills">
 				<span class="text__developer text__developer-stats--type text__developer-stats--type--medium">{{skill.name}}</span>
 				<div class="container__developer--skill">
 					<div class="container__developer--skill__progress smooth-moves" ng-style="{'width': getSkillWidth(skill.level)}"></div>

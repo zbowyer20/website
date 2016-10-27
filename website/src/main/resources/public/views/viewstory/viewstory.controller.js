@@ -44,6 +44,7 @@
 		$scope.settings = {
 				loading: {
 					on: false,
+					image: false,
 					pending: false
 				},
 				images: 3,
@@ -117,18 +118,20 @@
 		}
 		
 		function loading() {
-			$scope.settings.loading.pending = true;
-			$timeout(function() {
-				if ($scope.settings.loading.pending) {
-					$scope.settings.loading.pending = false;
-					$scope.settings.loading.on = true;
-				}
-			}, 300)
+//			$scope.settings.loading.pending = true;
+//			$timeout(function() {
+//				if ($scope.settings.loading.pending) {
+//					$scope.settings.loading.pending = false;
+//					$scope.settings.loading.on = true;
+//				}
+//			}, 300)
+			$scope.settings.loading.on = true;
 		}
 		
 		function stopLoading() {
 			$scope.settings.loading.pending = false;
 			$scope.settings.loading.on = false;
+			$scope.settings.loading.image = false;
 		}
 		
 		function getStoryByFileName(fileName) {
@@ -158,6 +161,9 @@
 		 * Display new content
 		 */
 		function updateContent(story, preloading) {
+			if (!preloading && !storyIsInCookie(story)) {
+				loading();
+			}
 			addStoryToTimeline(story);
 			$scope.content.selected = preloading ? $scope.content.selected : story;
 			displayContent(story);
@@ -175,7 +181,6 @@
 				if (typeof story.content == 'undefined' && story.type != 'video') {
 					loading();
 					$http.get('html/' + story.fileName + '.html').then(function(response) {
-						stopLoading();
 						story.content = response.data;
 						$cookieStore.put("nextStory", story.next);
 						resolve("done");
@@ -198,6 +203,7 @@
 				}
 				updateVideo(story.youtubeId);
 				updateTeaser(story);
+				stopLoading();
 			});
 		}
 
@@ -208,10 +214,13 @@
 			}
 		}
 		
-		function updateImage(image, preloading) {
+		function updateImage(image, preloading, storyInCookie) {
 			var imageSlot = ($scope.content.images.current + 1) % $scope.settings.images;
 			$scope.content.images.container[imageSlot] = image;
 			if (!preloading) {
+				if (image != null) {
+					$scope.settings.loading.image = true;
+				}
 				$scope.content.images.current = imageSlot;
 			}
 		}
@@ -431,6 +440,10 @@
 			refresh ? $scope.goToContent(previousStory) : updateContent(previousStory);
 		}
 		
+		$scope.imageLoaded = function() {
+			$scope.settings.loading.image = false;
+		}
+		
 		// toggle between mute and volume for currently playing youtube video
 		$scope.toggleYoutube = function() {
 			if (!$scope.settings.muted) {
@@ -438,6 +451,10 @@
 			} else {
 				playVideo();
 			}
+		}
+		
+		$scope.isLoading = function() {
+			return $scope.settings.loading.on || $scope.settings.loading.image;
 		}
 		
 		// loop youtube video forever

@@ -9,9 +9,9 @@
 		</div>
 	</div>
 	
-	<div id="container" class="animate__fade" ng-show="content.selected.type != 'video'">
+	<div id="container" class="animate__fade smooth-moves" ng-show="content.selected.type != 'video'">
 		<div class="container__image container__story-element smooth-moves" ng-class="{'container__image--active': isImageActive(), 'container__image--inactive': !isImageActive()}">
-			<img ng-repeat="n in [0, 1, 2]" class="image__story" ng-show="content.images.current === n && content.images.container[n]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[n]}}"></img>
+			<img ng-repeat="n in [0, 1, 2]" class="image__story" ng-show="content.images.current === n && content.images.container[n]" ng-class="{'image__story--active': isImageActive()}" ng-src="{{content.images.container[n]}}" imageonload="imageLoaded()"></img>
 		</div>
 		<article class="article__story container__story-element">
 			<div class="header__story">
@@ -24,7 +24,7 @@
 		</article>
 	</div>
 	
-	<div class="video animate__fade" ng-show="content.selected.type == 'video'">
+	<div class="video animate__fade smooth-moves" ng-show="content.selected.type == 'video'">
 		<div story-header class="header__video"></div>
 		<youtube-video video-id="content.video.id" player="youtube" player-vars="content.video.player" player-width="'80%'" player-height="'600px'"></youtube-video>
 	</div>
@@ -37,7 +37,7 @@
 	<h1 class="header__text">Sorry, this page is currently unavailable on your device.</h1>
 </div> -->
 
-<div class="container--full-screen animate__fade smooth-moves" ng-show="settings.loading.on">
+<div class="container--full-screen animate__fade extreme-moves" ng-show="isLoading()">
 	<img src="images/components/ajax-loader.gif">
 	<h2 class="text__header">Loading...</h2>
 </div>

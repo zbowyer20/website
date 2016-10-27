@@ -45,7 +45,7 @@ $width__desktop--large: 1300px;
 }
 
 .animate__fade {
-	@include transition(all linear 0.5s);
+	@include transition(all linear 0.1s);
 	
 	&.ng-hide-remove {
 		opacity: 0;
@@ -142,6 +142,10 @@ $width__desktop--large: 1300px;
 
 .fast-moves {
 	@include transition(all linear 0.3s);
+}
+
+.extreme-moves {
+	@include transition(all linear 0.15s);
 }
 
 .container {
@@ -283,6 +287,14 @@ $width__desktop--large: 1300px;
 	margin: 5px 0;
 }
 
+.row__developer--skill {
+	width: 50%;
+	display: inline-block;
+	@include desktop {
+		width: 100%;
+	}
+}
+
 .section__developer-stats {
 	padding-bottom: 10px;
 	border-bottom: 1px solid $background__colour--light;
@@ -295,13 +307,21 @@ $width__desktop--large: 1300px;
 
 .section__developer-left {
 	display: inline-block;
-	width: 40%;
+	width: 100%;
+	
+	@include desktop {
+		width: 40%;
+	}
 }
 
 .section__developer-right {
 	display: inline-block;
 	vertical-align: top;
-	width: 59%;
+	width: 100%;
+	
+	@include desktop {
+		width: 59%;
+	}
 }
 
 .section__developer-skills {
@@ -401,6 +421,11 @@ $width__desktop--large: 1300px;
 	font-size: 26px;
 	color: $theme__colour--light;
 	font-family: 'Cutive Mono', monospace;
+	display: none;
+	
+	@include desktop {
+		display: inline;
+	}
 }
 
 .veil {
@@ -435,6 +460,11 @@ $width__desktop--large: 1300px;
 .header__developer {
 	margin: 10px 0;
 	color: $text__colour--light;
+	font-size: 48px;
+	
+	@include desktop {
+		font-size: 24px;
+	}
 }
 
 .header__story {
@@ -487,7 +517,6 @@ $width__desktop--large: 1300px;
 	color: $text__colour--light;
 	padding: 10px 0;
 	margin: 0;
-	text-transform: uppercase;
 }
 
 .text__header--primary {
@@ -520,8 +549,12 @@ $width__desktop--large: 1300px;
 }
 
 .text__developer-stats--name {
-	font-size: 32px;
+	font-size: 64px;
 	color: $text__colour--light;
+	
+	@include desktop {
+		font-size: 32px;
+	}
 }
 
 .text__developer-stats--type {
@@ -530,15 +563,29 @@ $width__desktop--large: 1300px;
 	text-transform: uppercase;
 	margin-right: 10px;
 	display: inline-block;
+	font-size: 32px;
+	
+	@include desktop {
+		font-size: 16px;
+	}
 }
 
 .text__developer-stats--type--medium {
-	width: 100px;
+	width: 250px;
+	
+	@include desktop {
+		width: 125px;
+	}
 }
 
 .text__developer-stats--value {
 	display: inline-block;
 	color: $text__colour--light;
+	font-size: 32px;
+	
+	@include desktop {
+		font-size: 16px;
+	}
 }
 
 .text__writer {
@@ -770,7 +817,11 @@ $width__desktop--large: 1300px;
 
 .image__developer {
 	display: inline-block;
-	height: 200px;
+	height: 300px;
+	
+	@include desktop {
+		height: 200px;
+	}
 }
 
 .container__developer-icon {
@@ -785,6 +836,11 @@ $width__desktop--large: 1300px;
 
 .text__developer--future {
 	color: $text__colour--light;
+	font-size: 26px;
+	
+	@include desktop {
+		font-size: 16px;
+	}
 }
 
 .text__developer-icon {

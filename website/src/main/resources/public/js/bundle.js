@@ -87277,7 +87277,8 @@ return jQuery;
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
 			scroll: require('./../views/viewstory/viewstory.scroll.js'),
-			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
+			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js'),
+			performance: require('./../views/viewstory/components/viewstory.directives.performance.js')
 	};
 	var characters = {
 			controller: require('./../views/characters/characters.controller.js'),
@@ -87296,7 +87297,7 @@ return jQuery;
 			directives: require('./../views/directive.js')
 	};
 })()
-},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/developer/developer.controller.js":29,"./../views/directive.js":30,"./../views/home/home.controller.js":31,"./../views/viewstory/components/viewstory.directives.storyheader.js":32,"./../views/viewstory/viewstory.controller.js":33,"./../views/viewstory/viewstory.scroll.js":34,"./../views/writer/writer.controller.js":35,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
+},{"./../views/characters/characters.controller.js":26,"./../views/characters/components/characters.directives.keypress.js":27,"./../views/credits/credits.controller.js":28,"./../views/developer/developer.controller.js":29,"./../views/directive.js":30,"./../views/home/home.controller.js":31,"./../views/viewstory/components/viewstory.directives.performance.js":32,"./../views/viewstory/components/viewstory.directives.storyheader.js":33,"./../views/viewstory/viewstory.controller.js":34,"./../views/viewstory/viewstory.scroll.js":35,"./../views/writer/writer.controller.js":36,"./index.module.js":24,"./index.route.js":25,"angular":21,"angular-animate":2,"angular-aria":4,"angular-cookies":6,"angular-filter":7,"angular-material":9,"angular-route":11,"angular-sanitize":13,"angular-touch":15,"angular-ui-bootstrap":17,"angular-youtube-embed":18,"jquery":22}],24:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87669,12 +87670,24 @@ angular.module('bowyerville')
 
 },{}],32:[function(require,module,exports){
 angular.module('bowyerville')
+	.directive("imageonload", function() {
+		return {
+			restrict: 'A',
+			link: function(scope, element, attrs) {
+				element.bind('load', function() {
+					scope.$apply(attrs.imageonload);
+				});
+			}
+		};
+	});
+},{}],33:[function(require,module,exports){
+angular.module('bowyerville')
 	.directive("storyHeader", function() {
 		return {
 			templateUrl: '../views/viewstory/components/viewstory.storyheader.html'
 		};
 	});
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -87721,6 +87734,7 @@ angular.module('bowyerville')
 		$scope.settings = {
 				loading: {
 					on: false,
+					image: false,
 					pending: false
 				},
 				images: 3,
@@ -87794,18 +87808,20 @@ angular.module('bowyerville')
 		}
 		
 		function loading() {
-			$scope.settings.loading.pending = true;
-			$timeout(function() {
-				if ($scope.settings.loading.pending) {
-					$scope.settings.loading.pending = false;
-					$scope.settings.loading.on = true;
-				}
-			}, 300)
+//			$scope.settings.loading.pending = true;
+//			$timeout(function() {
+//				if ($scope.settings.loading.pending) {
+//					$scope.settings.loading.pending = false;
+//					$scope.settings.loading.on = true;
+//				}
+//			}, 300)
+			$scope.settings.loading.on = true;
 		}
 		
 		function stopLoading() {
 			$scope.settings.loading.pending = false;
 			$scope.settings.loading.on = false;
+			$scope.settings.loading.image = false;
 		}
 		
 		function getStoryByFileName(fileName) {
@@ -87835,6 +87851,9 @@ angular.module('bowyerville')
 		 * Display new content
 		 */
 		function updateContent(story, preloading) {
+			if (!preloading && !storyIsInCookie(story)) {
+				loading();
+			}
 			addStoryToTimeline(story);
 			$scope.content.selected = preloading ? $scope.content.selected : story;
 			displayContent(story);
@@ -87852,7 +87871,6 @@ angular.module('bowyerville')
 				if (typeof story.content == 'undefined' && story.type != 'video') {
 					loading();
 					$http.get('html/' + story.fileName + '.html').then(function(response) {
-						stopLoading();
 						story.content = response.data;
 						$cookieStore.put("nextStory", story.next);
 						resolve("done");
@@ -87875,6 +87893,7 @@ angular.module('bowyerville')
 				}
 				updateVideo(story.youtubeId);
 				updateTeaser(story);
+				stopLoading();
 			});
 		}
 
@@ -87885,10 +87904,13 @@ angular.module('bowyerville')
 			}
 		}
 		
-		function updateImage(image, preloading) {
+		function updateImage(image, preloading, storyInCookie) {
 			var imageSlot = ($scope.content.images.current + 1) % $scope.settings.images;
 			$scope.content.images.container[imageSlot] = image;
 			if (!preloading) {
+				if (image != null) {
+					$scope.settings.loading.image = true;
+				}
 				$scope.content.images.current = imageSlot;
 			}
 		}
@@ -88108,6 +88130,10 @@ angular.module('bowyerville')
 			refresh ? $scope.goToContent(previousStory) : updateContent(previousStory);
 		}
 		
+		$scope.imageLoaded = function() {
+			$scope.settings.loading.image = false;
+		}
+		
 		// toggle between mute and volume for currently playing youtube video
 		$scope.toggleYoutube = function() {
 			if (!$scope.settings.muted) {
@@ -88115,6 +88141,10 @@ angular.module('bowyerville')
 			} else {
 				playVideo();
 			}
+		}
+		
+		$scope.isLoading = function() {
+			return $scope.settings.loading.on || $scope.settings.loading.image;
 		}
 		
 		// loop youtube video forever
@@ -88143,7 +88173,7 @@ angular.module('bowyerville')
 	}
 })();
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 (function() {
 	'use strict';
 	
@@ -88186,7 +88216,7 @@ angular.module('bowyerville')
 			}
 		});
 })();
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 (function() {
 	'use strict';
 	

@@ -21,7 +21,8 @@
 	var viewStory = {
 			controller: require('./../views/viewstory/viewstory.controller.js'),
 			scroll: require('./../views/viewstory/viewstory.scroll.js'),
-			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js')
+			story: require('./../views/viewstory/components/viewstory.directives.storyheader.js'),
+			performance: require('./../views/viewstory/components/viewstory.directives.performance.js')
 	};
 	var characters = {
 			controller: require('./../views/characters/characters.controller.js'),
